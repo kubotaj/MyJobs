@@ -14,9 +14,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *jobLocation;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
-
+@property (nonatomic) NSString *city;
 - (IBAction)searchButtonTapped:(UIButton *)sender;
-- (NSString *)getCurrentCity;
+- (void)findCurrentCity;
 
 @end
 
@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self getCurrentCity];
+    [self findCurrentCity];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +38,7 @@
     NSLog(@"Job Location is %@", self.jobLocation.text);
 }
 
-- (NSString *)getCurrentCity {
+- (void)findCurrentCity {
     // Configure location manager.
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -51,20 +51,33 @@
 
     // Obtain the location values.
     [self.locationManager startUpdatingLocation];
-
-    
-    return @"hello";
 }
 
 // Tells the delegate that new location data is available.
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    // Stop Location Manager
+    [self.locationManager stopUpdatingLocation];
     NSLog(@"%@", [locations lastObject]);
     self.location = [locations lastObject];
+    NSLog(@"coodinates are %d", self.location.coordinate);
+    // Retrieve the city info.
+    CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation: self.location
+                   completionHandler:^(NSArray *placemarks, NSError *error) {
+        for (CLPlacemark * placemark in placemarks) {
+            self.city = [placemark subAdministrativeArea];
+        }
+                       NSLog(@"inside, here the city is %@", self.city);
+    }];
+    NSLog(@"outside, here the city is %@", self.city);
+    self.jobLocation.placeholder = self.city;
 }
 
 // Tells the delegate that the locaiton manager was unable to retrieve the location values.
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"%@", error);
 }
+
+
 
 @end
