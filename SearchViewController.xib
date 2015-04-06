@@ -39,7 +39,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGw-eC-vpE">
-                    <rect key="frame" x="137" y="409" width="62" height="30"/>
+                    <rect key="frame" x="146" y="409" width="62" height="30"/>
                     <state key="normal" title="SEARCH">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

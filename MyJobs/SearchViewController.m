@@ -57,20 +57,20 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     // Stop Location Manager
     [self.locationManager stopUpdatingLocation];
-    NSLog(@"%@", [locations lastObject]);
-    self.location = [locations lastObject];
-    NSLog(@"coodinates are %d", self.location.coordinate);
+
     // Retrieve the city info.
+    self.location = [locations lastObject];
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation: self.location
                    completionHandler:^(NSArray *placemarks, NSError *error) {
         for (CLPlacemark * placemark in placemarks) {
             self.city = [placemark subAdministrativeArea];
+            NSLog(@"Current city is %@", self.city);
+            self.jobLocation.text = self.city; // Pre-fill the jobLocation with current location.
         }
-                       NSLog(@"inside, here the city is %@", self.city);
+
+                       
     }];
-    NSLog(@"outside, here the city is %@", self.city);
-    self.jobLocation.placeholder = self.city;
 }
 
 // Tells the delegate that the locaiton manager was unable to retrieve the location values.
