@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E81A72561AD08EAF00C0504F /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81A72551AD08EAF00C0504F /* SearchViewController.xib */; };
 		E81A72581AD09AA600C0504F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81A72571AD09AA600C0504F /* CoreLocation.framework */; };
+		E882B5CA1ADB51B800E9B5BA /* SearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */; };
 		E8FC4C7B1AD07E040028ED77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4C7A1AD07E040028ED77 /* main.m */; };
 		E8FC4C7E1AD07E040028ED77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4C7D1AD07E040028ED77 /* AppDelegate.m */; };
 		E8FC4C811AD07E040028ED77 /* MyJobs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4C7F1AD07E040028ED77 /* MyJobs.xcdatamodeld */; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		E81A72551AD08EAF00C0504F /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = ../SearchViewController.xib; sourceTree = "<group>"; };
 		E81A72571AD09AA600C0504F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E882B5C81ADB51B800E9B5BA /* SearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsTableViewController.h; sourceTree = "<group>"; };
+		E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsTableViewController.m; sourceTree = "<group>"; };
 		E8FC4C751AD07E040028ED77 /* MyJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FC4C791AD07E040028ED77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FC4C7A1AD07E040028ED77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -118,6 +121,8 @@
 				E8FC4CA21AD080D20028ED77 /* FavoritesTableViewController.m */,
 				E8FC4CA41AD081240028ED77 /* SettingsViewController.h */,
 				E8FC4CA51AD081240028ED77 /* SettingsViewController.m */,
+				E882B5C81ADB51B800E9B5BA /* SearchResultsTableViewController.h */,
+				E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */,
 				E8FC4C851AD07E040028ED77 /* Main.storyboard */,
 				E8FC4C881AD07E040028ED77 /* Images.xcassets */,
 				E8FC4C8A1AD07E040028ED77 /* LaunchScreen.xib */,
@@ -263,6 +268,7 @@
 				E8FC4C811AD07E040028ED77 /* MyJobs.xcdatamodeld in Sources */,
 				E8FC4C7E1AD07E040028ED77 /* AppDelegate.m in Sources */,
 				E8FC4C841AD07E040028ED77 /* SearchViewController.m in Sources */,
+				E882B5CA1ADB51B800E9B5BA /* SearchResultsTableViewController.m in Sources */,
 				E8FC4CA71AD081240028ED77 /* SettingsViewController.m in Sources */,
 				E8FC4CA31AD080D20028ED77 /* FavoritesTableViewController.m in Sources */,
 				E8FC4C7B1AD07E040028ED77 /* main.m in Sources */,

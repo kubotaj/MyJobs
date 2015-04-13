@@ -7,6 +7,7 @@
 //
 
 #import "SearchViewController.h"
+#import "SearchResultsTableViewController.h"
 
 @interface SearchViewController ()
 
@@ -15,8 +16,10 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
 @property (nonatomic) NSString *city;
+@property (nonatomic) NSString *state;
 - (IBAction)searchButtonTapped:(UIButton *)sender;
 - (void)findCurrentCity;
+
 
 @end
 
@@ -34,8 +37,20 @@
 }
 
 - (IBAction)searchButtonTapped:(UIButton *)sender {
+    /* For testing */
     NSLog(@"Job Title is %@", self.jobTitle.text);
     NSLog(@"Job Location is %@", self.jobLocation.text);
+    
+    /* Generate the result lists. */
+    NSString *urlString = [NSString stringWithFormat: @"http://www.cs.sonoma.edu/~jkubota/cs470s15/myJobs/myJobs.php?keyWord=%@&city=%@&state=%@", self.jobTitle, self.city, self.state];
+    /* url should use "%20" for a white space. */
+    urlString = [urlString stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
+    /* Convert the string to url */
+    NSURL *url = [NSURL URLWithString: urlString];
+    /* Initialized the result view with url */
+    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithURL: url];
+    [self.navigationController pushViewController:rController animated:YES];
+
 }
 
 - (void)findCurrentCity {
@@ -65,11 +80,11 @@
                    completionHandler:^(NSArray *placemarks, NSError *error) {
         for (CLPlacemark * placemark in placemarks) {
             self.city = [placemark subAdministrativeArea];
+            self.state = [placemark administrativeArea];
             NSLog(@"Current city is %@", self.city);
+            NSLog(@"Current state is %@", self.state);
             self.jobLocation.text = self.city; // Pre-fill the jobLocation with current location.
         }
-
-                       
     }];
 }
 
@@ -78,6 +93,16 @@
     NSLog(@"%@", error);
 }
 
+// Make the keyboard go away when "return" is pressed.
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+// Make the keyboard go away when anywhere besides the text box is tapped.
+- (IBAction) clickedBackground {
+    
+}
 
 
 @end

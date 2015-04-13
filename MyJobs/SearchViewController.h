@@ -10,8 +10,10 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface SearchViewController : UIViewController <CLLocationManagerDelegate>
+@interface SearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate>
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField;
+- (IBAction) clickedBackground;
 
 @end
 
