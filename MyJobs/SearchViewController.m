@@ -8,11 +8,13 @@
 
 #import "SearchViewController.h"
 #import "SearchResultsTableViewController.h"
+#import "IndeedAPIDataSource.h"
 
 @interface SearchViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *jobTitle;
-@property (weak, nonatomic) IBOutlet UITextField *jobLocation;
+@property (weak, nonatomic) IBOutlet UITextField *jobCity;
+@property (weak, nonatomic) IBOutlet UITextField *jobState;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
 @property (nonatomic) NSString *city;
@@ -39,16 +41,18 @@
 - (IBAction)searchButtonTapped:(UIButton *)sender {
     /* For testing */
     NSLog(@"Job Title is %@", self.jobTitle.text);
-    NSLog(@"Job Location is %@", self.jobLocation.text);
+    NSLog(@"Job City is %@", self.jobCity.text);
+    NSLog(@"Job City is %@", self.jobState.text);
     
     /* Generate the result lists. */
-    NSString *urlString = [NSString stringWithFormat: @"http://www.cs.sonoma.edu/~jkubota/cs470s15/myJobs/myJobs.php?keyWord=%@&city=%@&state=%@", self.jobTitle, self.city, self.state];
+    //NSString *urlString = [NSString stringWithFormat: @"http://www.cs.sonoma.edu/~jkubota/cs470s15/myJobs/indeedAPI.php?keyWord=%@&city=%@&state=%@", self.jobTitle.text, self.jobCity.text, self.jobState.text];
+    NSString *urlString = [NSString stringWithFormat: @"http://api.indeed.com/ads/apisearch?publisher=5703933454627100&q=%@&l=%@,+%@&sort=&radius=&st=&jt=&start=&limit=25&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla//4.0(Firefox)&v=2", self.jobTitle.text, self.jobCity.text, self.jobState.text];
     /* url should use "%20" for a white space. */
     urlString = [urlString stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
-    /* Convert the string to url */
-    NSURL *url = [NSURL URLWithString: urlString];
     /* Initialized the result view with url */
-    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithURL: url];
+    IndeedAPIDataSource *dataSource = [[IndeedAPIDataSource alloc] initWithURLString: urlString];
+    
+    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithDataSource: dataSource];
     [self.navigationController pushViewController:rController animated:YES];
 
 }
@@ -83,7 +87,8 @@
             self.state = [placemark administrativeArea];
             NSLog(@"Current city is %@", self.city);
             NSLog(@"Current state is %@", self.state);
-            self.jobLocation.text = self.city; // Pre-fill the jobLocation with current location.
+            self.jobCity.text = self.city; // Pre-fill the jobLocation with current location.
+            self.jobState.text = self.state; // Pre-fill the jobLocation with current location.
         }
     }];
 }

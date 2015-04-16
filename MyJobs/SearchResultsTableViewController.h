@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IndeedAPIDataSource.h"
 
 @interface SearchResultsTableViewController : UITableViewController
 
-- (id) initWithURL: (NSURL *) url;
+- (id) initWithDataSource: (IndeedAPIDataSource *) dataSource;
 
 @end

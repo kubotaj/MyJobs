@@ -7,22 +7,48 @@
 //
 
 #import "SearchResultsTableViewController.h"
+#import "IndeedAPIDataSource.h"
+#import "IndeedJob.h"
 
 @interface SearchResultsTableViewController ()
 
+@property(nonatomic) IndeedAPIDataSource *dataSource;
+@property(nonatomic) UIActivityIndicatorView *activityIndicator;
+
 @end
+
+static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 @implementation SearchResultsTableViewController
 
-/* Custom Initializer */
-- (id) initWithURL: (NSURL *) url {
+- (id)initWithDataSource: (IndeedAPIDataSource *) dataSource {
+    /* Initializer */
+    self = [super init];
+    if (self) {
+        // Custom initialization
+    }
+    self.title = @"Search Results";
     
+    self.dataSource = dataSource;
     
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    /* Reuse the cells using the identifier, "Cell" */
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    
+    /* Update the table view */
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self action:@selector(refreshTableView:) forControlEvents:UIControlEventValueChanged];
+    
+    /* Add the spinning gear to show progress */
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self.activityIndicator setCenter: self.view.center];
+    [self.view addSubview: self.activityIndicator];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -41,24 +67,58 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.dataSource getNumberOfJobs];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
     // Configure the cell...
+    /* Populate the rows with theater names */
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    //This allows for multiple lines
+    cell.detailTextLabel.numberOfLines = 0;
+    IndeedJob *iJob = [self.dataSource jobAtIndex: [indexPath row]];
+    cell.textLabel.text = [iJob jobtitle];
+    NSString *location;
+    location = [NSString stringWithFormat: @"%@\n", [iJob company]];
+    location = [location stringByAppendingString: [iJob city]];
+    location = [location stringByAppendingString: @", "];
+    location = [location stringByAppendingString: [iJob state]];
+    location = [location stringByAppendingString: @", "];
+    location = [location stringByAppendingString: [iJob formattedRelativeTime]];
+//    location = [location stringByAppendingString: @"\n"];
+//    location = [location stringByAppendingString: [iJob snippet]];
+    
+    cell.detailTextLabel.text = location;
     
     return cell;
 }
-*/
+
+-(void) refreshTableView: (UIRefreshControl *) sender
+{   /* Refresh the table view */
+    [self.tableView reloadData];
+    [sender endRefreshing];
+}
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{   /* Respond to the touch at the row. Create and move to the detail view. */
+//    IndeedJob *iJob = [self.dataSource jobAtIndex: [indexPath row]];
+//    SearchResultsTableViewController *srtController = [[SearchResultsTableViewController alloc] initWithJob: iJob];
+//    [self.navigationController pushViewController: srtController animated:YES];
+}
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{   /* Return the height of the row */
+    return 70;
+}
+
 
 /*
 // Override to support conditional editing of the table view.

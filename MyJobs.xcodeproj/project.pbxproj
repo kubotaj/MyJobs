@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E81A72561AD08EAF00C0504F /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81A72551AD08EAF00C0504F /* SearchViewController.xib */; };
 		E81A72581AD09AA600C0504F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81A72571AD09AA600C0504F /* CoreLocation.framework */; };
+		E848CEAF1ADEE718007B4272 /* IndeedAPIDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E848CEAE1ADEE718007B4272 /* IndeedAPIDataSource.m */; };
+		E848CEB21ADEF02D007B4272 /* IndeedJob.m in Sources */ = {isa = PBXBuildFile; fileRef = E848CEB11ADEF02D007B4272 /* IndeedJob.m */; };
 		E882B5CA1ADB51B800E9B5BA /* SearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */; };
 		E8FC4C7B1AD07E040028ED77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4C7A1AD07E040028ED77 /* main.m */; };
 		E8FC4C7E1AD07E040028ED77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4C7D1AD07E040028ED77 /* AppDelegate.m */; };
@@ -38,6 +40,10 @@
 /* Begin PBXFileReference section */
 		E81A72551AD08EAF00C0504F /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = ../SearchViewController.xib; sourceTree = "<group>"; };
 		E81A72571AD09AA600C0504F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E848CEAD1ADEE718007B4272 /* IndeedAPIDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndeedAPIDataSource.h; sourceTree = "<group>"; };
+		E848CEAE1ADEE718007B4272 /* IndeedAPIDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndeedAPIDataSource.m; sourceTree = "<group>"; };
+		E848CEB01ADEF02D007B4272 /* IndeedJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndeedJob.h; sourceTree = "<group>"; };
+		E848CEB11ADEF02D007B4272 /* IndeedJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndeedJob.m; sourceTree = "<group>"; };
 		E882B5C81ADB51B800E9B5BA /* SearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsTableViewController.h; sourceTree = "<group>"; };
 		E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsTableViewController.m; sourceTree = "<group>"; };
 		E8FC4C751AD07E040028ED77 /* MyJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +96,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E848CEB31ADEF060007B4272 /* Indeed */ = {
+			isa = PBXGroup;
+			children = (
+				E848CEAD1ADEE718007B4272 /* IndeedAPIDataSource.h */,
+				E848CEAE1ADEE718007B4272 /* IndeedAPIDataSource.m */,
+				E848CEB01ADEF02D007B4272 /* IndeedJob.h */,
+				E848CEB11ADEF02D007B4272 /* IndeedJob.m */,
+			);
+			name = Indeed;
+			sourceTree = "<group>";
+		};
 		E8FC4C6C1AD07E040028ED77 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +129,7 @@
 		E8FC4C771AD07E040028ED77 /* MyJobs */ = {
 			isa = PBXGroup;
 			children = (
+				E848CEB31ADEF060007B4272 /* Indeed */,
 				E8FC4C7C1AD07E040028ED77 /* AppDelegate.h */,
 				E8FC4C7D1AD07E040028ED77 /* AppDelegate.m */,
 				E8FC4C821AD07E040028ED77 /* SearchViewController.h */,
@@ -265,12 +283,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E848CEB21ADEF02D007B4272 /* IndeedJob.m in Sources */,
 				E8FC4C811AD07E040028ED77 /* MyJobs.xcdatamodeld in Sources */,
 				E8FC4C7E1AD07E040028ED77 /* AppDelegate.m in Sources */,
 				E8FC4C841AD07E040028ED77 /* SearchViewController.m in Sources */,
 				E882B5CA1ADB51B800E9B5BA /* SearchResultsTableViewController.m in Sources */,
 				E8FC4CA71AD081240028ED77 /* SettingsViewController.m in Sources */,
 				E8FC4CA31AD080D20028ED77 /* FavoritesTableViewController.m in Sources */,
+				E848CEAF1ADEE718007B4272 /* IndeedAPIDataSource.m in Sources */,
 				E8FC4C7B1AD07E040028ED77 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
