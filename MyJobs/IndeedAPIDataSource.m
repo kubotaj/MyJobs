@@ -93,6 +93,7 @@
              [elementName isEqualToString: @"city"] ||
              [elementName isEqualToString: @"state"] ||
              [elementName isEqualToString: @"snippet"] ||
+             [elementName isEqualToString: @"url"] ||
              [elementName isEqualToString: @"formattedRelativeTime"]) {
         [self.iJob setValue: self.currentElementValue forKey: elementName];
         
@@ -121,6 +122,11 @@
         else if ([elementName isEqualToString: @"snippet"]) {
             self.iJob.snippet = [self.iJob.snippet stringByReplacingOccurrencesOfString:@"\n" withString:@""];
             self.iJob.snippet = [self.iJob.snippet stringByTrimmingCharactersInSet:
+                                 [NSCharacterSet whitespaceCharacterSet]];
+        }
+        else if ([elementName isEqualToString: @"url"]) {
+            self.iJob.url = [self.iJob.url stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            self.iJob.url = [self.iJob.url stringByTrimmingCharactersInSet:
                                  [NSCharacterSet whitespaceCharacterSet]];
         }
         else {
