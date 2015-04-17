@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F6CF32C1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CF32B1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m */; };
 		3FBBC0911AE1B81D005F19FD /* MonsterDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBBC0901AE1B81D005F19FD /* MonsterDataSource.m */; };
 		E81A72561AD08EAF00C0504F /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81A72551AD08EAF00C0504F /* SearchViewController.xib */; };
 		E81A72581AD09AA600C0504F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81A72571AD09AA600C0504F /* CoreLocation.framework */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F6CF32A1AE1C5D200406C9C /* CareerBuilderAPIDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CareerBuilderAPIDataSource.h; sourceTree = "<group>"; };
+		3F6CF32B1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CareerBuilderAPIDataSource.m; sourceTree = "<group>"; };
 		3FBBC08F1AE1B81D005F19FD /* MonsterDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterDataSource.h; sourceTree = "<group>"; };
 		3FBBC0901AE1B81D005F19FD /* MonsterDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterDataSource.m; sourceTree = "<group>"; };
 		E81A72551AD08EAF00C0504F /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = ../SearchViewController.xib; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 		3FA66AE31AE19BD900942C6A /* CareerBuilder */ = {
 			isa = PBXGroup;
 			children = (
+				3F6CF32A1AE1C5D200406C9C /* CareerBuilderAPIDataSource.h */,
+				3F6CF32B1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m */,
 			);
 			name = CareerBuilder;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E848CEB21ADEF02D007B4272 /* Job.m in Sources */,
+				3F6CF32C1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m in Sources */,
 				E8FC4C811AD07E040028ED77 /* MyJobs.xcdatamodeld in Sources */,
 				E8FC4C7E1AD07E040028ED77 /* AppDelegate.m in Sources */,
 				E8FC4C841AD07E040028ED77 /* SearchViewController.m in Sources */,
