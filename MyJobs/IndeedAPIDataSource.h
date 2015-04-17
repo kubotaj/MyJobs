@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IndeedJob.h"
+#import "Job.h"
 
 @interface IndeedAPIDataSource : NSObject
 
 - (instancetype) initWithURLString: (NSString *) urlString;
 - (NSMutableArray *) getAllJobs;
 - (NSInteger *) getNumberOfJobs;
-- (IndeedJob *) jobAtIndex: (NSInteger *) idx;
+- (Job *) jobAtIndex: (NSInteger *) idx;
 
 @end
 

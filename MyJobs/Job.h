@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IndeedJob : NSObject
+@interface Job : NSObject
 
 /* ensure property names match the XML element names */
 @property (nonatomic) NSString *jobtitle;

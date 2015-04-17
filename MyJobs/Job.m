@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Joji Kubota. All rights reserved.
 //
 
-#import "IndeedJob.h"
+#import "Job.h"
 
-@interface IndeedJob()
+@interface Job()
 
 @end
 
-@implementation IndeedJob
+@implementation Job
 
 //- (instancetype) initWithJobTile: (NSString *) jobtitle
 //                     companyName: (NSString *) company

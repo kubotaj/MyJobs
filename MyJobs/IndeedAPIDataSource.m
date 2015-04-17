@@ -11,7 +11,7 @@
 @interface IndeedAPIDataSource()
 
 @property (nonatomic) NSString *indeedURLString;
-@property (nonatomic) IndeedJob *iJob;
+@property (nonatomic) Job *iJob;
 @property (nonatomic) NSMutableArray *jobs;
 @property (nonatomic) NSString *currentElement;
 @property (nonatomic) NSMutableString *currentElementValue;
@@ -56,7 +56,7 @@
     
     /* Create a new instance of iJob */
     if ([elementName isEqualToString: @"result"]) {
-        self.iJob = [[IndeedJob alloc] init];
+        self.iJob = [[Job alloc] init];
     }
 }
 
@@ -124,7 +124,7 @@
     return [self.jobs count];
 }
 
-- (IndeedJob *) jobAtIndex: (NSInteger *) idx {
+- (Job *) jobAtIndex: (NSInteger *) idx {
     if( idx >= [self.jobs count] )
         return nil;
     
