@@ -101,7 +101,20 @@
         self.currentElementValue = [self.currentElementValue stringByTrimmingCharactersInSet:
                                     [NSCharacterSet whitespaceCharacterSet]];
         
-        [self.cbJob setValue: self.currentElementValue forKey: elementName];
+        if ([elementName isEqualToString: @"ONetFriendlyTitle"])
+            [self.cbJob setValue: self.currentElementValue forKey: @"jobtitle"];
+        if ([elementName isEqualToString: @"Company"])
+            [self.cbJob setValue: self.currentElementValue forKey: @"company"];
+        if ([elementName isEqualToString: @"City"])
+            [self.cbJob setValue: self.currentElementValue forKey: @"city"];
+        if ([elementName isEqualToString: @"State"])
+            [self.cbJob setValue: self.currentElementValue forKey: @"state"];
+        if ([elementName isEqualToString: @"DescriptionTeaser"])
+            [self.cbJob setValue: self.currentElementValue forKey: @"snippet"];
+        if ([elementName isEqualToString: @"JobDetailsURL"])
+            [self.cbJob setValue: self.currentElementValue forKey: @"url"];
+        if ([elementName isEqualToString: @"PostedTime"])
+            [self.cbJob setValue: self.currentElementValue forKey: @"formattedRelativeTime"];
     }
     
     // Reset the variable.
