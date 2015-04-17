@@ -8,7 +8,7 @@
 
 #import "SearchResultsTableViewController.h"
 #import "IndeedAPIDataSource.h"
-#import "IndeedJob.h"
+#import "Job.h"
 
 @interface SearchResultsTableViewController ()
 
@@ -83,7 +83,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     //This allows for multiple lines
     cell.detailTextLabel.numberOfLines = 0;
-    IndeedJob *iJob = [self.dataSource jobAtIndex: [indexPath row]];
+    Job *iJob = [self.dataSource jobAtIndex: [indexPath row]];
     cell.textLabel.text = [iJob jobtitle];
     NSString *location;
     location = [NSString stringWithFormat: @"%@\n", [iJob company]];
