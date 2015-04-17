@@ -52,7 +52,7 @@
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
-    NSLog(@"Element[%@]found", elementName);
+    //NSLog(@"Element[%@]found", elementName);
     
     /* Create a new instance of iJob */
     if ([elementName isEqualToString: @"result"]) {
@@ -61,7 +61,7 @@
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
-    NSLog(@"String[%@]found", string);
+    //NSLog(@"String[%@]found", string);
     
     if (!self.currentElementValue) {
         self.currentElementValue = [[NSMutableString alloc] initWithString: string];
@@ -72,7 +72,7 @@
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
-    NSLog(@"Element[%@]finished", elementName);
+    //NSLog(@"Element[%@]finished", elementName);
     
     // We reached the end of the XML document
     if ([elementName isEqualToString: @"results"]) {

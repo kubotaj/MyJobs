@@ -47,19 +47,25 @@
     
     /* Generate the result lists. */
     /* INDEED */
+    
     //NSString *urlString = [NSString stringWithFormat: @"http://www.cs.sonoma.edu/~jkubota/cs470s15/myJobs/indeedAPI.php?keyWord=%@&city=%@&state=%@", self.jobTitle.text, self.jobCity.text, self.jobState.text];
     NSString *urlStringIndeed = [NSString stringWithFormat: @"http://api.indeed.com/ads/apisearch?publisher=5703933454627100&q=%@&l=%@,+%@&sort=&radius=&st=&jt=&start=&limit=25&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla//4.0(Firefox)&v=2", self.jobTitle.text, self.jobCity.text, self.jobState.text];
-    /* url should use "%20" for a white space. */
+    // url should use "%20" for a white space.
     urlStringIndeed = [urlStringIndeed stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
-    /* Initialized the result view with url */
+    // Initialized the result view with url
     IndeedAPIDataSource *dataSourceIndeed = [[IndeedAPIDataSource alloc] initWithURLString: urlStringIndeed];
     
+    
+    
     /* CAREERBUILDER */
+    
     NSString *urlStringCareerBuilder = [NSString stringWithFormat: @"http://api.careerbuilder.com/v1/jobsearch?DeveloperKey=WD907SX6B03NBR730Q7H&Keywords=%@&Location=%@,%20%@", self.jobTitle.text, self.jobCity.text, self.jobCity.text, self.jobState.text];
-    /* url should use "%20" for a white space. */
+    // url should use "%20" for a white space.
     urlStringCareerBuilder = [urlStringCareerBuilder stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
-    /* Initialized the result view with url */
+    // Initialized the result view with url
     CareerBuilderAPIDataSource *dataSourceCareerBuilder = [[CareerBuilderAPIDataSource alloc] initWithURLString: urlStringCareerBuilder];
+    
+    
     
     // Need to get results from all data sources before pushing to table view
     SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithDataSource: dataSourceIndeed];
