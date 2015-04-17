@@ -18,6 +18,7 @@
 @property (nonatomic) NSString *snippet;
 @property (nonatomic) NSString *url;
 @property (nonatomic) NSString *formattedRelativeTime;
+@property (nonatomic) NSString *source;
 
 
 @end
