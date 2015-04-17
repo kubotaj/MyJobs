@@ -9,6 +9,7 @@
 #import "SearchResultsTableViewController.h"
 #import "IndeedAPIDataSource.h"
 #import "Job.h"
+#import "ResultDetailViewController.h"
 
 @interface SearchResultsTableViewController ()
 
@@ -109,9 +110,10 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {   /* Respond to the touch at the row. Create and move to the detail view. */
-//    IndeedJob *iJob = [self.dataSource jobAtIndex: [indexPath row]];
-//    SearchResultsTableViewController *srtController = [[SearchResultsTableViewController alloc] initWithJob: iJob];
-//    [self.navigationController pushViewController: srtController animated:YES];
+    Job *iJob = [self.dataSource jobAtIndex: [indexPath row]];
+    NSLog(@"the index number: %d", indexPath);
+     ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: iJob];
+    [self.navigationController pushViewController: rvController animated:YES];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

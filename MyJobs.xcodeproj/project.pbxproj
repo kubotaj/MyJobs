@@ -11,6 +11,7 @@
 		E81A72581AD09AA600C0504F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81A72571AD09AA600C0504F /* CoreLocation.framework */; };
 		E848CEAF1ADEE718007B4272 /* IndeedAPIDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E848CEAE1ADEE718007B4272 /* IndeedAPIDataSource.m */; };
 		E848CEB21ADEF02D007B4272 /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = E848CEB11ADEF02D007B4272 /* Job.m */; };
+		E85C28371AE1BED800012F38 /* ResultDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85C28361AE1BED800012F38 /* ResultDetailViewController.m */; };
 		E882B5CA1ADB51B800E9B5BA /* SearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */; };
 		E8FC4C7B1AD07E040028ED77 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4C7A1AD07E040028ED77 /* main.m */; };
 		E8FC4C7E1AD07E040028ED77 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4C7D1AD07E040028ED77 /* AppDelegate.m */; };
@@ -44,6 +45,8 @@
 		E848CEAE1ADEE718007B4272 /* IndeedAPIDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndeedAPIDataSource.m; sourceTree = "<group>"; };
 		E848CEB01ADEF02D007B4272 /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
 		E848CEB11ADEF02D007B4272 /* Job.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
+		E85C28351AE1BED800012F38 /* ResultDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultDetailViewController.h; sourceTree = "<group>"; };
+		E85C28361AE1BED800012F38 /* ResultDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultDetailViewController.m; sourceTree = "<group>"; };
 		E882B5C81ADB51B800E9B5BA /* SearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsTableViewController.h; sourceTree = "<group>"; };
 		E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsTableViewController.m; sourceTree = "<group>"; };
 		E8FC4C751AD07E040028ED77 /* MyJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +144,8 @@
 				E848CEB11ADEF02D007B4272 /* Job.m */,
 				E882B5C81ADB51B800E9B5BA /* SearchResultsTableViewController.h */,
 				E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */,
+				E85C28351AE1BED800012F38 /* ResultDetailViewController.h */,
+				E85C28361AE1BED800012F38 /* ResultDetailViewController.m */,
 				E8FC4C851AD07E040028ED77 /* Main.storyboard */,
 				E8FC4C881AD07E040028ED77 /* Images.xcassets */,
 				E8FC4C8A1AD07E040028ED77 /* LaunchScreen.xib */,
@@ -289,6 +294,7 @@
 				E8FC4C841AD07E040028ED77 /* SearchViewController.m in Sources */,
 				E882B5CA1ADB51B800E9B5BA /* SearchResultsTableViewController.m in Sources */,
 				E8FC4CA71AD081240028ED77 /* SettingsViewController.m in Sources */,
+				E85C28371AE1BED800012F38 /* ResultDetailViewController.m in Sources */,
 				E8FC4CA31AD080D20028ED77 /* FavoritesTableViewController.m in Sources */,
 				E848CEAF1ADEE718007B4272 /* IndeedAPIDataSource.m in Sources */,
 				E8FC4C7B1AD07E040028ED77 /* main.m in Sources */,
