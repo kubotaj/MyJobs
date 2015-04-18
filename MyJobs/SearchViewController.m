@@ -73,7 +73,6 @@
     urlStringMonster = [urlStringMonster stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     MonsterDataSource *dataSourceMonster = [[MonsterDataSource alloc] initWithURLString: urlStringMonster];
     
-    
 
     
     // Need to get results from all data sources before pushing to table view

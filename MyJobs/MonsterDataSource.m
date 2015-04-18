@@ -44,7 +44,7 @@
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {
-    NSLog(@"Start parsing");
+    NSLog(@"Start monster parsing");
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
@@ -52,7 +52,7 @@
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
-    NSLog(@"Element[%@]found", elementName);
+    //NSLog(@"Element[%@]found", elementName);
     
     /* Create a new instance of mJob */
     if ([elementName isEqualToString: @"item"]) {
@@ -61,7 +61,7 @@
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
-    NSLog(@"String[%@]found", string);
+    //NSLog(@"String[%@]found", string);
     
     if (!self.currentElementValue) {
         self.currentElementValue = [[NSMutableString alloc] initWithString: string];
@@ -72,7 +72,7 @@
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
-    NSLog(@"Element[%@]finished", elementName);
+    //NSLog(@"Element[%@]finished", elementName);
     
     // We reached the end of the XML document
     if ([elementName isEqualToString: @"channel"]) {
@@ -102,9 +102,10 @@
             [self.mJob setValue:self.currentElementValue forKey: @"jobtitle"];
         
         if ([elementName isEqualToString: @"description"]) {
-            
+//            NSLog(@"DESCRIP");
 //            NSString *state = [self.currentElementValue substringWithRange:NSMakeRange(0, 1)]; //get the state
 //            [self.mJob setValue:state forKey:@"state"]; //add state to job
+//            NSLog(@"STATE: ", state);
 //            self.currentElementValue = [self.currentElementValue substringFromIndex:3]; //remove state from description
 //            NSArray *components = [self.currentElementValue componentsSeparatedByString:@", "]; //parse based on ', '
 //            NSString *city = [components objectAtIndex:0]; // string before the first ', '
@@ -129,10 +130,10 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    NSLog(@"Parsing finished");
+    NSLog(@"Parsing monster finished");
     
     for (int i = 0; i < [self.jobs count]; i++) {
-        NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
+        //NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
     }
 }
 
