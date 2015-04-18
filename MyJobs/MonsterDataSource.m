@@ -104,22 +104,23 @@
         if ([elementName isEqualToString: @"description"]) {
 //            NSLog(@"DESCRIP");
 //            NSString *state = [self.currentElementValue substringWithRange:NSMakeRange(0, 1)]; //get the state
-//            [self.mJob setValue:state forKey:@"state"]; //add state to job
+           [self.mJob setValue:@"" forKey:@"state"]; //add state to job
 //            NSLog(@"STATE: ", state);
 //            self.currentElementValue = [self.currentElementValue substringFromIndex:3]; //remove state from description
 //            NSArray *components = [self.currentElementValue componentsSeparatedByString:@", "]; //parse based on ', '
-//            NSString *city = [components objectAtIndex:0]; // string before the first ', '
-//            [self.mJob setValue:city forKey:@"city"];
+            //NSString *city = [components objectAtIndex:0]; // string before the first ', '
+            [self.mJob setValue:@"" forKey:@"city"];
 //            NSRange range = [self.currentElementValue rangeOfString:@", "]; //find index of first ', '
 //            self.currentElementValue = [self.currentElementValue substringFromIndex:range.location]; // remove everything after the first ', '
             [self.mJob setValue:self.currentElementValue forKey:@"snippet"];
+            [self.mJob setValue:@"" forKey:@"company"];
         }
         
         if ([elementName isEqualToString: @"link"])
             [self.mJob setValue:self.currentElementValue forKey:@"url"];
         
         if ([elementName isEqualToString: @"pubDate"]) {
-            
+            [self.mJob setValue:self.currentElementValue forKey:@"formattedRelativeTime"];
         }
         
         //[self.mJob setValue: self.currentElementValue forKey: elementName];

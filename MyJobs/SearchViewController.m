@@ -71,12 +71,12 @@
     NSLog(@"monster url: %@", urlStringMonster);
     urlStringMonster = [urlStringMonster stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     MonsterDataSource *dataSourceMonster = [[MonsterDataSource alloc] initWithURLString: urlStringMonster];
-    
+    NSMutableArray *mJobs = [dataSourceMonster getAllJobs];
 
     
     // Need to get results from all data sources before pushing to table view
     //SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithDataSource: dataSourceIndeed];
-    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:indeedJobs];
+    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:mJobs];
     [self.navigationController pushViewController:rController animated:YES];
 
 }
