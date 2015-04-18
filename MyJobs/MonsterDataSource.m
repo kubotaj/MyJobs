@@ -55,7 +55,7 @@
     NSLog(@"Element[%@]found", elementName);
     
     /* Create a new instance of mJob */
-    if ([elementName isEqualToString: @"result"]) {
+    if ([elementName isEqualToString: @"item"]) {
         self.mJob = [[Job alloc] init];
     }
 }
@@ -121,7 +121,7 @@
             
         }
         
-        [self.mJob setValue: self.currentElementValue forKey: elementName];
+        //[self.mJob setValue: self.currentElementValue forKey: elementName];
     }
     
     // Reset the variable.
