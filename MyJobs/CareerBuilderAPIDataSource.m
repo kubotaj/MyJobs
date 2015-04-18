@@ -15,6 +15,7 @@
 @property (nonatomic) NSMutableArray *jobs;
 @property (nonatomic) NSString *currentElement;
 @property (nonatomic) NSMutableString *currentElementValue;
+@property (nonatomic) NSString *locationSave;
 
 @end
 
@@ -24,7 +25,7 @@
     /* Initializer */
     if( (self = [super init]) == nil )
         return nil;
-    
+    self.locationSave = [[NSString alloc] init];
     // Setup the parser
     self.cbURLString = urlString;
     NSURL *url = [NSURL URLWithString: self.cbURLString];
@@ -90,6 +91,7 @@
     }
     else if ([elementName isEqualToString: @"JobTitle"] ||
              [elementName isEqualToString: @"Company"] ||
+             [elementName isEqualToString: @"Location"] ||
              [elementName isEqualToString: @"City"] ||
              [elementName isEqualToString: @"State"] ||
              [elementName isEqualToString: @"DescriptionTeaser"] ||
@@ -105,10 +107,15 @@
             [self.cbJob setValue: self.currentElementValue forKey: @"jobtitle"];
         if ([elementName isEqualToString: @"Company"])
             [self.cbJob setValue: self.currentElementValue forKey: @"company"];
+        if ([elementName isEqualToString: @"Location"])
+            self.locationSave = self.currentElementValue;
         if ([elementName isEqualToString: @"City"])
             [self.cbJob setValue: self.currentElementValue forKey: @"city"];
-        if ([elementName isEqualToString: @"State"])
+        if ([elementName isEqualToString: @"State"]){
             [self.cbJob setValue: self.currentElementValue forKey: @"state"];
+            if ([self.cbJob.city isEqualToString:@""] && [self.cbJob.state isEqualToString:@""])
+                [self.cbJob setValue:self.locationSave forKey:@"city"];
+        }
         if ([elementName isEqualToString: @"DescriptionTeaser"])
             [self.cbJob setValue: self.currentElementValue forKey: @"snippet"];
         if ([elementName isEqualToString: @"JobDetailsURL"])

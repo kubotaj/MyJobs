@@ -21,6 +21,7 @@
 @property (strong, nonatomic) CLLocation *location;
 @property (nonatomic) NSString *city;
 @property (nonatomic) NSString *state;
+- (NSComparisonResult)compareJob: (id) element with: (id) element2;
 - (IBAction)searchButtonTapped:(UIButton *)sender;
 - (void)findCurrentCity;
 
@@ -39,6 +40,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+//- (NSComparisonResult)compareJob: (id) element with: (id) element2 {
+//    return [[element jobtitle] compare: [element2 jobtitle]];
+//}
 
 - (IBAction)searchButtonTapped:(UIButton *)sender {
     /* For testing */
@@ -78,6 +83,8 @@
     [allJobs addObjectsFromArray:indeedJobs];
     [allJobs addObjectsFromArray:cbJobs];
     [allJobs addObjectsFromArray:mJobs];
+    
+    //[allJobs sortUsingSelector:@selector(compareJob:with:)];
     
     // Need to get results from all data sources before pushing to table view
     //SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithDataSource: dataSourceIndeed];

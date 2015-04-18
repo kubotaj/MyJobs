@@ -112,10 +112,14 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     cell.textLabel.text = [job jobtitle];
     NSString *location;
     location = [NSString stringWithFormat: @"%@\n", [job company]];
-    location = [location stringByAppendingString: [job city]];
-    location = [location stringByAppendingString: @", "];
-    location = [location stringByAppendingString: [job state]];
-    location = [location stringByAppendingString: @", "];
+    if (![[job city] isEqualToString:@""]){
+        location = [location stringByAppendingString: [job city]];
+        if (![[job state] isEqualToString:@""]){
+            location = [location stringByAppendingString: @", "];
+            location = [location stringByAppendingString: [job state]];
+        }
+        location = [location stringByAppendingString: @", "];
+    }
     location = [location stringByAppendingString: [job formattedRelativeTime]];
 //    location = [location stringByAppendingString: @"\n"];
 //    location = [location stringByAppendingString: [iJob snippet]];
