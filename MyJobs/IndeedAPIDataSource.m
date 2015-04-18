@@ -44,7 +44,7 @@
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {
-    NSLog(@"Start parsing");
+    NSLog(@"Start Indeed parsing");
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
@@ -109,10 +109,10 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    NSLog(@"Parsing finished");
+    NSLog(@"Parsing Indeed finished");
 
     for (int i = 0; i < [self.jobs count]; i++) {
-        NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
+        //NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
     }
 }
 

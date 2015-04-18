@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Job.h"
 
 @interface MonsterDataSource : NSObject
+
+-(instancetype) initWithURLString: (NSString *) urlString;
+- (NSMutableArray *) getAllJobs;
+- (NSInteger *) getNumberOfJobs;
+- (Job *) jobAtIndex: (NSInteger *) idx;
 
 @end
