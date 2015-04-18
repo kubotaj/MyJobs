@@ -72,11 +72,16 @@
     urlStringMonster = [urlStringMonster stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     MonsterDataSource *dataSourceMonster = [[MonsterDataSource alloc] initWithURLString: urlStringMonster];
     NSMutableArray *mJobs = [dataSourceMonster getAllJobs];
-
+    
+    NSMutableArray *allJobs = [[NSMutableArray alloc] init];
+    
+    [allJobs addObjectsFromArray:indeedJobs];
+    [allJobs addObjectsFromArray:cbJobs];
+    [allJobs addObjectsFromArray:mJobs];
     
     // Need to get results from all data sources before pushing to table view
     //SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithDataSource: dataSourceIndeed];
-    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:mJobs];
+    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:allJobs];
     [self.navigationController pushViewController:rController animated:YES];
 
 }
