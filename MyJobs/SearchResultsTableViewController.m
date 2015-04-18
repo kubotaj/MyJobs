@@ -14,7 +14,9 @@
 @interface SearchResultsTableViewController ()
 
 @property(nonatomic) IndeedAPIDataSource *dataSource;
+@property(nonatomic) NSMutableArray *jobsArray;
 @property(nonatomic) UIActivityIndicatorView *activityIndicator;
+@property(nonatomic) bool whichInit; // false for dataSource, true for jobsArray
 
 @end
 
@@ -31,8 +33,23 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     self.title = @"Search Results";
     
     self.dataSource = dataSource;
+    self.whichInit = false;
     
     return self;
+}
+
+- (id) initWithJobsArray: (NSMutableArray *) jobsArray {
+    self = [super init];
+    if (self) {
+        // Custom init
+    }
+    self.title = @"Search Results";
+    
+    self.jobsArray = jobsArray;
+    self.whichInit = true;
+    
+    return self;
+    
 }
 
 - (void)viewDidLoad {
@@ -74,7 +91,10 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.dataSource getNumberOfJobs];
+    if (!self.whichInit)
+        return [self.dataSource getNumberOfJobs];
+    else
+        return [self.jobsArray count];
 }
 
 
@@ -84,15 +104,19 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     //This allows for multiple lines
     cell.detailTextLabel.numberOfLines = 0;
-    Job *iJob = [self.dataSource jobAtIndex: [indexPath row]];
-    cell.textLabel.text = [iJob jobtitle];
+    Job *job;
+    if (!self.whichInit)
+        job = [self.dataSource jobAtIndex: [indexPath row]];
+    else
+        job = self.jobsArray[[indexPath row]];
+    cell.textLabel.text = [job jobtitle];
     NSString *location;
-    location = [NSString stringWithFormat: @"%@\n", [iJob company]];
-    location = [location stringByAppendingString: [iJob city]];
+    location = [NSString stringWithFormat: @"%@\n", [job company]];
+    location = [location stringByAppendingString: [job city]];
     location = [location stringByAppendingString: @", "];
-    location = [location stringByAppendingString: [iJob state]];
+    location = [location stringByAppendingString: [job state]];
     location = [location stringByAppendingString: @", "];
-    location = [location stringByAppendingString: [iJob formattedRelativeTime]];
+    location = [location stringByAppendingString: [job formattedRelativeTime]];
 //    location = [location stringByAppendingString: @"\n"];
 //    location = [location stringByAppendingString: [iJob snippet]];
     
@@ -110,9 +134,13 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {   /* Respond to the touch at the row. Create and move to the detail view. */
-    Job *iJob = [self.dataSource jobAtIndex: [indexPath row]];
-    NSLog(@"the index number: %d", indexPath);
-     ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: iJob];
+    Job *job;
+    if (!self.whichInit)
+        job = [self.dataSource jobAtIndex: [indexPath row]];
+    else
+        job = self.jobsArray[[indexPath row]];
+    NSLog(@"the index number: %d", [indexPath row]);
+     ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
     [self.navigationController pushViewController: rvController animated:YES];
 }
 

@@ -88,7 +88,7 @@
         // release object
         self.cbJob = nil;
     }
-    else if ([elementName isEqualToString: @"ONetFriendlyTitle"] ||
+    else if ([elementName isEqualToString: @"JobTitle"] ||
              [elementName isEqualToString: @"Company"] ||
              [elementName isEqualToString: @"City"] ||
              [elementName isEqualToString: @"State"] ||
@@ -101,7 +101,7 @@
         self.currentElementValue = [self.currentElementValue stringByTrimmingCharactersInSet:
                                     [NSCharacterSet whitespaceCharacterSet]];
         
-        if ([elementName isEqualToString: @"ONetFriendlyTitle"])
+        if ([elementName isEqualToString: @"JobTitle"])
             [self.cbJob setValue: self.currentElementValue forKey: @"jobtitle"];
         if ([elementName isEqualToString: @"Company"])
             [self.cbJob setValue: self.currentElementValue forKey: @"company"];
