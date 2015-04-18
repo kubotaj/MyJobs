@@ -55,19 +55,18 @@
     urlStringIndeed = [urlStringIndeed stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
     // Initialized the result view with url
     IndeedAPIDataSource *dataSourceIndeed = [[IndeedAPIDataSource alloc] initWithURLString: urlStringIndeed];
+    NSMutableArray *indeedJobs = [dataSourceIndeed getAllJobs];
     
     /* CAREERBUILDER */
-    NSString *urlStringCareerBuilder = [NSString stringWithFormat: @"http://api.careerbuilder.com/v1/jobsearch?DeveloperKey=WD907SX6B03NBR730Q7H&Keywords=%@&Location=%@,%20%@", self.jobTitle.text, self.jobCity.text, self.jobCity.text, self.jobState.text];
+    NSString *urlStringCareerBuilder = [NSString stringWithFormat: @"http://api.careerbuilder.com/v1/jobsearch?DeveloperKey=WD907SX6B03NBR730Q7H&Keywords=%@&Location=%@, %@", self.jobTitle.text, self.jobCity.text, self.jobState.text];
     // url should use "%20" for a white space.
     urlStringCareerBuilder = [urlStringCareerBuilder stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
+    NSLog(@"cb url: %@", urlStringCareerBuilder);
     // Initialized the result view with url
     CareerBuilderAPIDataSource *dataSourceCareerBuilder = [[CareerBuilderAPIDataSource alloc] initWithURLString: urlStringCareerBuilder];
+    NSMutableArray *cbJobs = [dataSourceCareerBuilder getAllJobs];
     
-    NSLog(@"indeed url: %@", urlStringIndeed);
-    NSLog(@"CB url: %@", urlStringCareerBuilder);
-
-    
-    /* Monster */
+    /* MONSTER */
     NSString *urlStringMonster = [NSString stringWithFormat: @"http://rss.jobsearch.monster.com/rssquery.ashx?brd=1&q=%@&cy=us&where=%@&where=%@&rad=30rad_units=miles&baseurl=jobview.monster.com#", self.jobTitle.text, self.jobCity.text, self.jobState.text];
     NSLog(@"monster url: %@", urlStringMonster);
     urlStringMonster = [urlStringMonster stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
@@ -76,7 +75,8 @@
 
     
     // Need to get results from all data sources before pushing to table view
-    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithDataSource: dataSourceIndeed];
+    //SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithDataSource: dataSourceIndeed];
+    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:indeedJobs];
     [self.navigationController pushViewController:rController animated:YES];
 
 }
