@@ -19,12 +19,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *jobState;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
-@property (nonatomic) NSString *city;
-@property (nonatomic) NSString *state;
-- (NSComparisonResult)compareJob: (id) element with: (id) element2;
+@property (weak, nonatomic) NSString *city;
+@property (weak, nonatomic) NSString *state;
+@property (nonatomic) int sortType;
 - (IBAction)searchButtonTapped:(UIButton *)sender;
 - (void)findCurrentCity;
-
 
 @end
 
@@ -34,16 +33,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self findCurrentCity];
+    self.sortType = 1; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent)
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//- (NSComparisonResult)compareJob: (id) element with: (id) element2 {
-//    return [[element jobtitle] compare: [element2 jobtitle]];
-//}
 
 - (IBAction)searchButtonTapped:(UIButton *)sender {
     /* For testing */
@@ -84,11 +80,28 @@
     [allJobs addObjectsFromArray:cbJobs];
     [allJobs addObjectsFromArray:mJobs];
     
-    //[allJobs sortUsingSelector:@selector(compareJob:with:)];
+    NSMutableArray *sortedJobs = [[NSMutableArray alloc] init];
+    
+    switch (self.sortType) {
+        case 1:
+            sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
+                return [j1.jobtitle compare:j2.jobtitle];
+            }];
+            break;
+            
+        case 2:
+            sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
+                return [j1.company compare:j2.company];
+            }];
+            break;
+            
+        default:
+            break;
+    }
     
     // Need to get results from all data sources before pushing to table view
     //SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithDataSource: dataSourceIndeed];
-    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:allJobs];
+    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:sortedJobs];
     [self.navigationController pushViewController:rController animated:YES];
 
 }

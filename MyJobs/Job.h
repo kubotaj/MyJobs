@@ -19,5 +19,7 @@
 @property (nonatomic) NSString *url;
 @property (nonatomic) NSString *formattedRelativeTime;
 
+@property (nonatomic) NSDate *datePosted;
+
 
 @end
