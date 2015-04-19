@@ -15,6 +15,7 @@
 @property (nonatomic) NSMutableArray *jobs;
 @property (nonatomic) NSString *currentElement;
 @property (nonatomic) NSMutableString *currentElementValue;
+@property (nonatomic) BOOL *didStartItem;
 
 @end
 
@@ -25,6 +26,7 @@
     if( (self = [super init]) == nil )
         return nil;
     
+    self.didStartItem = NO;
     // Setup the parser
     self.monsterURLString = urlString;
     NSURL *url = [NSURL URLWithString: self.monsterURLString];
@@ -56,6 +58,7 @@
     
     /* Create a new instance of mJob */
     if ([elementName isEqualToString: @"item"]) {
+        self.didStartItem = YES;
         self.mJob = [[Job alloc] init];
     }
 }
@@ -87,11 +90,13 @@
         [self.jobs addObject: self.mJob];
         // release object
         self.mJob = nil;
+        self.didStartItem = NO;
     }
-    else if ([elementName isEqualToString: @"title"] ||
+    else if (self.didStartItem &&
+             ( [elementName isEqualToString: @"title"] ||
              [elementName isEqualToString: @"description"] ||
              [elementName isEqualToString: @"link"] ||
-             [elementName isEqualToString: @"pubDate"]) {
+             [elementName isEqualToString: @"pubDate"] )) {
         
         // Get ride of the weired newline chars and whitespace!
         self.currentElementValue = [self.currentElementValue stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -102,18 +107,25 @@
             [self.mJob setValue:self.currentElementValue forKey: @"jobtitle"];
         
         if ([elementName isEqualToString: @"description"]) {
-//            NSLog(@"DESCRIP");
-//            NSString *state = [self.currentElementValue substringWithRange:NSMakeRange(0, 1)]; //get the state
-           [self.mJob setValue:@"" forKey:@"state"]; //add state to job
-//            NSLog(@"STATE: ", state);
-//            self.currentElementValue = [self.currentElementValue substringFromIndex:3]; //remove state from description
-//            NSArray *components = [self.currentElementValue componentsSeparatedByString:@", "]; //parse based on ', '
-            //NSString *city = [components objectAtIndex:0]; // string before the first ', '
-            [self.mJob setValue:@"" forKey:@"city"];
-//            NSRange range = [self.currentElementValue rangeOfString:@", "]; //find index of first ', '
-//            self.currentElementValue = [self.currentElementValue substringFromIndex:range.location]; // remove everything after the first ', '
-            [self.mJob setValue:self.currentElementValue forKey:@"snippet"];
-            [self.mJob setValue:@"" forKey:@"company"];
+            [self.mJob setValue:@"" forKey:@"company"]; //set company to empty string
+            
+            NSString *descriptionInput = self.currentElementValue; //grab all of description
+            NSString *seperatorString = @","; //seperate on the comma
+            
+            NSScanner *aScanner = [NSScanner scannerWithString:descriptionInput]; //init scanner with whole description
+            
+            NSString *location = [[NSString alloc] init];
+            [aScanner scanUpToString:seperatorString intoString:&location]; //scan until finds a comma, puts everything before it into location
+            [self.mJob setValue:location forKey:@"city"]; // set the location string to the city
+            [self.mJob setValue:@"" forKey:@"state"]; // set state to empty string
+            //NSLog(@"location: %@", location);
+            
+            NSString *descriptionFinal = [[NSString alloc] init]; // init parsed description
+
+            descriptionFinal = [descriptionInput substringFromIndex:[aScanner scanLocation]+2]; //final description is substring starting at last scan location to end of string
+            [self.mJob setValue:descriptionFinal forKey:@"snippet"];
+            //NSLog(@"description: %@", descriptionFinal);
+            
         }
         
         if ([elementName isEqualToString: @"link"])
