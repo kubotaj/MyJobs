@@ -90,7 +90,7 @@
         [self.jobs addObject: self.mJob];
         // release object
         self.mJob = nil;
-        self.didStartItem = NO;
+        self.didStartItem = NO; //comment
     }
     else if (self.didStartItem &&
              ( [elementName isEqualToString: @"title"] ||
