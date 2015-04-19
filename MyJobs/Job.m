@@ -14,21 +14,11 @@
 
 @implementation Job
 
-//- (instancetype) initWithJobTile: (NSString *) jobtitle
-//                     companyName: (NSString *) company
-//                            city: (NSString *) city
-//                           state: (NSString *) state
-//                             url: (NSString *) url
-//                      postedDate: (NSString *) formattedRelativeTime {
-//    
-//    self.jobtitle = jobtitle;
-//    self.company = company;
-//    self.city = city;
-//    self.state = state;
-//    self.url = url;
-//    self.formattedRelativeTime = formattedRelativeTime;
-//    
-//    return self;
-//}
++ (NSString *) convertMonthtoNum: (NSString *) date{
+    
+    
+    
+    return date;
+}
 
 @end

@@ -94,14 +94,25 @@
              [elementName isEqualToString: @"state"] ||
              [elementName isEqualToString: @"snippet"] ||
              [elementName isEqualToString: @"url"] ||
-             [elementName isEqualToString: @"formattedRelativeTime"]) {
+             [elementName isEqualToString: @"formattedRelativeTime"] ||
+             [elementName isEqualToString: @"date"]) {
         
         // Get ride of the weired newline chars and whitespace!
         self.currentElementValue = [self.currentElementValue stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         self.currentElementValue = [self.currentElementValue stringByTrimmingCharactersInSet:
                              [NSCharacterSet whitespaceCharacterSet]];
-        
-        [self.iJob setValue: self.currentElementValue forKey: elementName];
+        if ([elementName isEqualToString: @"date"]){
+            // create NSDate from ex. Wed, 15 Apr 2015 02:58:51 GMT
+            NSString *withoutDay = [self.currentElementValue substringFromIndex:5];
+            NSLog(@"%@", withoutDay);
+//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//            [formatter setDateFormat:@"MM/dd/yyyy hh:mm:ss a"];
+//            NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+//            [formatter setTimeZone:gmt];
+//            [self.iJob setValue:[formatter dateFromString:self.currentElementValue] forKey:@"datePosted"];
+        }
+        else
+            [self.iJob setValue: self.currentElementValue forKey: elementName];
     }
     
     // Reset the variable.

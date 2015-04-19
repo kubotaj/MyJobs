@@ -54,6 +54,7 @@
     NSString *urlStringIndeed = [NSString stringWithFormat: @"http://api.indeed.com/ads/apisearch?publisher=5703933454627100&q=%@&l=%@,+%@&sort=&radius=&st=&jt=&start=&limit=25&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla//4.0(Firefox)&v=2", self.jobTitle.text, self.jobCity.text, self.jobState.text];
     // url should use "%20" for a white space.
     urlStringIndeed = [urlStringIndeed stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
+    NSLog(@"indeed url: %@", urlStringIndeed);
     // Initialized the result view with url
     IndeedAPIDataSource *dataSourceIndeed = [[IndeedAPIDataSource alloc] initWithURLString: urlStringIndeed];
     NSMutableArray *indeedJobs = [dataSourceIndeed getAllJobs];
@@ -83,6 +84,9 @@
     NSMutableArray *sortedJobs = [[NSMutableArray alloc] init];
     
     switch (self.sortType) {
+        case 0:
+            break;
+            
         case 1:
             sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
                 return [j1.jobtitle compare:j2.jobtitle];
