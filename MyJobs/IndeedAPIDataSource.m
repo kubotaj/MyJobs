@@ -102,14 +102,15 @@
         self.currentElementValue = [self.currentElementValue stringByTrimmingCharactersInSet:
                              [NSCharacterSet whitespaceCharacterSet]];
         if ([elementName isEqualToString: @"date"]){
-            // create NSDate from ex. Wed, 15 Apr 2015 02:58:51 GMT
+            // create NSDate from ex. "Wed, 15 Apr 2015 02:58:51 GMT"
             NSString *withoutDay = [self.currentElementValue substringFromIndex:5];
-            NSLog(@"%@", withoutDay);
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//            [formatter setDateFormat:@"MM/dd/yyyy hh:mm:ss a"];
-//            NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-//            [formatter setTimeZone:gmt];
-//            [self.iJob setValue:[formatter dateFromString:self.currentElementValue] forKey:@"datePosted"];
+            NSString *allNum = [Job convertMonthtoNum:withoutDay];
+            // now should be format ex. "13 4 2015 19:30:43"
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"dd MM yyyy HH:mm:ss"];
+            NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+            [formatter setTimeZone:gmt];
+            [self.iJob setValue:[formatter dateFromString:allNum] forKey:@"datePosted"];
         }
         else
             [self.iJob setValue: self.currentElementValue forKey: elementName];

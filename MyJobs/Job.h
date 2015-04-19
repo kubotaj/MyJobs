@@ -21,5 +21,6 @@
 
 @property (nonatomic) NSDate *datePosted;
 
++ (NSString *) convertMonthtoNum: (NSString *) date;
 
 @end

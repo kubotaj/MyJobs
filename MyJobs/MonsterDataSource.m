@@ -133,6 +133,16 @@
         
         if ([elementName isEqualToString: @"pubDate"]) {
             [self.mJob setValue:self.currentElementValue forKey:@"formattedRelativeTime"];
+            // create NSDate from ex. "Wed, 15 Apr 2015 02:58:51 GMT"
+            NSString *withoutDay = [self.currentElementValue substringFromIndex:5];
+            NSString *allNum = [Job convertMonthtoNum:withoutDay];
+            // now should be format ex. "13 4 2015 19:30:43"
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"dd MM yyyy HH:mm:ss"];
+            NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+            [formatter setTimeZone:gmt];
+            [self.mJob setValue:[formatter dateFromString:allNum] forKey:@"datePosted"];
+            NSLog(@"%@", self.mJob.datePosted);
         }
         
         //[self.mJob setValue: self.currentElementValue forKey: elementName];

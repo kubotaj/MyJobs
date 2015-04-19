@@ -122,12 +122,13 @@
             [self.cbJob setValue: self.currentElementValue forKey: @"url"];
         if ([elementName isEqualToString: @"PostedTime"]){
             [self.cbJob setValue: self.currentElementValue forKey: @"formattedRelativeTime"];
-            //create NSDate from ex. 3/27/2015 8:55:29 AM;
+            //create NSDate from ex. "3/27/2015 8:55:29 AM"
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"MM/dd/yyyy hh:mm:ss a"];
             NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
             [formatter setTimeZone:gmt];
             [self.cbJob setValue:[formatter dateFromString:self.currentElementValue] forKey:@"datePosted"];
+            //NSLog(@"%@", self.cbJob.datePosted);
         }
     }
     

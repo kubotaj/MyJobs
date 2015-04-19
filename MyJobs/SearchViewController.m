@@ -85,6 +85,7 @@
     
     switch (self.sortType) {
         case 0:
+            sortedJobs = allJobs;
             break;
             
         case 1:
@@ -105,6 +106,7 @@
     
     // Need to get results from all data sources before pushing to table view
     //SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithDataSource: dataSourceIndeed];
+
     SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:sortedJobs];
     [self.navigationController pushViewController:rController animated:YES];
 
