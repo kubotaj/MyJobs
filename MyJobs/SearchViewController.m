@@ -33,7 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self findCurrentCity];
-    self.sortType = 1; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent)
+    self.sortType = 3; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent)
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,6 +99,11 @@
                 return [j1.company compare:j2.company];
             }];
             break;
+            
+        case 3:
+            sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j2, Job *j1){
+                return [j1.datePosted compare:j2.datePosted];
+            }];
             
         default:
             break;

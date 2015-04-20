@@ -142,7 +142,7 @@
             NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
             [formatter setTimeZone:gmt];
             [self.mJob setValue:[formatter dateFromString:allNum] forKey:@"datePosted"];
-            NSLog(@"%@", self.mJob.datePosted);
+            //NSLog(@"%@", self.mJob.datePosted);
             [self.mJob convertDatePostedToFormattedRelativeTime];
         }
         
