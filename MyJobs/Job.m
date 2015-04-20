@@ -14,7 +14,7 @@
 
 @implementation Job
 
-+ (NSString *) convertMonthtoNum: (NSString *) date{
++ (NSString *) convertMonthtoNum: (NSString *) date {
     //NSLog(@"In converMonthtoNum: orig = %@", date);
     
     date = [date stringByReplacingOccurrencesOfString:@"Jan" withString:@"1"];
@@ -34,6 +34,31 @@
     
     //NSLog(@"In converMonthtoNum: done = %@", date);
     return date;
+}
+
+-(void) convertDatePostedToFormattedRelativeTime {
+    NSTimeInterval relativeTimeSeconds, relativeTimeHours;
+    relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: self.datePosted]; //seconds since job posted
+    relativeTimeHours = relativeTimeSeconds / 3600; //convert to hours
+    relativeTimeHours = floor(relativeTimeHours);
+    NSInteger relativeTime = relativeTimeHours / 24; //cast to int
+    //relativeTime = relativeTime / 24;
+    if ( relativeTime < 1 ) {
+        NSString *formattedRelativeTimeHours = [NSString stringWithFormat:@"%.0f hours ago", relativeTimeHours];
+        self.formattedRelativeTime = formattedRelativeTimeHours;
+    }
+    else {
+        if ( relativeTime > 1) {
+            NSString *formattedRelativeTimeDays = [NSString stringWithFormat:@"%i days ago", relativeTime];
+            self.formattedRelativeTime = formattedRelativeTimeDays;
+        }
+        else {
+            NSString *formattedRelativeTimeDays = [NSString stringWithFormat:@"%i day ago", relativeTime];
+            self.formattedRelativeTime = formattedRelativeTimeDays;
+            
+        }
+    }
+    //NSLog(@"relativeTime: %i", relativeTime2);
 }
 
 @end

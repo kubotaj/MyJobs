@@ -132,7 +132,7 @@
             [self.mJob setValue:self.currentElementValue forKey:@"url"];
         
         if ([elementName isEqualToString: @"pubDate"]) {
-            [self.mJob setValue:self.currentElementValue forKey:@"formattedRelativeTime"];
+            //[self.mJob setValue:self.currentElementValue forKey:@"formattedRelativeTime"];
             // create NSDate from ex. "Wed, 15 Apr 2015 02:58:51 GMT"
             NSString *withoutDay = [self.currentElementValue substringFromIndex:5];
             NSString *allNum = [Job convertMonthtoNum:withoutDay];
@@ -143,6 +143,7 @@
             [formatter setTimeZone:gmt];
             [self.mJob setValue:[formatter dateFromString:allNum] forKey:@"datePosted"];
             NSLog(@"%@", self.mJob.datePosted);
+            [self.mJob convertDatePostedToFormattedRelativeTime];
         }
         
         //[self.mJob setValue: self.currentElementValue forKey: elementName];

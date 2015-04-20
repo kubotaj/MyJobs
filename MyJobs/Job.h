@@ -22,5 +22,6 @@
 @property (nonatomic) NSDate *datePosted;
 
 + (NSString *) convertMonthtoNum: (NSString *) date;
+-(void) convertDatePostedToFormattedRelativeTime;
 
 @end
