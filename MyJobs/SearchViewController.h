@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "UserSettings.h"
 
 
 @interface SearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate>
@@ -15,6 +16,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 - (IBAction) clickedBackground;
 - (NSComparisonResult)compareJob: (id) element with: (id) element2;
+- (instancetype) initWithSettings: (UserSettings *) us;
 
 @end
 

@@ -11,6 +11,7 @@
 #import "IndeedAPIDataSource.h"
 #import "CareerBuilderAPIDataSource.h"
 #import "MonsterDataSource.h"
+#import "UserSettings.h"
 
 @interface SearchViewController ()
 
@@ -22,12 +23,21 @@
 @property (weak, nonatomic) NSString *city;
 @property (weak, nonatomic) NSString *state;
 @property (nonatomic) int sortType;
+@property (nonatomic) UserSettings *us;
 - (IBAction)searchButtonTapped:(UIButton *)sender;
 - (void)findCurrentCity;
 
 @end
 
 @implementation SearchViewController
+- (instancetype) initWithSettings:(UserSettings *)us {
+    if( (self = [super init]) == nil )
+        return nil;
+    
+    self.us = us;
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

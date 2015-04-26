@@ -10,6 +10,7 @@
 #import "SearchViewController.h"
 #import "FavoritesTableViewController.h"
 #import "SettingsViewController.h"
+#import "UserSettings.h"
 
 @interface AppDelegate ()
 
@@ -21,8 +22,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    UserSettings *us = [[UserSettings alloc] initWithDefault];
+    
     /* Create instances of the view controllers */
-    SearchViewController *searchView = [[SearchViewController alloc] init];
+    SearchViewController *searchView = [[SearchViewController alloc] initWithSettings:us];
     FavoritesTableViewController *favoritesView = [[FavoritesTableViewController alloc] init];
     SettingsViewController *settingsView = [[SettingsViewController alloc] init];
     
@@ -51,7 +54,6 @@
     
     /* Set the root view */
     [self.window setRootViewController: tab];
-    
     
     return YES;
 }

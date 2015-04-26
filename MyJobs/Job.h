@@ -11,6 +11,8 @@
 @interface Job : NSObject
 
 /* ensure property names match the XML element names */
+@property (nonatomic) int sourceType;
+
 @property (nonatomic) NSString *jobtitle;
 @property (nonatomic) NSString *company;
 @property (nonatomic) NSString *city;
