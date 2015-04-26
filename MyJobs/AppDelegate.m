@@ -10,6 +10,7 @@
 #import "SearchViewController.h"
 #import "FavoritesTableViewController.h"
 #import "SettingsViewController.h"
+#import "UserSettings.h"
 #import <Parse/Parse.h>
 
 @interface AppDelegate ()
@@ -31,6 +32,8 @@
                   clientKey:@"ETmupcRJxBhmxE6KAloyQXORUgVW3dmsenSoYJmo"];
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    UserSettings *us = [[UserSettings alloc] initWithDefault];
     
     /* Create instances of the view controllers */
     SearchViewController *searchView = [[SearchViewController alloc] initWithSettings:us];
