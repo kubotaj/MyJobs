@@ -33,7 +33,7 @@
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     /* Create instances of the view controllers */
-    SearchViewController *searchView = [[SearchViewController alloc] init];
+    SearchViewController *searchView = [[SearchViewController alloc] initWithSettings:us];
     FavoritesTableViewController *favoritesView = [[FavoritesTableViewController alloc] init];
     SettingsViewController *settingsView = [[SettingsViewController alloc] init];
 
@@ -62,7 +62,6 @@
     
     /* Set the root view */
     [self.window setRootViewController: tab];
-    
     
     return YES;
 }

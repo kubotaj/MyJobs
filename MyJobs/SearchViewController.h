@@ -16,6 +16,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 - (IBAction) clickedBackground;
 - (NSComparisonResult)compareJob: (id) element with: (id) element2;
+- (instancetype) initWithSettings: (UserSettings *) us;
 
 @end
 

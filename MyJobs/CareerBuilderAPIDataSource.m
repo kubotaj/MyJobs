@@ -58,6 +58,7 @@
     /* Create a new instance of iJob */
     if ([elementName isEqualToString: @"JobSearchResult"]) {
         self.cbJob = [[Job alloc] init];
+        self.cbJob.sourceType = 2;
     }
 }
 

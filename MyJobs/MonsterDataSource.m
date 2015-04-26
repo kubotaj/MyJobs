@@ -60,6 +60,7 @@
     if ([elementName isEqualToString: @"item"]) {
         self.didStartItem = YES;
         self.mJob = [[Job alloc] init];
+        self.mJob.sourceType = 1;
     }
 }
 

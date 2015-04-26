@@ -57,6 +57,7 @@
     /* Create a new instance of iJob */
     if ([elementName isEqualToString: @"result"]) {
         self.iJob = [[Job alloc] init];
+        self.iJob.sourceType = 3;
     }
 }
 
