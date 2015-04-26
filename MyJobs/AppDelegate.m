@@ -10,6 +10,7 @@
 #import "SearchViewController.h"
 #import "FavoritesTableViewController.h"
 #import "SettingsViewController.h"
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -21,11 +22,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    /* For Parser(Database) */
+    // [Optional] Power your app with Local Datastore. For more info, go to
+    // https://parse.com/docs/ios_guide#localdatastore/iOS
+    [Parse enableLocalDatastore];
+    // Initialize Parse.
+    [Parse setApplicationId:@"hK5bX9NOGt0O0wwFpSTQW3Hb0IupmSj7Zf0KHFBK"
+                  clientKey:@"ETmupcRJxBhmxE6KAloyQXORUgVW3dmsenSoYJmo"];
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     /* Create instances of the view controllers */
     SearchViewController *searchView = [[SearchViewController alloc] init];
     FavoritesTableViewController *favoritesView = [[FavoritesTableViewController alloc] init];
     SettingsViewController *settingsView = [[SettingsViewController alloc] init];
-    
+
     /* Set the nav controllers */
     UINavigationController *searchNav = [[UINavigationController alloc] initWithRootViewController: searchView];
     UINavigationController *favoritesNav = [[UINavigationController alloc] initWithRootViewController: favoritesView];

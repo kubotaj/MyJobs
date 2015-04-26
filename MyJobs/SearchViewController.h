@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Parse/Parse.h>
 
 
 @interface SearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate>

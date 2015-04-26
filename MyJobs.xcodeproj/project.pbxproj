@@ -11,6 +11,20 @@
 		3FBBC0911AE1B81D005F19FD /* MonsterDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBBC0901AE1B81D005F19FD /* MonsterDataSource.m */; };
 		E81A72561AD08EAF00C0504F /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81A72551AD08EAF00C0504F /* SearchViewController.xib */; };
 		E81A72581AD09AA600C0504F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81A72571AD09AA600C0504F /* CoreLocation.framework */; };
+		E8330B841AEC543900B9A0E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B821AEC543900B9A0E4 /* Bolts.framework */; };
+		E8330B851AEC543900B9A0E4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B831AEC543900B9A0E4 /* Parse.framework */; };
+		E8330B871AEC54F700B9A0E4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B861AEC54F700B9A0E4 /* AudioToolbox.framework */; };
+		E8330B891AEC550100B9A0E4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B881AEC550100B9A0E4 /* CFNetwork.framework */; };
+		E8330B8B1AEC550D00B9A0E4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B8A1AEC550D00B9A0E4 /* CoreGraphics.framework */; };
+		E8330B8D1AEC551900B9A0E4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B8C1AEC551900B9A0E4 /* MobileCoreServices.framework */; };
+		E8330B8F1AEC552300B9A0E4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B8E1AEC552300B9A0E4 /* QuartzCore.framework */; };
+		E8330B911AEC552C00B9A0E4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B901AEC552C00B9A0E4 /* Security.framework */; };
+		E8330B931AEC553600B9A0E4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B921AEC553600B9A0E4 /* StoreKit.framework */; };
+		E8330B951AEC554300B9A0E4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B941AEC554300B9A0E4 /* SystemConfiguration.framework */; };
+		E8330B971AEC555F00B9A0E4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B961AEC555F00B9A0E4 /* libz.dylib */; };
+		E8330B991AEC556D00B9A0E4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B981AEC556D00B9A0E4 /* libsqlite3.dylib */; };
+		E8330B9B1AEC558400B9A0E4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B9A1AEC558400B9A0E4 /* Accounts.framework */; };
+		E8330B9D1AEC558C00B9A0E4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B9C1AEC558C00B9A0E4 /* Social.framework */; };
 		E848CEAF1ADEE718007B4272 /* IndeedAPIDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E848CEAE1ADEE718007B4272 /* IndeedAPIDataSource.m */; };
 		E848CEB21ADEF02D007B4272 /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = E848CEB11ADEF02D007B4272 /* Job.m */; };
 		E85C28371AE1BED800012F38 /* ResultDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85C28361AE1BED800012F38 /* ResultDetailViewController.m */; };
@@ -48,6 +62,20 @@
 		3FBBC0901AE1B81D005F19FD /* MonsterDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterDataSource.m; sourceTree = "<group>"; };
 		E81A72551AD08EAF00C0504F /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = ../SearchViewController.xib; sourceTree = "<group>"; };
 		E81A72571AD09AA600C0504F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E8330B821AEC543900B9A0E4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		E8330B831AEC543900B9A0E4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		E8330B861AEC54F700B9A0E4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E8330B881AEC550100B9A0E4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E8330B8A1AEC550D00B9A0E4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E8330B8C1AEC551900B9A0E4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		E8330B8E1AEC552300B9A0E4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E8330B901AEC552C00B9A0E4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E8330B921AEC553600B9A0E4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E8330B941AEC554300B9A0E4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E8330B961AEC555F00B9A0E4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E8330B981AEC556D00B9A0E4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		E8330B9A1AEC558400B9A0E4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		E8330B9C1AEC558C00B9A0E4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E848CEAD1ADEE718007B4272 /* IndeedAPIDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndeedAPIDataSource.h; sourceTree = "<group>"; };
 		E848CEAE1ADEE718007B4272 /* IndeedAPIDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndeedAPIDataSource.m; sourceTree = "<group>"; };
 		E848CEB01ADEF02D007B4272 /* Job.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
@@ -85,7 +113,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8330B9D1AEC558C00B9A0E4 /* Social.framework in Frameworks */,
+				E8330B9B1AEC558400B9A0E4 /* Accounts.framework in Frameworks */,
+				E8330B991AEC556D00B9A0E4 /* libsqlite3.dylib in Frameworks */,
+				E8330B971AEC555F00B9A0E4 /* libz.dylib in Frameworks */,
+				E8330B951AEC554300B9A0E4 /* SystemConfiguration.framework in Frameworks */,
+				E8330B931AEC553600B9A0E4 /* StoreKit.framework in Frameworks */,
+				E8330B911AEC552C00B9A0E4 /* Security.framework in Frameworks */,
+				E8330B8F1AEC552300B9A0E4 /* QuartzCore.framework in Frameworks */,
+				E8330B8D1AEC551900B9A0E4 /* MobileCoreServices.framework in Frameworks */,
+				E8330B8B1AEC550D00B9A0E4 /* CoreGraphics.framework in Frameworks */,
+				E8330B891AEC550100B9A0E4 /* CFNetwork.framework in Frameworks */,
+				E8330B871AEC54F700B9A0E4 /* AudioToolbox.framework in Frameworks */,
 				E81A72581AD09AA600C0504F /* CoreLocation.framework in Frameworks */,
+				E8330B851AEC543900B9A0E4 /* Parse.framework in Frameworks */,
+				E8330B841AEC543900B9A0E4 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +162,20 @@
 		E81A72591AD09B5500C0504F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8330B9C1AEC558C00B9A0E4 /* Social.framework */,
+				E8330B9A1AEC558400B9A0E4 /* Accounts.framework */,
+				E8330B981AEC556D00B9A0E4 /* libsqlite3.dylib */,
+				E8330B961AEC555F00B9A0E4 /* libz.dylib */,
+				E8330B941AEC554300B9A0E4 /* SystemConfiguration.framework */,
+				E8330B921AEC553600B9A0E4 /* StoreKit.framework */,
+				E8330B901AEC552C00B9A0E4 /* Security.framework */,
+				E8330B8E1AEC552300B9A0E4 /* QuartzCore.framework */,
+				E8330B8C1AEC551900B9A0E4 /* MobileCoreServices.framework */,
+				E8330B8A1AEC550D00B9A0E4 /* CoreGraphics.framework */,
+				E8330B881AEC550100B9A0E4 /* CFNetwork.framework */,
+				E8330B861AEC54F700B9A0E4 /* AudioToolbox.framework */,
+				E8330B821AEC543900B9A0E4 /* Bolts.framework */,
+				E8330B831AEC543900B9A0E4 /* Parse.framework */,
 				E81A72571AD09AA600C0504F /* CoreLocation.framework */,
 			);
 			name = Frameworks;
@@ -451,6 +507,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MyJobs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -462,6 +522,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MyJobs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

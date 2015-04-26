@@ -12,6 +12,7 @@
 #import "CareerBuilderAPIDataSource.h"
 #import "MonsterDataSource.h"
 
+
 @interface SearchViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *jobTitle;
@@ -34,6 +35,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self findCurrentCity];
     self.sortType = 3; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent)
+
 }
 
 - (void)didReceiveMemoryWarning {
