@@ -44,7 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self findCurrentCity];
-    self.sortType = 3; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent)
+    self.sortType = 4; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent), 4 (most relevant)
 
 }
 
@@ -71,6 +71,7 @@
         // Initialized the result view with url
         IndeedAPIDataSource *dataSourceIndeed = [[IndeedAPIDataSource alloc] initWithURLString: urlStringIndeed];
         NSMutableArray *indeedJobs = [dataSourceIndeed getAllJobs];
+        [dataSourceIndeed filterJobs:self.us.userSkills];
     
         [allJobs addObjectsFromArray:indeedJobs];
     }
@@ -81,6 +82,7 @@
     NSLog(@"cb url: %@", urlStringCareerBuilder);
     CareerBuilderAPIDataSource *dataSourceCareerBuilder = [[CareerBuilderAPIDataSource alloc] initWithURLString: urlStringCareerBuilder];
     // filter jobs with score metric
+    [dataSourceCareerBuilder filterJobs:self.us.userSkills];
     NSMutableArray *cbJobs = [dataSourceCareerBuilder getAllJobs];
     
     /* MONSTER */
@@ -89,6 +91,7 @@
     urlStringMonster = [urlStringMonster stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     MonsterDataSource *dataSourceMonster = [[MonsterDataSource alloc] initWithURLString: urlStringMonster];
     NSMutableArray *mJobs = [dataSourceMonster getAllJobs];
+    [dataSourceMonster filterJobs:self.us.userSkills];
     
     [allJobs addObjectsFromArray:cbJobs];
     [allJobs addObjectsFromArray:mJobs];
@@ -115,6 +118,12 @@
         case 3:
             sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j2, Job *j1){
                 return [j1.datePosted compare:j2.datePosted];
+            }];
+            break;
+            
+        case 4:
+            sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
+                return (j1.score < j2.score);
             }];
             
         default:

@@ -24,7 +24,7 @@
 @property (nonatomic) NSDate *datePosted;
 
 @property (nonatomic) int score;
-@property (nonatomic) NSString *filter1;
+@property (nonatomic) NSMutableArray *skillsList;
 
 + (NSString *) convertMonthtoNum: (NSString *) date;
 - (void) convertDatePostedToFormattedRelativeTime;

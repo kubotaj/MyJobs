@@ -18,7 +18,7 @@
     self.searchRadius = 30;
     self.listingsMax = 100;
     
-    self.userSkills = [[NSMutableArray alloc] initWithObjects:@"iOS", @"Mobile", @"Java", nil];
+    self.userSkills = [[NSMutableArray alloc] initWithObjects:@"ios", @"objective-c", @"mobile", nil];
     
     return self;
 }
