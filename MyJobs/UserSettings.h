@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSInteger searchRadius;
 @property (nonatomic) NSInteger listingsMax;
+@property (nonatomic) NSMutableArray *userSkills;
 
 -(instancetype) initWithDefault;
 

@@ -15,5 +15,6 @@
 - (NSMutableArray *) getAllJobs;
 - (NSInteger *) getNumberOfJobs;
 - (Job *) jobAtIndex: (NSInteger *) idx;
+- (void) filterJobs: (NSMutableArray *) userSkills;
 
 @end

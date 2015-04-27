@@ -55,10 +55,11 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
     //NSLog(@"Element[%@]found", elementName);
     
-    /* Create a new instance of iJob */
+    /* Create a new instance of Job */
     if ([elementName isEqualToString: @"JobSearchResult"]) {
         self.cbJob = [[Job alloc] init];
         self.cbJob.sourceType = 2;
+        //self.cbJob.score = 1;
     }
 }
 
@@ -141,10 +142,16 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     NSLog(@"Parsing CB finished");
     
+    /*
     for (int i = 0; i < [self.jobs count]; i++) {
-        //NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
+        NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
     }
+     */
 }
+
+//- (void) filterJobs:(NSMutableArray *)userSkills{
+//    
+//}
 
 - (NSMutableArray *) getAllJobs {
     return self.jobs;

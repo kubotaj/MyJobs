@@ -157,9 +157,11 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     NSLog(@"Parsing monster finished");
     
+    /*
     for (int i = 0; i < [self.jobs count]; i++) {
-        //NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
+        NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
     }
+     */
 }
 
 - (NSMutableArray *) getAllJobs {

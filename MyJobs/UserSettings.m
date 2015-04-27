@@ -15,8 +15,10 @@
     if( (self = [super init]) == nil )
         return nil;
     
-    self.searchRadius = 25;
-    self.listingsMax = 50;
+    self.searchRadius = 30;
+    self.listingsMax = 100;
+    
+    self.userSkills = [[NSMutableArray alloc] initWithObjects:@"iOS", @"Mobile", @"Java", nil];
     
     return self;
 }
