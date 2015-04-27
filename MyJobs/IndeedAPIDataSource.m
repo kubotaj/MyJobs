@@ -138,13 +138,13 @@
         relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: j.datePosted]; //seconds since job posted
         if (relativeTimeSeconds < 86400){       // Is this posting less than a day old
             j.score += 3;
-            NSLog(@"(+ %d) Post less than day old", 3);
+            //NSLog(@"(+ %d) Post less than day old", 3);
         }
         else if (relativeTimeSeconds < 604800){ // Is this posting less than a week old
             j.score += 1;
-            NSLog(@"(+ %d) Post less than week old", 1);
+            //NSLog(@"(+ %d) Post less than week old", 1);
         }
-        if (j.score > 1) NSLog(@"Final job score = %d", j.score);
+        //if (j.score > 1) NSLog(@"Final job score = %d", j.score);
     }
 }
 
