@@ -11,7 +11,6 @@
 
 @interface SearchResultsTableViewController : UITableViewController
 
-- (id) initWithDataSource: (IndeedAPIDataSource *) dataSource;
 - (id) initWithJobsArray: (NSMutableArray *) jobsArray;
 
 @end

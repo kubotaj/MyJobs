@@ -166,7 +166,7 @@
                     if ([word isEqualToString:userSkill] && !found){
                         j.score += count;
                         found = true;
-                        NSLog(@"(+ %d) Found user skill: %@ in job skill: %@", count, userSkill, jobSkill);
+                        //NSLog(@"(+ %d) Found user skill: %@ in job skill: %@", count, userSkill, jobSkill);
                     }
                 }
             }

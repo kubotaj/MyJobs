@@ -16,27 +16,17 @@
 @property(nonatomic) IndeedAPIDataSource *dataSource;
 @property(nonatomic) NSMutableArray *jobsArray;
 @property(nonatomic) UIActivityIndicatorView *activityIndicator;
-@property(nonatomic) bool whichInit; // false for dataSource, true for jobsArray
+@property(nonatomic) UIColor *cellColorVeryHighScore;
+@property(nonatomic) UIColor *cellColorHighScore;
+@property(nonatomic) UIColor *cellColorMediumScore;
+@property(nonatomic) UIColor *cellColorLowScore;
+@property(nonatomic) UIColor *cellColorVeryLowScore;
 
 @end
 
 static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 @implementation SearchResultsTableViewController
-
-- (id)initWithDataSource: (IndeedAPIDataSource *) dataSource {
-    /* Initializer */
-    self = [super init];
-    if (self) {
-        // Custom initialization
-    }
-    self.title = @"Search Results";
-    
-    self.dataSource = dataSource;
-    self.whichInit = false;
-    
-    return self;
-}
 
 - (id) initWithJobsArray: (NSMutableArray *) jobsArray {
     self = [super init];
@@ -46,7 +36,14 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     self.title = @"Search Results";
     
     self.jobsArray = jobsArray;
-    self.whichInit = true;
+    
+    float alphaSet = 0.2;
+    
+    self.cellColorVeryHighScore =   [[UIColor alloc] initWithRed:0.0 green:1.0 blue:0.0 alpha:alphaSet];
+    self.cellColorHighScore =       [[UIColor alloc] initWithRed:0.5 green:1.0 blue:0.5 alpha:alphaSet];
+    self.cellColorMediumScore =     [[UIColor alloc] initWithRed:1.0 green:1.0 blue:0.0 alpha:alphaSet];
+    self.cellColorLowScore =        [[UIColor alloc] initWithRed:1.0 green:0.5 blue:0.5 alpha:alphaSet];
+    self.cellColorVeryLowScore =    [[UIColor alloc] initWithRed:1.0 green:0.0 blue:0.0 alpha:alphaSet];
     
     return self;
     
@@ -90,10 +87,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if (!self.whichInit)
-        return [self.dataSource getNumberOfJobs];
-    else
-        return [self.jobsArray count];
+    return [self.jobsArray count];
 }
 
 
@@ -104,10 +98,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     //This allows for multiple lines
     cell.detailTextLabel.numberOfLines = 0;
     Job *job;
-    if (!self.whichInit)
-        job = [self.dataSource jobAtIndex: [indexPath row]];
-    else
-        job = self.jobsArray[[indexPath row]];
+    job = self.jobsArray[[indexPath row]];
     cell.textLabel.text = [job jobtitle];
     NSString *location;
     location = [NSString stringWithFormat: @"%@\n", [job company]];
@@ -141,6 +132,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
             break;
     }
     cell.imageView.image = imgView.image;
+    cell.backgroundColor = [self findCellColor:job.score];
     
     return cell;
 }
@@ -151,15 +143,27 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     [sender endRefreshing];
 }
 
+- (UIColor *) findCellColor:(int) score{
+    NSLog(@"Returning color for score: %d", score);
+    if (score > 8)
+        return self.cellColorVeryHighScore;
+    if (score > 6)
+        return self.cellColorHighScore;
+    if (score > 3)
+        return self.cellColorMediumScore;
+    if (score > 1)
+        return self.cellColorLowScore;
+    if (score <= 1)
+        return self.cellColorVeryLowScore;
+    return [UIColor whiteColor];
+}
+
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {   /* Respond to the touch at the row. Create and move to the detail view. */
     Job *job;
-    if (!self.whichInit)
-        job = [self.dataSource jobAtIndex: [indexPath row]];
-    else
-        job = self.jobsArray[[indexPath row]];
-    NSLog(@"the index number: %d", [indexPath row]);
+    job = self.jobsArray[[indexPath row]];
+    NSLog(@"the index number: %d", (int)[indexPath row]);
      ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
     [self.navigationController pushViewController: rvController animated:YES];
 }

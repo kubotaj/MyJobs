@@ -128,6 +128,7 @@
             [self.mJob setValue:descriptionFinal forKey:@"snippet"];
             //NSLog(@"description: %@", descriptionFinal);
             
+            
         }
         
         if ([elementName isEqualToString: @"link"])
@@ -167,6 +168,20 @@
 
 - (void) filterJobs:(NSMutableArray *)userSkills{
     for (Job *j in self.jobs){
+        // Compare skills
+        int count = (int)[userSkills count];
+        for (NSString *userSkill in userSkills){
+            bool found = false;
+            NSMutableArray *jobTitleWords = (NSMutableArray *)[j.jobtitle componentsSeparatedByString:@" "];
+                for (NSString *word in jobTitleWords){
+                    if ([word isEqualToString:userSkill] && !found){
+                        j.score += count;
+                        found = true;
+                        NSLog(@"(+ %d) Found user skill: %@ in job skill: %@", count, userSkill, jobTitleWords);
+                    }
+            }
+            count--;
+        }
         // How recent is the listing
         NSTimeInterval relativeTimeSeconds;
         relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: j.datePosted]; //seconds since job posted
