@@ -21,7 +21,7 @@
 
 @implementation CareerBuilderAPIDataSource
 
--(instancetype) initWithURLString: (NSString *) urlString {
+-(instancetype) initWithURLString: (NSString *) urlString{
     /* Initializer */
     if( (self = [super init]) == nil )
         return nil;
@@ -55,10 +55,12 @@
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
     //NSLog(@"Element[%@]found", elementName);
     
-    /* Create a new instance of iJob */
+    /* Create a new instance of Job */
     if ([elementName isEqualToString: @"JobSearchResult"]) {
         self.cbJob = [[Job alloc] init];
+        self.cbJob.skillsList = [[NSMutableArray alloc] init];
         self.cbJob.sourceType = 2;
+        self.cbJob.score = 1;
     }
 }
 
@@ -87,6 +89,7 @@
             self.jobs = [[NSMutableArray alloc] init];
         }
         [self.jobs addObject: self.cbJob];
+        //NSLog(@"%@", self.cbJob.skillsList);
         // release object
         self.cbJob = nil;
     }
@@ -97,7 +100,8 @@
              [elementName isEqualToString: @"State"] ||
              [elementName isEqualToString: @"DescriptionTeaser"] ||
              [elementName isEqualToString: @"JobDetailsURL"] ||
-             [elementName isEqualToString: @"PostedTime"]) {
+             [elementName isEqualToString: @"PostedTime"] ||
+             [elementName isEqualToString: @"Skill"]) {
         
         // Get ride of the weired newline chars and whitespace!
         self.currentElementValue = [self.currentElementValue stringByReplacingOccurrencesOfString:@"\n" withString:@""];
@@ -132,6 +136,8 @@
             //NSLog(@"%@", self.cbJob.datePosted);
             [self.cbJob convertDatePostedToFormattedRelativeTime];
         }
+        if ([elementName isEqualToString: @"Skill"])
+            [self.cbJob.skillsList addObject:[self.currentElementValue lowercaseString]];
     }
     
     // Reset the variable.
@@ -141,8 +147,43 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     NSLog(@"Parsing CB finished");
     
+    /*
     for (int i = 0; i < [self.jobs count]; i++) {
-        //NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
+        NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
+    }
+     */
+}
+
+- (void) filterJobs:(NSMutableArray *)userSkills{
+    for (Job *j in self.jobs){
+        // Compare skills
+        int count = (int)[userSkills count];
+        for (NSString *userSkill in userSkills){
+            bool found = false;
+            for (NSString *jobSkill in j.skillsList){
+                NSMutableArray *words = (NSMutableArray *)[jobSkill componentsSeparatedByString:@" "];
+                for (NSString *word in words){
+                    if ([word isEqualToString:userSkill] && !found){
+                        j.score += count;
+                        found = true;
+                        NSLog(@"(+ %d) Found user skill: %@ in job skill: %@", count, userSkill, jobSkill);
+                    }
+                }
+            }
+            count--;
+        }
+        // How recent is the listing
+        NSTimeInterval relativeTimeSeconds;
+        relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: j.datePosted]; //seconds since job posted
+        if (relativeTimeSeconds < 86400){       // Is this posting less than a day old
+            j.score += 3;
+            //NSLog(@"(+ %d) Post less than day old", 3);
+        }
+        else if (relativeTimeSeconds < 604800){ // Is this posting less than a week old
+            j.score += 1;
+            //NSLog(@"(+ %d) Post less than week old", 1);
+        }
+        //if (j.score > 1) NSLog(@"Final job score = %d", j.score);
     }
 }
 

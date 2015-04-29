@@ -61,6 +61,7 @@
         self.didStartItem = YES;
         self.mJob = [[Job alloc] init];
         self.mJob.sourceType = 1;
+        self.mJob.score = 1;
     }
 }
 
@@ -157,8 +158,27 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     NSLog(@"Parsing monster finished");
     
+    /*
     for (int i = 0; i < [self.jobs count]; i++) {
-        //NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
+        NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
+    }
+     */
+}
+
+- (void) filterJobs:(NSMutableArray *)userSkills{
+    for (Job *j in self.jobs){
+        // How recent is the listing
+        NSTimeInterval relativeTimeSeconds;
+        relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: j.datePosted]; //seconds since job posted
+        if (relativeTimeSeconds < 86400){       // Is this posting less than a day old
+            j.score += 3;
+            //NSLog(@"(+ %d) Post less than day old", 3);
+        }
+        else if (relativeTimeSeconds < 604800){ // Is this posting less than a week old
+            j.score += 1;
+            //NSLog(@"(+ %d) Post less than week old", 1);
+        }
+        //if (j.score > 1) NSLog(@"Final job score = %d", j.score);
     }
 }
 

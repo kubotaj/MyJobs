@@ -66,7 +66,6 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [self.activityIndicator setCenter: self.view.center];
     [self.view addSubview: self.activityIndicator];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

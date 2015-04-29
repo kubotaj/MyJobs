@@ -118,7 +118,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self findCurrentCity];
-    self.sortType = 3; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent)
+    self.sortType = 4; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent), 4 (most relevant)
 
 }
 
@@ -134,36 +134,39 @@
 //    NSLog(@"Job City is %@", self.jobState.text);
     
     /* Generate the result lists. */
+    NSMutableArray *allJobs = [[NSMutableArray alloc] init];
     
     /* INDEED */
-    //NSString *urlString = [NSString stringWithFormat: @"http://www.cs.sonoma.edu/~jkubota/cs470s15/myJobs/indeedAPI.php?keyWord=%@&city=%@&state=%@", self.jobTitle.text, self.jobCity.text, self.jobState.text];
-    NSString *urlStringIndeed = [NSString stringWithFormat: @"http://api.indeed.com/ads/apisearch?publisher=5703933454627100&q=%@&l=%@,+%@&sort=&radius=&st=&jt=&start=&limit=25&fromage=&filter=&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla//4.0(Firefox)&v=2", self.jobTitle.text, self.jobCity.text, self.jobState.text];
-    // url should use "%20" for a white space.
-    urlStringIndeed = [urlStringIndeed stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
-    NSLog(@"indeed url: %@", urlStringIndeed);
-    // Initialized the result view with url
-    IndeedAPIDataSource *dataSourceIndeed = [[IndeedAPIDataSource alloc] initWithURLString: urlStringIndeed];
-    NSMutableArray *indeedJobs = [dataSourceIndeed getAllJobs];
+    for (int i = 0; i < self.us.listingsMax / 25; i++){
+        NSString *urlStringIndeed = [NSString stringWithFormat: @"http://api.indeed.com/ads/apisearch?publisher=5703933454627100&q=%@&l=%@,+%@&sort=&radius=%d&limit=25&start=%d&latlong=1&co=us&chnl=&userip=1.2.3.4&useragent=Mozilla//4.0(Firefox)&v=2", self.jobTitle.text, self.jobCity.text, self.jobState.text, (int)self.us.searchRadius, (i * 25)];
+        // url should use "%20" for a white space.
+        urlStringIndeed = [urlStringIndeed stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
+        NSLog(@"indeed url: %@", urlStringIndeed);
+        // Initialized the result view with url
+        IndeedAPIDataSource *dataSourceIndeed = [[IndeedAPIDataSource alloc] initWithURLString: urlStringIndeed];
+        NSMutableArray *indeedJobs = [dataSourceIndeed getAllJobs];
+        [dataSourceIndeed filterJobs:self.us.userSkills];
+    
+        [allJobs addObjectsFromArray:indeedJobs];
+    }
     
     /* CAREERBUILDER */
-    NSString *urlStringCareerBuilder = [NSString stringWithFormat: @"http://api.careerbuilder.com/v1/jobsearch?DeveloperKey=WD907SX6B03NBR730Q7H&Keywords=%@&Location=%@, %@", self.jobTitle.text, self.jobCity.text, self.jobState.text];
-    // url should use "%20" for a white space.
+    NSString *urlStringCareerBuilder = [NSString stringWithFormat: @"http://api.careerbuilder.com/v2/jobsearch?DeveloperKey=WD907SX6B03NBR730Q7H&Keywords=%@&Location=%@, %@&Radius=%d&PerPage=%d", self.jobTitle.text, self.jobCity.text, self.jobState.text, (int)self.us.searchRadius, (int)self.us.listingsMax];
     urlStringCareerBuilder = [urlStringCareerBuilder stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
     NSLog(@"cb url: %@", urlStringCareerBuilder);
-    // Initialized the result view with url
     CareerBuilderAPIDataSource *dataSourceCareerBuilder = [[CareerBuilderAPIDataSource alloc] initWithURLString: urlStringCareerBuilder];
+    // filter jobs with score metric
+    [dataSourceCareerBuilder filterJobs:self.us.userSkills];
     NSMutableArray *cbJobs = [dataSourceCareerBuilder getAllJobs];
     
     /* MONSTER */
-    NSString *urlStringMonster = [NSString stringWithFormat: @"http://rss.jobsearch.monster.com/rssquery.ashx?brd=1&q=%@&cy=us&where=%@&where=%@&rad=30rad_units=miles&baseurl=jobview.monster.com#", self.jobTitle.text, self.jobCity.text, self.jobState.text];
+    NSString *urlStringMonster = [NSString stringWithFormat: @"http://rss.jobsearch.monster.com/rssquery.ashx?brd=1&q=%@&cy=us&where=%@&where=%@&rad=%drad_units=miles&baseurl=jobview.monster.com#", self.jobTitle.text, self.jobCity.text, self.jobState.text, (int)self.us.searchRadius];
     NSLog(@"monster url: %@", urlStringMonster);
     urlStringMonster = [urlStringMonster stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     MonsterDataSource *dataSourceMonster = [[MonsterDataSource alloc] initWithURLString: urlStringMonster];
     NSMutableArray *mJobs = [dataSourceMonster getAllJobs];
+    [dataSourceMonster filterJobs:self.us.userSkills];
     
-    NSMutableArray *allJobs = [[NSMutableArray alloc] init];
-    
-    [allJobs addObjectsFromArray:indeedJobs];
     [allJobs addObjectsFromArray:cbJobs];
     [allJobs addObjectsFromArray:mJobs];
     
@@ -190,13 +193,16 @@
             sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j2, Job *j1){
                 return [j1.datePosted compare:j2.datePosted];
             }];
+            break;
+            
+        case 4:
+            sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
+                return (j1.score < j2.score);
+            }];
             
         default:
             break;
     }
-    
-    // Need to get results from all data sources before pushing to table view
-    //SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithDataSource: dataSourceIndeed];
 
     SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:sortedJobs];
     [self.navigationController pushViewController:rController animated:YES];
