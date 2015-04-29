@@ -6,11 +6,14 @@
 //  Copyright (c) 2015 Joji Kubota. All rights reserved.
 //
 
+
 #import "AppDelegate.h"
 #import "SearchViewController.h"
 #import "FavoritesTableViewController.h"
 #import "SettingsViewController.h"
-#import <Parse/Parse.h>
+#import "UserSettings.h"
+#import "LogInViewcontroller.h"
+
 
 @interface AppDelegate ()
 
@@ -22,6 +25,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    UserSettings *us = [[UserSettings alloc] initWithDefault];
     /* For Parser(Database) */
     // [Optional] Power your app with Local Datastore. For more info, go to
     // https://parse.com/docs/ios_guide#localdatastore/iOS
@@ -60,8 +64,10 @@
     settingsView.tabBarItem = settingsItem;
     [tab addChildViewController: settingsNav];
     
+    
     /* Set the root view */
     [self.window setRootViewController: tab];
+  
     
     return YES;
 }

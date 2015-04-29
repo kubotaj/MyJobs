@@ -12,6 +12,9 @@
 #import "CareerBuilderAPIDataSource.h"
 #import "MonsterDataSource.h"
 #import "UserSettings.h"
+#import "LogInViewController.h"
+#import "SignUpViewController.h"
+
 
 
 @interface SearchViewController ()
@@ -25,7 +28,9 @@
 @property (weak, nonatomic) NSString *state;
 @property (nonatomic) int sortType;
 @property (nonatomic) UserSettings *us;
+@property (weak, nonatomic) IBOutlet UILabel *loginLabel;
 - (IBAction)searchButtonTapped:(UIButton *)sender;
+- (IBAction)logoutButtonTapped:(id)sender;
 - (void)findCurrentCity;
 
 @end
@@ -39,6 +44,75 @@
     
     return self;
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([PFUser currentUser]) {
+        self.loginLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Logged in as %@", nil), [[PFUser currentUser] username]];
+    } else {
+        self.loginLabel.text = NSLocalizedString(@"Not logged in", nil);
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    // Check if user is logged in
+    if (![PFUser currentUser]) {
+        // Create the log in view controller
+        LogInViewController *logInViewController = [[LogInViewController alloc] init];
+        logInViewController.delegate = self; // Set ourselves as the delegate
+            
+        // Create the sign up view controller
+        // Customize the Sign Up View Controller
+        SignUpViewController *signUpViewController = [[SignUpViewController alloc] init];
+        signUpViewController.delegate = self;
+        signUpViewController.fields = PFSignUpFieldsDefault | PFSignUpFieldsAdditional;
+        logInViewController.signUpController = signUpViewController;
+        
+        // Assign our sign up controller to be displayed from the login controller
+        [logInViewController setSignUpController:logInViewController.signUpController];
+            
+        // Present the log in view controller
+        [self presentViewController:logInViewController animated:YES completion:NULL];
+    }
+}
+
+/* Delegate method when user logged in successfully */
+- (void)logInViewController:(PFLogInViewController *)controller
+               didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/* Delegate method when user cancels the log in */
+- (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Sent to the delegate when the log in attempt fails.
+- (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
+    NSLog(@"Failed to log in...");
+}
+
+/* Delegate method when user signed up successfully */
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+/* Delegate method when user cancles the signed up */
+- (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Sent to the delegate when the sign up attempt fails.
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
+    NSLog(@"Failed to sign up...");
+}
+
+- (IBAction)logoutButtonTapped:(id)sender {
+    [PFUser logOut];
+    [self viewDidAppear:YES];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -128,6 +202,7 @@
     [self.navigationController pushViewController:rController animated:YES];
 
 }
+
 
 - (void)findCurrentCity {
     // Configure location manager.

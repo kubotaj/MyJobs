@@ -13,6 +13,12 @@
 		3F4893561AED765F00280B7C /* monster.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F4893531AED765F00280B7C /* monster.png */; };
 		3F6CF32C1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CF32B1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m */; };
 		3FBBC0911AE1B81D005F19FD /* MonsterDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBBC0901AE1B81D005F19FD /* MonsterDataSource.m */; };
+		E819E76F1AED91BD007EE836 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E819E76D1AED91BD007EE836 /* LogInViewController.m */; };
+		E819E7701AED91BD007EE836 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E819E76E1AED91BD007EE836 /* LogInViewController.xib */; };
+		E819E7721AED9725007EE836 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E819E7711AED9725007EE836 /* ParseUI.framework */; };
+		E819E77A1AEDA6CF007EE836 /* logoMini.png in Resources */ = {isa = PBXBuildFile; fileRef = E819E7791AEDA6CF007EE836 /* logoMini.png */; };
+		E819E77E1AEDB620007EE836 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E819E77C1AEDB620007EE836 /* SignUpViewController.m */; };
+		E819E77F1AEDB620007EE836 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E819E77D1AEDB620007EE836 /* SignUpViewController.xib */; };
 		E81A72561AD08EAF00C0504F /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81A72551AD08EAF00C0504F /* SearchViewController.xib */; };
 		E81A72581AD09AA600C0504F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81A72571AD09AA600C0504F /* CoreLocation.framework */; };
 		E8330B841AEC543900B9A0E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B821AEC543900B9A0E4 /* Bolts.framework */; };
@@ -69,6 +75,14 @@
 		3F6CF32B1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CareerBuilderAPIDataSource.m; sourceTree = "<group>"; };
 		3FBBC08F1AE1B81D005F19FD /* MonsterDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterDataSource.h; sourceTree = "<group>"; };
 		3FBBC0901AE1B81D005F19FD /* MonsterDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterDataSource.m; sourceTree = "<group>"; };
+		E819E76C1AED91BD007EE836 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		E819E76D1AED91BD007EE836 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		E819E76E1AED91BD007EE836 /* LogInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
+		E819E7711AED9725007EE836 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		E819E7791AEDA6CF007EE836 /* logoMini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoMini.png; sourceTree = "<group>"; };
+		E819E77B1AEDB620007EE836 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		E819E77C1AEDB620007EE836 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		E819E77D1AEDB620007EE836 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		E81A72551AD08EAF00C0504F /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = ../SearchViewController.xib; sourceTree = "<group>"; };
 		E81A72571AD09AA600C0504F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E8330B821AEC543900B9A0E4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -128,6 +142,7 @@
 				E8330B971AEC555F00B9A0E4 /* libz.dylib in Frameworks */,
 				E8330B951AEC554300B9A0E4 /* SystemConfiguration.framework in Frameworks */,
 				E8330B931AEC553600B9A0E4 /* StoreKit.framework in Frameworks */,
+				E819E7721AED9725007EE836 /* ParseUI.framework in Frameworks */,
 				E8330B911AEC552C00B9A0E4 /* Security.framework in Frameworks */,
 				E8330B8F1AEC552300B9A0E4 /* QuartzCore.framework in Frameworks */,
 				E8330B8D1AEC551900B9A0E4 /* MobileCoreServices.framework in Frameworks */,
@@ -171,6 +186,7 @@
 		E81A72591AD09B5500C0504F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E819E7711AED9725007EE836 /* ParseUI.framework */,
 				E8330B9C1AEC558C00B9A0E4 /* Social.framework */,
 				E8330B9A1AEC558400B9A0E4 /* Accounts.framework */,
 				E8330B981AEC556D00B9A0E4 /* libsqlite3.dylib */,
@@ -226,6 +242,12 @@
 				E848CEB31ADEF060007B4272 /* Indeed */,
 				E8FC4C7C1AD07E040028ED77 /* AppDelegate.h */,
 				E8FC4C7D1AD07E040028ED77 /* AppDelegate.m */,
+				E819E76C1AED91BD007EE836 /* LogInViewController.h */,
+				E819E76D1AED91BD007EE836 /* LogInViewController.m */,
+				E819E76E1AED91BD007EE836 /* LogInViewController.xib */,
+				E819E77B1AEDB620007EE836 /* SignUpViewController.h */,
+				E819E77C1AEDB620007EE836 /* SignUpViewController.m */,
+				E819E77D1AEDB620007EE836 /* SignUpViewController.xib */,
 				E8FC4C821AD07E040028ED77 /* SearchViewController.h */,
 				E8FC4C831AD07E040028ED77 /* SearchViewController.m */,
 				E81A72551AD08EAF00C0504F /* SearchViewController.xib */,
@@ -257,6 +279,7 @@
 				3F4893521AED765F00280B7C /* indeed.png */,
 				3F4893531AED765F00280B7C /* monster.png */,
 				E8E5C7721AE56FA900ACDBB0 /* logo.jpg */,
+				E819E7791AEDA6CF007EE836 /* logoMini.png */,
 				E8FC4CAB1AD084D90028ED77 /* search@2x.png */,
 				E8FC4CAA1AD084D90028ED77 /* favorites@2x.png */,
 				E8FC4CA91AD084D90028ED77 /* settings@2x.png */,
@@ -365,14 +388,17 @@
 			files = (
 				3F4893551AED765F00280B7C /* indeed.png in Resources */,
 				E8E5C7731AE56FA900ACDBB0 /* logo.jpg in Resources */,
+				E819E77F1AEDB620007EE836 /* SignUpViewController.xib in Resources */,
 				3F4893541AED765F00280B7C /* careerbuilder.png in Resources */,
 				E8FC4CAC1AD084D90028ED77 /* settings@2x.png in Resources */,
 				E8FC4CAE1AD084D90028ED77 /* search@2x.png in Resources */,
 				E8FC4C871AD07E040028ED77 /* Main.storyboard in Resources */,
 				3F4893561AED765F00280B7C /* monster.png in Resources */,
 				E8FC4CAD1AD084D90028ED77 /* favorites@2x.png in Resources */,
+				E819E7701AED91BD007EE836 /* LogInViewController.xib in Resources */,
 				E8FC4C8C1AD07E040028ED77 /* LaunchScreen.xib in Resources */,
 				E8FC4C891AD07E040028ED77 /* Images.xcassets in Resources */,
+				E819E77A1AEDA6CF007EE836 /* logoMini.png in Resources */,
 				E81A72561AD08EAF00C0504F /* SearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E819E76F1AED91BD007EE836 /* LogInViewController.m in Sources */,
 				E848CEB21ADEF02D007B4272 /* Job.m in Sources */,
 				3F6CF32C1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m in Sources */,
 				E8FC4C811AD07E040028ED77 /* MyJobs.xcdatamodeld in Sources */,
@@ -401,6 +428,7 @@
 				E8FC4CA71AD081240028ED77 /* SettingsViewController.m in Sources */,
 				E85C28371AE1BED800012F38 /* ResultDetailViewController.m in Sources */,
 				E8FC4CA31AD080D20028ED77 /* FavoritesTableViewController.m in Sources */,
+				E819E77E1AEDB620007EE836 /* SignUpViewController.m in Sources */,
 				3FBBC0911AE1B81D005F19FD /* MonsterDataSource.m in Sources */,
 				E848CEAF1ADEE718007B4272 /* IndeedAPIDataSource.m in Sources */,
 				E8FC4C7B1AD07E040028ED77 /* main.m in Sources */,

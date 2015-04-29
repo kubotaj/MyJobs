@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
+#import <ParseUI/ParseUI.h>
 #import <Parse/Parse.h>
+#import <CoreLocation/CoreLocation.h>
+#import "UserSettings.h"
 
 
-@interface SearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate>
+@interface SearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 - (IBAction) clickedBackground;
