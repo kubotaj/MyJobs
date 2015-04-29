@@ -36,8 +36,6 @@
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    UserSettings *us = [[UserSettings alloc] initWithDefault];
-    
     /* Create instances of the view controllers */
     SearchViewController *searchView = [[SearchViewController alloc] initWithSettings:us];
     FavoritesTableViewController *favoritesView = [[FavoritesTableViewController alloc] init];

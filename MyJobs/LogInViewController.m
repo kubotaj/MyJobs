@@ -24,7 +24,7 @@
 //    appName.font = [UIFont boldSystemFontOfSize: 50];
 //    appName.textColor = [UIColor orangeColor];
 //    self.logInView.logo = appName; // logo can be any UIView
-    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoMini.png"]];
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"JLLogo.png"]];
     self.logInView.logo = logoView; // logo can be any UIView
 }
 

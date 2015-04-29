@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view from its nib.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logoMini.png"]];
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"JLLogo.png"]];
     self.signUpView.logo = logoView; // logo can be any UIView
     
     // Change "Additional" to match our use
