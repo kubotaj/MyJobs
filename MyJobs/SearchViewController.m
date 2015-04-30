@@ -186,7 +186,7 @@
             return (j1.score < j2.score);
     }];
 
-    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:sortedJobs];
+    SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:sortedJobs andSettings:self.us];
     [self.navigationController pushViewController:rController animated:YES];
 
 }

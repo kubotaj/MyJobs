@@ -21,12 +21,31 @@
     self.preferredCity = @"";
     self.userSkills = [[NSMutableArray alloc] initWithObjects:@"ios", @"objective-c", @"mobile", nil];
     
+    self.skillCount = (int)[self.userSkills count];
+    
     return self;
 }
 
 - (void) setUserCity: (NSString *) city{
     NSLog(@"Setting user city as: %@", city);
     self.preferredCity = [[city lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""];
+}
+
+- (int) findScoreMax{
+    int maxScore = 0;
+    
+    //for recent listing
+    maxScore += 3;
+    
+    //for same city
+    maxScore += 2;
+    
+    //for skills
+    for (int i = self.skillCount; i > 0; i--){
+        maxScore += i;
+    }
+    
+    return maxScore;
 }
 
 @end

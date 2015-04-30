@@ -15,9 +15,9 @@
 
 @interface SearchResultsTableViewController ()
 
-@property(nonatomic) IndeedAPIDataSource *dataSource;
 @property(nonatomic) NSMutableArray *jobsArray;
 @property(nonatomic) UIActivityIndicatorView *activityIndicator;
+@property(nonatomic) UserSettings* us;
 @property(nonatomic) UIColor *cellColorVeryHighScore;
 @property(nonatomic) UIColor *cellColorHighScore;
 @property(nonatomic) UIColor *cellColorMediumScore;
@@ -30,13 +30,13 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 @implementation SearchResultsTableViewController
 
-- (id) initWithJobsArray: (NSMutableArray *) jobsArray {
+- (id) initWithJobsArray: (NSMutableArray *) jobsArray andSettings:(UserSettings *)us{
     self = [super init];
     if (self) {
         // Custom init
     }
     self.title = @"Search Results";
-    
+    self.us = us;
     self.jobsArray = jobsArray;
     
     float alphaSet = 0.2;
@@ -46,6 +46,8 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     self.cellColorMediumScore =     [[UIColor alloc] initWithRed:1.0 green:1.0 blue:0.0 alpha:alphaSet];
     self.cellColorLowScore =        [[UIColor alloc] initWithRed:1.0 green:0.5 blue:0.5 alpha:alphaSet];
     self.cellColorVeryLowScore =    [[UIColor alloc] initWithRed:1.0 green:0.0 blue:0.0 alpha:alphaSet];
+    
+    //NSLog(@"User scoreMax: %d", us.findScoreMax);
     
     return self;
     

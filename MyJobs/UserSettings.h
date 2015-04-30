@@ -13,9 +13,11 @@
 @property (nonatomic) NSInteger searchRadius;
 @property (nonatomic) NSInteger listingsMax;
 @property (nonatomic) NSMutableArray *userSkills;
+@property (nonatomic) int skillCount;
 @property (nonatomic) NSString *preferredCity;
 
 - (instancetype) initWithDefault;
 - (void) setUserCity: (NSString *) city;
+- (int) findScoreMax;
 
 @end

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserSettings.h"
 
 @interface SearchResultsTableViewController : UITableViewController
 
-- (id) initWithJobsArray: (NSMutableArray *) jobsArray;
+- (id) initWithJobsArray: (NSMutableArray *) jobsArray andSettings: (UserSettings *) us;
 
 @end
