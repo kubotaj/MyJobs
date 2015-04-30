@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F40A8961AF1D3EC0086EB6A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F40A8951AF1D3EC0086EB6A /* SettingsViewController.xib */; };
 		3F448EF61AF1BAC2007F3670 /* ResultURLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F448EF51AF1BAC2007F3670 /* ResultURLViewController.m */; };
 		3F4893501AED67C100280B7C /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F48934F1AED67C100280B7C /* UserSettings.m */; };
 		3F4893541AED765F00280B7C /* careerbuilder.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F4893511AED765F00280B7C /* careerbuilder.png */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F40A8951AF1D3EC0086EB6A /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		3F448EF41AF1BAC2007F3670 /* ResultURLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultURLViewController.h; sourceTree = "<group>"; };
 		3F448EF51AF1BAC2007F3670 /* ResultURLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultURLViewController.m; sourceTree = "<group>"; };
 		3F48934E1AED67C100280B7C /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettings.h; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				E8FC4CA21AD080D20028ED77 /* FavoritesTableViewController.m */,
 				E8FC4CA41AD081240028ED77 /* SettingsViewController.h */,
 				E8FC4CA51AD081240028ED77 /* SettingsViewController.m */,
+				3F40A8951AF1D3EC0086EB6A /* SettingsViewController.xib */,
 				E848CEB01ADEF02D007B4272 /* Job.h */,
 				E848CEB11ADEF02D007B4272 /* Job.m */,
 				E882B5C81ADB51B800E9B5BA /* SearchResultsTableViewController.h */,
@@ -404,6 +407,7 @@
 				E8FC4CAC1AD084D90028ED77 /* settings@2x.png in Resources */,
 				E8FC4CAE1AD084D90028ED77 /* search@2x.png in Resources */,
 				E8FC4C871AD07E040028ED77 /* Main.storyboard in Resources */,
+				3F40A8961AF1D3EC0086EB6A /* SettingsViewController.xib in Resources */,
 				3F4893561AED765F00280B7C /* monster.png in Resources */,
 				E8FC4CAD1AD084D90028ED77 /* favorites@2x.png in Resources */,
 				E819E7701AED91BD007EE836 /* LogInViewController.xib in Resources */,

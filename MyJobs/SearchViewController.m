@@ -95,6 +95,18 @@
 /* Delegate method when user signed up successfully */
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    PFUser *currUser = [PFUser currentUser]; //get current user
+    NSLog(@"here");
+    PFObject *userSettings = [PFObject objectWithClassName:@"UserSettings"];
+    userSettings[@"userId"] = currUser.objectId;
+    userSettings[@"Radius"] = @30;
+    userSettings[@"Skill1"] = @"";
+    userSettings[@"Skill2"] = @"";
+    userSettings[@"Skill3"] = @"";
+    [userSettings saveInBackground];
+    NSLog(@"there");
+    [self.tabBarController setSelectedIndex:2];
 }
 
 /* Delegate method when user cancles the signed up */
