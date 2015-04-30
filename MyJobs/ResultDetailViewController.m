@@ -11,6 +11,8 @@
 @interface ResultDetailViewController ()
 
 @property (nonatomic) NSURL *url;
+@property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;
+
 
 @end
 
@@ -19,24 +21,16 @@
 - (id) initWithJob: (Job *) job {
     NSLog(@"url: %@", job.url);
     self.url = [NSURL URLWithString: job.url];
-        
+    
+    [self.jobTitleLabel setText:job.jobtitle];
+    
     return self;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    // Setup the webview frame.
-    UIWebView *wv = [[UIWebView alloc] initWithFrame: self.view.bounds];
-    wv.delegate = (id<UIWebViewDelegate>)self;
-    wv.scalesPageToFit = YES;
-    [self.view addSubview: wv];
-    
-    // Call the website.
-    NSURLRequest *req = [NSURLRequest requestWithURL: self.url];
-    [wv loadRequest: req];
 }
 
 - (void)didReceiveMemoryWarning {
