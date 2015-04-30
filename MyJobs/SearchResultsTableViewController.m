@@ -99,6 +99,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     cell.detailTextLabel.numberOfLines = 0;
     Job *job;
     job = self.jobsArray[[indexPath row]];
+
     cell.textLabel.text = [job jobtitle];
     NSString *location;
     location = [NSString stringWithFormat: @"%@\n", [job company]];
@@ -111,8 +112,6 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
         location = [location stringByAppendingString: @", "];
     }
     location = [location stringByAppendingString: [job formattedRelativeTime]];
-//    location = [location stringByAppendingString: @"\n"];
-//    location = [location stringByAppendingString: [iJob snippet]];
     
     cell.detailTextLabel.text = location;
     

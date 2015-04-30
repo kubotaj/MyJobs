@@ -24,7 +24,7 @@
 @property (nonatomic) NSDate *datePosted;
 
 @property (nonatomic) int score;
-@property (nonatomic) NSMutableArray *skillsList;
+@property (nonatomic) NSMutableArray *skillsList; // Only used by CareerBuilder jobs
 
 + (NSString *) convertMonthtoNum: (NSString *) date;
 - (void) convertDatePostedToFormattedRelativeTime;

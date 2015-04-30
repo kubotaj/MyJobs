@@ -26,7 +26,6 @@
 @property (strong, nonatomic) CLLocation *location;
 @property (weak, nonatomic) NSString *city;
 @property (weak, nonatomic) NSString *state;
-@property (nonatomic) int sortType;
 @property (nonatomic) UserSettings *us;
 @property (weak, nonatomic) IBOutlet UILabel *loginLabel;
 - (IBAction)searchButtonTapped:(UIButton *)sender;
@@ -118,7 +117,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self findCurrentCity];
-    self.sortType = 4; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent), 4 (most relevant)
+    //self.sortType = 4; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent), 4 (most relevant)
 
 }
 
@@ -172,37 +171,19 @@
     
     NSMutableArray *sortedJobs = [[NSMutableArray alloc] init];
     
-    switch (self.sortType) {
-        case 0:
-            sortedJobs = allJobs;
-            break;
-            
-        case 1:
-            sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
-                return [j1.jobtitle compare:j2.jobtitle];
-            }];
-            break;
-            
-        case 2:
-            sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
-                return [j1.company compare:j2.company];
-            }];
-            break;
-            
-        case 3:
-            sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j2, Job *j1){
-                return [j1.datePosted compare:j2.datePosted];
-            }];
-            break;
-            
-        case 4:
-            sortedJobs = [allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
-                return (j1.score < j2.score);
-            }];
-            
-        default:
-            break;
-    }
+    sortedJobs = (NSMutableArray *)[allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
+        if (j1.score < j2.score)
+            return (j1.score < j2.score);
+        else
+            return [j2.datePosted compare:j2.datePosted];
+    }];
+    
+    sortedJobs = (NSMutableArray *)[allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
+        if (j1.score == j2.score)
+            return [j2.datePosted compare:j1.datePosted];
+        else
+            return (j1.score < j2.score);
+    }];
 
     SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:sortedJobs];
     [self.navigationController pushViewController:rController animated:YES];

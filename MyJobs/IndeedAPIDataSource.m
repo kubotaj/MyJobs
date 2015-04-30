@@ -133,6 +133,30 @@
 
 - (void) filterJobs:(NSMutableArray *)userSkills{
     for (Job *j in self.jobs){
+        // Compare skills
+        int count = (int)[userSkills count];
+        for (NSString *userSkill in userSkills){
+            bool found = false;
+            NSMutableArray *jobTitleWords = (NSMutableArray *)[j.jobtitle componentsSeparatedByString:@" "];
+            for (NSString *word in jobTitleWords){
+                NSString *reformattedWord = [[word lowercaseString] stringByReplacingOccurrencesOfString:@"," withString:@""];
+                if ([reformattedWord isEqualToString:userSkill] && !found){
+                    j.score += count;
+                    found = true;
+                    //NSLog(@"(+ %d) Found user skill: %@ in job skill (title): %@", count, userSkill, reformattedWord);
+                }
+            }
+            NSMutableArray *jobSnippetWords = (NSMutableArray *)[j.snippet componentsSeparatedByString:@" "];
+            for (NSString *word in jobSnippetWords){
+                NSString *reformattedWord = [[word lowercaseString] stringByReplacingOccurrencesOfString:@"," withString:@""];
+                if ([reformattedWord isEqualToString:userSkill] && !found){
+                    j.score += count;
+                    found = true;
+                    //NSLog(@"(+ %d) Found user skill: %@ in job skill (snippet): %@", count, userSkill, reformattedWord);
+                }
+            }
+            count--;
+        }
         // How recent is the listing
         NSTimeInterval relativeTimeSeconds;
         relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: j.datePosted]; //seconds since job posted

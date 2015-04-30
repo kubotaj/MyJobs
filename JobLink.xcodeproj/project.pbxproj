@@ -49,7 +49,6 @@
 		E8FC4C871AD07E040028ED77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FC4C851AD07E040028ED77 /* Main.storyboard */; };
 		E8FC4C891AD07E040028ED77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8FC4C881AD07E040028ED77 /* Images.xcassets */; };
 		E8FC4C8C1AD07E040028ED77 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8FC4C8A1AD07E040028ED77 /* LaunchScreen.xib */; };
-		E8FC4C981AD07E050028ED77 /* MyJobsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4C971AD07E050028ED77 /* MyJobsTests.m */; };
 		E8FC4CA31AD080D20028ED77 /* FavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4CA21AD080D20028ED77 /* FavoritesTableViewController.m */; };
 		E8FC4CA71AD081240028ED77 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FC4CA51AD081240028ED77 /* SettingsViewController.m */; };
 		E8FC4CAC1AD084D90028ED77 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8FC4CA91AD084D90028ED77 /* settings@2x.png */; };
@@ -112,7 +111,7 @@
 		E85C28361AE1BED800012F38 /* ResultDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultDetailViewController.m; sourceTree = "<group>"; };
 		E882B5C81ADB51B800E9B5BA /* SearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsTableViewController.h; sourceTree = "<group>"; };
 		E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsTableViewController.m; sourceTree = "<group>"; };
-		E8FC4C751AD07E040028ED77 /* MyJobs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyJobs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8FC4C751AD07E040028ED77 /* JobLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JobLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FC4C791AD07E040028ED77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FC4C7A1AD07E040028ED77 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8FC4C7C1AD07E040028ED77 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -123,9 +122,8 @@
 		E8FC4C861AD07E040028ED77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E8FC4C881AD07E040028ED77 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E8FC4C8B1AD07E040028ED77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E8FC4C911AD07E050028ED77 /* MyJobsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyJobsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8FC4C911AD07E050028ED77 /* JobLinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JobLinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FC4C961AD07E050028ED77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8FC4C971AD07E050028ED77 /* MyJobsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyJobsTests.m; sourceTree = "<group>"; };
 		E8FC4CA11AD080D20028ED77 /* FavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableViewController.h; sourceTree = "<group>"; };
 		E8FC4CA21AD080D20028ED77 /* FavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableViewController.m; sourceTree = "<group>"; };
 		E8FC4CA41AD081240028ED77 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -223,8 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				E81A72591AD09B5500C0504F /* Frameworks */,
-				E8FC4C771AD07E040028ED77 /* MyJobs */,
-				E8FC4C941AD07E050028ED77 /* MyJobsTests */,
+				E8FC4C771AD07E040028ED77 /* JobLink */,
+				E8FC4C941AD07E050028ED77 /* JobLinkTests */,
 				E8FC4C761AD07E040028ED77 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -232,13 +230,13 @@
 		E8FC4C761AD07E040028ED77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E8FC4C751AD07E040028ED77 /* MyJobs.app */,
-				E8FC4C911AD07E050028ED77 /* MyJobsTests.xctest */,
+				E8FC4C751AD07E040028ED77 /* JobLink.app */,
+				E8FC4C911AD07E050028ED77 /* JobLinkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E8FC4C771AD07E040028ED77 /* MyJobs */ = {
+		E8FC4C771AD07E040028ED77 /* JobLink */ = {
 			isa = PBXGroup;
 			children = (
 				3FBBC08E1AE1B80E005F19FD /* Monster */,
@@ -273,6 +271,7 @@
 				E8FC4C7F1AD07E040028ED77 /* MyJobs.xcdatamodeld */,
 				E8FC4C781AD07E040028ED77 /* Supporting Files */,
 			);
+			name = JobLink;
 			path = MyJobs;
 			sourceTree = "<group>";
 		};
@@ -295,12 +294,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E8FC4C941AD07E050028ED77 /* MyJobsTests */ = {
+		E8FC4C941AD07E050028ED77 /* JobLinkTests */ = {
 			isa = PBXGroup;
 			children = (
-				E8FC4C971AD07E050028ED77 /* MyJobsTests.m */,
 				E8FC4C951AD07E050028ED77 /* Supporting Files */,
 			);
+			name = JobLinkTests;
 			path = MyJobsTests;
 			sourceTree = "<group>";
 		};
@@ -315,9 +314,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E8FC4C741AD07E040028ED77 /* MyJobs */ = {
+		E8FC4C741AD07E040028ED77 /* JobLink */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E8FC4C9B1AD07E050028ED77 /* Build configuration list for PBXNativeTarget "MyJobs" */;
+			buildConfigurationList = E8FC4C9B1AD07E050028ED77 /* Build configuration list for PBXNativeTarget "JobLink" */;
 			buildPhases = (
 				E8FC4C711AD07E040028ED77 /* Sources */,
 				E8FC4C721AD07E040028ED77 /* Frameworks */,
@@ -327,14 +326,14 @@
 			);
 			dependencies = (
 			);
-			name = MyJobs;
+			name = JobLink;
 			productName = MyJobs;
-			productReference = E8FC4C751AD07E040028ED77 /* MyJobs.app */;
+			productReference = E8FC4C751AD07E040028ED77 /* JobLink.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E8FC4C901AD07E050028ED77 /* MyJobsTests */ = {
+		E8FC4C901AD07E050028ED77 /* JobLinkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E8FC4C9E1AD07E050028ED77 /* Build configuration list for PBXNativeTarget "MyJobsTests" */;
+			buildConfigurationList = E8FC4C9E1AD07E050028ED77 /* Build configuration list for PBXNativeTarget "JobLinkTests" */;
 			buildPhases = (
 				E8FC4C8D1AD07E050028ED77 /* Sources */,
 				E8FC4C8E1AD07E050028ED77 /* Frameworks */,
@@ -345,9 +344,9 @@
 			dependencies = (
 				E8FC4C931AD07E050028ED77 /* PBXTargetDependency */,
 			);
-			name = MyJobsTests;
+			name = JobLinkTests;
 			productName = MyJobsTests;
-			productReference = E8FC4C911AD07E050028ED77 /* MyJobsTests.xctest */;
+			productReference = E8FC4C911AD07E050028ED77 /* JobLinkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -368,7 +367,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E8FC4C701AD07E040028ED77 /* Build configuration list for PBXProject "MyJobs" */;
+			buildConfigurationList = E8FC4C701AD07E040028ED77 /* Build configuration list for PBXProject "JobLink" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -381,8 +380,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E8FC4C741AD07E040028ED77 /* MyJobs */,
-				E8FC4C901AD07E050028ED77 /* MyJobsTests */,
+				E8FC4C741AD07E040028ED77 /* JobLink */,
+				E8FC4C901AD07E050028ED77 /* JobLinkTests */,
 			);
 		};
 /* End PBXProject section */
@@ -447,7 +446,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FC4C981AD07E050028ED77 /* MyJobsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,7 +454,7 @@
 /* Begin PBXTargetDependency section */
 		E8FC4C931AD07E050028ED77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E8FC4C741AD07E040028ED77 /* MyJobs */;
+			target = E8FC4C741AD07E040028ED77 /* JobLink */;
 			targetProxy = E8FC4C921AD07E050028ED77 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -568,7 +566,7 @@
 				INFOPLIST_FILE = MyJobs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JobLink;
 			};
 			name = Debug;
 		};
@@ -583,7 +581,7 @@
 				INFOPLIST_FILE = MyJobs/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JobLink;
 			};
 			name = Release;
 		};
@@ -600,8 +598,9 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MyJobsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JobLinkTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyJobs.app/MyJobs";
 			};
 			name = Debug;
@@ -615,8 +614,9 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MyJobsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JobLinkTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyJobs.app/MyJobs";
 			};
 			name = Release;
@@ -624,7 +624,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E8FC4C701AD07E040028ED77 /* Build configuration list for PBXProject "MyJobs" */ = {
+		E8FC4C701AD07E040028ED77 /* Build configuration list for PBXProject "JobLink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E8FC4C991AD07E050028ED77 /* Debug */,
@@ -633,7 +633,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E8FC4C9B1AD07E050028ED77 /* Build configuration list for PBXNativeTarget "MyJobs" */ = {
+		E8FC4C9B1AD07E050028ED77 /* Build configuration list for PBXNativeTarget "JobLink" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E8FC4C9C1AD07E050028ED77 /* Debug */,
@@ -642,7 +642,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E8FC4C9E1AD07E050028ED77 /* Build configuration list for PBXNativeTarget "MyJobsTests" */ = {
+		E8FC4C9E1AD07E050028ED77 /* Build configuration list for PBXNativeTarget "JobLinkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E8FC4C9F1AD07E050028ED77 /* Debug */,
