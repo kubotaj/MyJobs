@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F448EF61AF1BAC2007F3670 /* ResultURLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F448EF51AF1BAC2007F3670 /* ResultURLViewController.m */; };
 		3F4893501AED67C100280B7C /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F48934F1AED67C100280B7C /* UserSettings.m */; };
 		3F4893541AED765F00280B7C /* careerbuilder.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F4893511AED765F00280B7C /* careerbuilder.png */; };
 		3F4893551AED765F00280B7C /* indeed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F4893521AED765F00280B7C /* indeed.png */; };
@@ -67,6 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F448EF41AF1BAC2007F3670 /* ResultURLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultURLViewController.h; sourceTree = "<group>"; };
+		3F448EF51AF1BAC2007F3670 /* ResultURLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultURLViewController.m; sourceTree = "<group>"; };
 		3F48934E1AED67C100280B7C /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettings.h; sourceTree = "<group>"; };
 		3F48934F1AED67C100280B7C /* UserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettings.m; sourceTree = "<group>"; };
 		3F4893511AED765F00280B7C /* careerbuilder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = careerbuilder.png; path = companyLogos/careerbuilder.png; sourceTree = "<group>"; };
@@ -263,6 +266,8 @@
 				E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */,
 				E85C28351AE1BED800012F38 /* ResultDetailViewController.h */,
 				E85C28361AE1BED800012F38 /* ResultDetailViewController.m */,
+				3F448EF41AF1BAC2007F3670 /* ResultURLViewController.h */,
+				3F448EF51AF1BAC2007F3670 /* ResultURLViewController.m */,
 				3F48934E1AED67C100280B7C /* UserSettings.h */,
 				3F48934F1AED67C100280B7C /* UserSettings.m */,
 				E8FC4C851AD07E040028ED77 /* Main.storyboard */,
@@ -429,6 +434,7 @@
 				3F6CF32C1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m in Sources */,
 				E8FC4C811AD07E040028ED77 /* MyJobs.xcdatamodeld in Sources */,
 				E8FC4C7E1AD07E040028ED77 /* AppDelegate.m in Sources */,
+				3F448EF61AF1BAC2007F3670 /* ResultURLViewController.m in Sources */,
 				E8FC4C841AD07E040028ED77 /* SearchViewController.m in Sources */,
 				E882B5CA1ADB51B800E9B5BA /* SearchResultsTableViewController.m in Sources */,
 				3F4893501AED67C100280B7C /* UserSettings.m in Sources */,

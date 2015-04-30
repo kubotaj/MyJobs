@@ -133,6 +133,7 @@
 //    NSLog(@"Job City is %@", self.jobState.text);
     
     /* Generate the result lists. */
+    [self.us setUserCity:self.jobCity.text];
     NSMutableArray *allJobs = [[NSMutableArray alloc] init];
     
     /* INDEED */
@@ -144,7 +145,7 @@
         // Initialized the result view with url
         IndeedAPIDataSource *dataSourceIndeed = [[IndeedAPIDataSource alloc] initWithURLString: urlStringIndeed];
         NSMutableArray *indeedJobs = [dataSourceIndeed getAllJobs];
-        [dataSourceIndeed filterJobs:self.us.userSkills];
+        [dataSourceIndeed filterJobs:self.us];
     
         [allJobs addObjectsFromArray:indeedJobs];
     }
@@ -155,7 +156,7 @@
     NSLog(@"cb url: %@", urlStringCareerBuilder);
     CareerBuilderAPIDataSource *dataSourceCareerBuilder = [[CareerBuilderAPIDataSource alloc] initWithURLString: urlStringCareerBuilder];
     // filter jobs with score metric
-    [dataSourceCareerBuilder filterJobs:self.us.userSkills];
+    [dataSourceCareerBuilder filterJobs:self.us];
     NSMutableArray *cbJobs = [dataSourceCareerBuilder getAllJobs];
     
     /* MONSTER */
@@ -164,7 +165,7 @@
     urlStringMonster = [urlStringMonster stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     MonsterDataSource *dataSourceMonster = [[MonsterDataSource alloc] initWithURLString: urlStringMonster];
     NSMutableArray *mJobs = [dataSourceMonster getAllJobs];
-    [dataSourceMonster filterJobs:self.us.userSkills];
+    [dataSourceMonster filterJobs:self.us];
     
     [allJobs addObjectsFromArray:cbJobs];
     [allJobs addObjectsFromArray:mJobs];

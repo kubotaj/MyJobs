@@ -11,6 +11,8 @@
 #import "Job.h"
 #import "ResultDetailViewController.h"
 
+#import "ResultURLViewController.h"
+
 @interface SearchResultsTableViewController ()
 
 @property(nonatomic) IndeedAPIDataSource *dataSource;
@@ -79,13 +81,13 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+//#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+//#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [self.jobsArray count];
 }
@@ -125,7 +127,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
             imgView.image = [UIImage imageNamed:@"careerbuilder.png"];
             break;
         case 3:
-            imgView.image = [UIImage imageNamed:@"indeed"];
+            imgView.image = [UIImage imageNamed:@"indeed.png"];
             break;
         default:
             break;
@@ -143,16 +145,16 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 }
 
 - (UIColor *) findCellColor:(int) score{
-    NSLog(@"Returning color for score: %d", score);
-    if (score > 8)
+    //NSLog(@"Returning color for score: %d", score);
+    if (score > 9)
         return self.cellColorVeryHighScore;
-    if (score > 6)
+    if (score > 7)
         return self.cellColorHighScore;
-    if (score > 3)
+    if (score > 4)
         return self.cellColorMediumScore;
-    if (score > 1)
+    if (score > 2)
         return self.cellColorLowScore;
-    if (score <= 1)
+    if (score <= 2)
         return self.cellColorVeryLowScore;
     return [UIColor whiteColor];
 }
@@ -163,8 +165,10 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     Job *job;
     job = self.jobsArray[[indexPath row]];
     NSLog(@"the index number: %d", (int)[indexPath row]);
-     ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
-    [self.navigationController pushViewController: rvController animated:YES];
+    //ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
+    ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:job];
+    
+    [self.navigationController pushViewController: urlvController animated:YES];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -15,7 +15,7 @@
 @property (nonatomic) NSMutableArray *jobs;
 @property (nonatomic) NSString *currentElement;
 @property (nonatomic) NSMutableString *currentElementValue;
-@property (nonatomic) BOOL *didStartItem;
+@property (nonatomic) bool didStartItem;
 
 @end
 
@@ -31,12 +31,12 @@
     self.monsterURLString = urlString;
     NSURL *url = [NSURL URLWithString: self.monsterURLString];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-    parser.delegate = self;
+    parser.delegate = (id<NSXMLParserDelegate>)self;
     // Start parsing
     BOOL success = [parser parse];
     // Verification.
     if (success) {
-        NSLog(@"No errors - result count : %i", [self.jobs count]);
+        NSLog(@"No errors - result count : %i", (int)[self.jobs count]);
     }
     else {
         NSLog(@"Error parsing document!");
@@ -101,8 +101,8 @@
              [elementName isEqualToString: @"pubDate"] )) {
         
         // Get ride of the weired newline chars and whitespace!
-        self.currentElementValue = [self.currentElementValue stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        self.currentElementValue = [self.currentElementValue stringByTrimmingCharactersInSet:
+        self.currentElementValue = (NSMutableString*)[self.currentElementValue stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        self.currentElementValue = (NSMutableString*)[self.currentElementValue stringByTrimmingCharactersInSet:
                                     [NSCharacterSet whitespaceCharacterSet]];
         
         if ([elementName isEqualToString: @"title"])
@@ -115,11 +115,23 @@
             NSString *seperatorString = @","; //seperate on the comma
             
             NSScanner *aScanner = [NSScanner scannerWithString:descriptionInput]; //init scanner with whole description
-            
+
             NSString *location = [[NSString alloc] init];
             [aScanner scanUpToString:seperatorString intoString:&location]; //scan until finds a comma, puts everything before it into location
+            
+            seperatorString = @"-"; // seperate on the dash
+            
+            NSString *state = [[NSString alloc] init];
+            if ([location containsString:@"-"]){
+                aScanner = [NSScanner scannerWithString:location];
+                [aScanner scanUpToString:seperatorString intoString:&state]; // scan until finds a dash, puts everything before it into state
+                state = [state stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                location = [location substringFromIndex:[aScanner scanLocation]+1];
+                [self.mJob setValue:state forKey:@"state"]; // set state
+            }
+            else
+                [self.mJob setValue:@"" forKey:@"state"]; // set state as empty
             [self.mJob setValue:location forKey:@"city"]; // set the location string to the city
-            [self.mJob setValue:@"" forKey:@"state"]; // set state to empty string
             //NSLog(@"location: %@", location);
             
             NSString *descriptionFinal = [[NSString alloc] init]; // init parsed description
@@ -166,7 +178,8 @@
      */
 }
 
-- (void) filterJobs:(NSMutableArray *)userSkills{
+- (void) filterJobs:(UserSettings *)userSettings{
+    NSMutableArray *userSkills = userSettings.userSkills;
     for (Job *j in self.jobs){
         // Compare skills
         int count = (int)[userSkills count];
@@ -192,6 +205,12 @@
             }
             count--;
         }
+        // In the right city?
+        //NSLog(@"Comparing user city: %@ with job city: %@", userSettings.preferredCity, [[j.city lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""]);
+        if ([userSettings.preferredCity isEqualToString:[[j.city lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""]]){
+            j.score += 2;
+            //NSLog(@"(+ %d) Correct user city", 2);
+        }
         // How recent is the listing
         NSTimeInterval relativeTimeSeconds;
         relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: j.datePosted]; //seconds since job posted
@@ -212,14 +231,14 @@
 }
 
 - (NSInteger *) getNumberOfJobs {
-    return [self.jobs count];
+    return (NSInteger *)[self.jobs count];
 }
 
 - (Job *) jobAtIndex: (NSInteger *) idx {
-    if( idx >= [self.jobs count] )
+    if( idx >= (NSInteger *)[self.jobs count] )
         return nil;
     
-    return [self.jobs objectAtIndex: idx];
+    return [self.jobs objectAtIndex: (int)idx];
 }
 
 @end

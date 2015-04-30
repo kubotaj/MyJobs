@@ -35,7 +35,7 @@
     [super viewDidLayoutSubviews];
     
     // Move all fields down on smaller screen sizes
-    CGRect fieldFrame = self.signUpView.usernameField.frame;
+    //CGRect fieldFrame = self.signUpView.usernameField.frame;
     [self.signUpView.logo setFrame:CGRectMake(120.0f, 70.0f, 150.0f, 150.0f)];
     [self.signUpView.usernameField setFrame:CGRectMake(55.0f, 250.0f, 250.0f, 50.0f)];
     [self.signUpView.passwordField setFrame:CGRectMake(55.0f, 300.0f, 250.0f, 50.0f)];

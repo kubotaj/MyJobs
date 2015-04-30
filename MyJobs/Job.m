@@ -49,11 +49,11 @@
     }
     else {
         if ( relativeTime > 1) {
-            NSString *formattedRelativeTimeDays = [NSString stringWithFormat:@"%i days ago", relativeTime];
+            NSString *formattedRelativeTimeDays = [NSString stringWithFormat:@"%i days ago", (int)relativeTime];
             self.formattedRelativeTime = formattedRelativeTimeDays;
         }
         else {
-            NSString *formattedRelativeTimeDays = [NSString stringWithFormat:@"%i day ago", relativeTime];
+            NSString *formattedRelativeTimeDays = [NSString stringWithFormat:@"%i day ago", (int)relativeTime];
             self.formattedRelativeTime = formattedRelativeTimeDays;
             
         }

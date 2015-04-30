@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Job.h"
+#import "UserSettings.h"
 
 @interface MonsterDataSource : NSObject
 
@@ -15,6 +16,6 @@
 - (NSMutableArray *) getAllJobs;
 - (NSInteger *) getNumberOfJobs;
 - (Job *) jobAtIndex: (NSInteger *) idx;
-- (void) filterJobs: (NSMutableArray *) userSkills;
+- (void) filterJobs: (UserSettings *) userSettings;
 
 @end

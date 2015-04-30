@@ -13,7 +13,9 @@
 @property (nonatomic) NSInteger searchRadius;
 @property (nonatomic) NSInteger listingsMax;
 @property (nonatomic) NSMutableArray *userSkills;
+@property (nonatomic) NSString *preferredCity;
 
--(instancetype) initWithDefault;
+- (instancetype) initWithDefault;
+- (void) setUserCity: (NSString *) city;
 
 @end

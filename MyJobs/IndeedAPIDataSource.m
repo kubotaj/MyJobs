@@ -29,12 +29,12 @@
     self.indeedURLString = urlString;
     NSURL *url = [NSURL URLWithString: self.indeedURLString];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-    parser.delegate = self;
+    parser.delegate = (id<NSXMLParserDelegate>)self;
     // Start parsing
     BOOL success = [parser parse];
     // Verification.
     if (success) {
-        NSLog(@"No errors - result count : %i", [self.jobs count]);
+        NSLog(@"No errors - result count : %i", (int)[self.jobs count]);
     }
     else {
         NSLog(@"Error parsing document!");
@@ -100,8 +100,8 @@
              [elementName isEqualToString: @"date"]) {
         
         // Get ride of the weired newline chars and whitespace!
-        self.currentElementValue = [self.currentElementValue stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        self.currentElementValue = [self.currentElementValue stringByTrimmingCharactersInSet:
+        self.currentElementValue = (NSMutableString*)[self.currentElementValue stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        self.currentElementValue = (NSMutableString*)[self.currentElementValue stringByTrimmingCharactersInSet:
                              [NSCharacterSet whitespaceCharacterSet]];
         if ([elementName isEqualToString: @"date"]){
             // create NSDate from ex. "Wed, 15 Apr 2015 02:58:51 GMT"
@@ -131,7 +131,8 @@
     */
 }
 
-- (void) filterJobs:(NSMutableArray *)userSkills{
+- (void) filterJobs:(UserSettings *)userSettings{
+    NSMutableArray *userSkills = userSettings.userSkills;
     for (Job *j in self.jobs){
         // Compare skills
         int count = (int)[userSkills count];
@@ -157,6 +158,12 @@
             }
             count--;
         }
+        // In the right city?
+        //NSLog(@"Comparing user city: %@ with job city: %@", userSettings.preferredCity, [[j.city lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""]);
+        if ([userSettings.preferredCity isEqualToString:[[j.city lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""]]){
+            j.score += 2;
+            //NSLog(@"(+ %d) Correct user city", 2);
+        }
         // How recent is the listing
         NSTimeInterval relativeTimeSeconds;
         relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: j.datePosted]; //seconds since job posted
@@ -177,14 +184,14 @@
 }
 
 - (NSInteger *) getNumberOfJobs {
-    return [self.jobs count];
+    return (NSInteger *)[self.jobs count];
 }
 
 - (Job *) jobAtIndex: (NSInteger *) idx {
-    if( idx >= [self.jobs count] )
+    if( idx >= (NSInteger *)[self.jobs count] )
         return nil;
     
-    return [self.jobs objectAtIndex: idx];
+    return [self.jobs objectAtIndex: (int)idx];
 }
 
 @end
