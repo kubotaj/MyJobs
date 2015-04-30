@@ -47,6 +47,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+    /* Show who is logged in */
     if ([PFUser currentUser]) {
         self.loginLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Logged in as %@", nil), [[PFUser currentUser] username]];
     } else {
@@ -95,6 +97,7 @@
 //                                              otherButtonTitles:nil];
 //        [alert show];
 //    }
+    [self viewDidLoad]; // Refresh the view with the user info.
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -110,6 +113,7 @@
 
 /* Delegate method when user signed up successfully */
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    [self viewDidLoad]; // Refresh the view
     [self dismissViewControllerAnimated:YES completion:nil];
     
     PFUser *currUser = [PFUser currentUser]; //get current user
