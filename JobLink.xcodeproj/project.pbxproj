@@ -18,6 +18,7 @@
 		3F8A4A7D1AF1926800C44C53 /* JLLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A4A791AF1926800C44C53 /* JLLogo.png */; };
 		3F8A4A7E1AF1926800C44C53 /* keyOnly.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A4A7A1AF1926800C44C53 /* keyOnly.png */; };
 		3F8A4A7F1AF1926800C44C53 /* loadBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A4A7B1AF1926800C44C53 /* loadBG.png */; };
+		3F8DEF701AF2B6050002A0C0 /* ResultDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DEF6F1AF2B6050002A0C0 /* ResultDetailViewController.xib */; };
 		3FBBC0911AE1B81D005F19FD /* MonsterDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBBC0901AE1B81D005F19FD /* MonsterDataSource.m */; };
 		E819E76F1AED91BD007EE836 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E819E76D1AED91BD007EE836 /* LogInViewController.m */; };
 		E819E7701AED91BD007EE836 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E819E76E1AED91BD007EE836 /* LogInViewController.xib */; };
@@ -83,6 +84,7 @@
 		3F8A4A791AF1926800C44C53 /* JLLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = JLLogo.png; path = companyLogos/JLLogo.png; sourceTree = "<group>"; };
 		3F8A4A7A1AF1926800C44C53 /* keyOnly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = keyOnly.png; path = companyLogos/keyOnly.png; sourceTree = "<group>"; };
 		3F8A4A7B1AF1926800C44C53 /* loadBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loadBG.png; path = companyLogos/loadBG.png; sourceTree = "<group>"; };
+		3F8DEF6F1AF2B6050002A0C0 /* ResultDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultDetailViewController.xib; sourceTree = "<group>"; };
 		3FBBC08F1AE1B81D005F19FD /* MonsterDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterDataSource.h; sourceTree = "<group>"; };
 		3FBBC0901AE1B81D005F19FD /* MonsterDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterDataSource.m; sourceTree = "<group>"; };
 		E819E76C1AED91BD007EE836 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				E882B5C91ADB51B800E9B5BA /* SearchResultsTableViewController.m */,
 				E85C28351AE1BED800012F38 /* ResultDetailViewController.h */,
 				E85C28361AE1BED800012F38 /* ResultDetailViewController.m */,
+				3F8DEF6F1AF2B6050002A0C0 /* ResultDetailViewController.xib */,
 				3F448EF41AF1BAC2007F3670 /* ResultURLViewController.h */,
 				3F448EF51AF1BAC2007F3670 /* ResultURLViewController.m */,
 				3F48934E1AED67C100280B7C /* UserSettings.h */,
@@ -407,6 +410,7 @@
 				E8FC4CAC1AD084D90028ED77 /* settings@2x.png in Resources */,
 				E8FC4CAE1AD084D90028ED77 /* search@2x.png in Resources */,
 				E8FC4C871AD07E040028ED77 /* Main.storyboard in Resources */,
+				3F8DEF701AF2B6050002A0C0 /* ResultDetailViewController.xib in Resources */,
 				3F40A8961AF1D3EC0086EB6A /* SettingsViewController.xib in Resources */,
 				3F4893561AED765F00280B7C /* monster.png in Resources */,
 				E8FC4CAD1AD084D90028ED77 /* favorites@2x.png in Resources */,

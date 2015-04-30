@@ -47,7 +47,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     self.cellColorLowScore =        [[UIColor alloc] initWithRed:1.0 green:0.5 blue:0.5 alpha:alphaSet];
     self.cellColorVeryLowScore =    [[UIColor alloc] initWithRed:1.0 green:0.0 blue:0.0 alpha:alphaSet];
     
-    //NSLog(@"User scoreMax: %d", us.findScoreMax);
+    NSLog(@"User scoreMax: %d", us.findScoreMax);
     
     return self;
     
@@ -102,6 +102,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     //This allows for multiple lines
     cell.detailTextLabel.numberOfLines = 0;
     Job *job;
+
     job = self.jobsArray[[indexPath row]];
 
     cell.textLabel.text = [job jobtitle];

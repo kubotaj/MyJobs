@@ -16,6 +16,7 @@
 @property (nonatomic) NSString *currentElement;
 @property (nonatomic) NSMutableString *currentElementValue;
 @property (nonatomic) bool didStartItem;
+@property (nonatomic) bool noResults;
 
 @end
 
@@ -25,7 +26,7 @@
     /* Initializer */
     if( (self = [super init]) == nil )
         return nil;
-    
+    self.noResults = false;
     self.didStartItem = NO;
     // Setup the parser
     self.monsterURLString = urlString;
@@ -89,7 +90,8 @@
         if (!self.jobs) {
             self.jobs = [[NSMutableArray alloc] init];
         }
-        [self.jobs addObject: self.mJob];
+        if (!self.noResults)
+            [self.jobs addObject: self.mJob];
         // release object
         self.mJob = nil;
         self.didStartItem = NO; //comment
@@ -105,8 +107,13 @@
         self.currentElementValue = (NSMutableString*)[self.currentElementValue stringByTrimmingCharactersInSet:
                                     [NSCharacterSet whitespaceCharacterSet]];
         
-        if ([elementName isEqualToString: @"title"])
-            [self.mJob setValue:self.currentElementValue forKey: @"jobtitle"];
+        if ([elementName isEqualToString: @"title"]){
+            if ([self.currentElementValue isEqualToString:@"No job postings found. This feed only shows jobs which have been created in the last 24 hours."]){
+                self.noResults = true;
+            }
+            else
+                [self.mJob setValue:self.currentElementValue forKey: @"jobtitle"];
+        }
         
         if ([elementName isEqualToString: @"description"]) {
             [self.mJob setValue:@"" forKey:@"company"]; //set company to empty string
