@@ -168,10 +168,10 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     Job *job;
     job = self.jobsArray[[indexPath row]];
     NSLog(@"the index number: %d", (int)[indexPath row]);
-    //ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
-    ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:job];
+    ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
+    //ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:job];
     
-    [self.navigationController pushViewController: urlvController animated:YES];
+    [self.navigationController pushViewController: rvController animated:YES];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

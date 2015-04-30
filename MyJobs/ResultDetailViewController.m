@@ -11,7 +11,10 @@
 @interface ResultDetailViewController ()
 
 @property (nonatomic) NSURL *url;
+@property (nonatomic) Job *job;
 @property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *companyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 
 @end
@@ -19,10 +22,9 @@
 @implementation ResultDetailViewController
 
 - (id) initWithJob: (Job *) job {
+    self.job = job;
     NSLog(@"url: %@", job.url);
     self.url = [NSURL URLWithString: job.url];
-    
-    [self.jobTitleLabel setText:job.jobtitle];
     
     return self;
 }
@@ -30,6 +32,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.jobTitleLabel setText:self.job.jobtitle];
+    [self.companyLabel setText:self.job.company];
+    
+    NSString * temp = self.job.city;
+    temp = [temp stringByAppendingString:@", "];
+    temp = [temp stringByAppendingString:self.job.state];
+    [self.locationLabel setText:temp];
     
 }
 
