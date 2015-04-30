@@ -28,6 +28,7 @@
 @property (weak, nonatomic) NSString *state;
 @property (nonatomic) UserSettings *us;
 @property (weak, nonatomic) IBOutlet UILabel *loginLabel;
+@property (nonatomic) PFObject *prevSearch;
 - (IBAction)searchButtonTapped:(UIButton *)sender;
 - (IBAction)logoutButtonTapped:(id)sender;
 - (void)findCurrentCity;
@@ -56,11 +57,14 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     // Check if user is logged in
+//    if (![[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue] ||
+//        ![PFUser currentUser]
+//        ) {
     if (![PFUser currentUser]) {
         // Create the log in view controller
         LogInViewController *logInViewController = [[LogInViewController alloc] init];
         logInViewController.delegate = self; // Set ourselves as the delegate
-            
+        
         // Create the sign up view controller
         // Customize the Sign Up View Controller
         SignUpViewController *signUpViewController = [[SignUpViewController alloc] init];
@@ -70,7 +74,7 @@
         
         // Assign our sign up controller to be displayed from the login controller
         [logInViewController setSignUpController:logInViewController.signUpController];
-            
+        
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
@@ -79,6 +83,18 @@
 /* Delegate method when user logged in successfully */
 - (void)logInViewController:(PFLogInViewController *)controller
                didLogInUser:(PFUser *)user {
+//    if ([[user objectForKey:@"emailVerified"] boolValue]) {
+//        [self viewDidLoad]; // Refresh the view with the user info.
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//    }
+//    else {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email not verified"
+//                                                        message:@"You must verify your email address before logging in"
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil];
+//        [alert show];
+//    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -128,8 +144,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self findCurrentCity];
-    //self.sortType = 4; // sortType: 1 (jobTitle alpha), 2 (company alpha), 3 (most recent), 4 (most relevant)
+
+    /* Retrieve the search history based on the user account */
+    if ([PFUser currentUser]) {
+        PFQuery *query = [PFQuery queryWithClassName:@"PrevSearch"];
+        NSString *username = [PFUser currentUser].username;
+        [query whereKey:@"user" equalTo:username];
+        [query orderByDescending:@"createdAt"];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *prevSearch, NSError *error) {
+            if (!prevSearch) {
+                NSLog(@"No search history found.");
+                self.jobTitle.text = @""; // Clear the text field as there is no search history.
+                [self findCurrentCity];
+            } else {
+                // The find succeeded.
+                NSLog(@"Successfully retrieved the most recent search history.");
+                self.jobTitle.text = prevSearch[@"jobTitle"];
+                self.jobCity.text = prevSearch[@"jobCity"];
+                self.jobState.text = prevSearch[@"jobState"];
+            }
+        }];
+    }
 
 }
 
@@ -139,10 +174,14 @@
 }
 
 - (IBAction)searchButtonTapped:(UIButton *)sender {
-    /* For testing */
-//    NSLog(@"Job Title is %@", self.jobTitle.text);
-//    NSLog(@"Job City is %@", self.jobCity.text);
-//    NSLog(@"Job City is %@", self.jobState.text);
+
+    /* Add the search history to the database */
+    self.prevSearch = [PFObject objectWithClassName:@"PrevSearch"];
+    self.prevSearch[@"user"] = [PFUser currentUser].username;
+    self.prevSearch[@"jobTitle"] = self.jobTitle.text;
+    self.prevSearch[@"jobCity"] = self.jobCity.text;
+    self.prevSearch[@"jobState"] = self.jobState.text;
+    [self.prevSearch save];
     
     /* Generate the result lists. */
     [self.us setUserCity:self.jobCity.text];
