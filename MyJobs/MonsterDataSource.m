@@ -143,7 +143,7 @@
             
             NSString *descriptionFinal = [[NSString alloc] init]; // init parsed description
 
-            descriptionFinal = [descriptionInput substringFromIndex:[aScanner scanLocation]+2]; //final description is substring starting at last scan location to end of string
+            descriptionFinal = [descriptionInput substringFromIndex:[aScanner scanLocation]+1]; //final description is substring starting at last scan location to end of string
             [self.mJob setValue:descriptionFinal forKey:@"snippet"];
             //NSLog(@"description: %@", descriptionFinal);
             

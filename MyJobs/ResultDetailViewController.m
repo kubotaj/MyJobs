@@ -7,6 +7,7 @@
 //
 
 #import "ResultDetailViewController.h"
+#import "ResultURLViewController.h"
 
 @interface ResultDetailViewController ()
 
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *companyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *snippetLabel;
 
 
 @end
@@ -41,6 +43,15 @@
     temp = [temp stringByAppendingString:self.job.state];
     [self.locationLabel setText:temp];
     
+    if (self.job.sourceType == 3 || self.job.sourceType == 1)
+        [self.snippetLabel setText:self.job.snippet];
+    
+}
+
+- (IBAction)didTapURLButton:(id)sender {
+    ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:self.job];
+    
+    [self.navigationController pushViewController: urlvController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
