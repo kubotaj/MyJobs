@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -75,14 +75,6 @@
                                 <rect key="frame" x="152" y="200" width="100" height="30"/>
                             </variation>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="30" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2YH-V7-p4I">
-                            <rect key="frame" x="159" y="113" width="71" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            <variation key="widthClass=compact" fixedFrame="YES">
-                                <rect key="frame" x="152" y="20" width="100" height="30"/>
-                            </variation>
-                        </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Skills" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdZ-cK-23t">
                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -92,6 +84,14 @@
                                 <rect key="frame" x="51" y="88" width="70" height="21"/>
                             </variation>
                         </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="in miles" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2YH-V7-p4I">
+                            <rect key="frame" x="159" y="113" width="71" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            <variation key="widthClass=compact" fixedFrame="YES">
+                                <rect key="frame" x="152" y="20" width="100" height="30"/>
+                            </variation>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <variation key="default">
@@ -101,8 +101,8 @@
                             <exclude reference="Zar-Ox-xog"/>
                             <exclude reference="cVG-qn-LLg"/>
                             <exclude reference="EBA-DR-1fl"/>
-                            <exclude reference="2YH-V7-p4I"/>
                             <exclude reference="kdZ-cK-23t"/>
+                            <exclude reference="2YH-V7-p4I"/>
                         </mask>
                     </variation>
                     <variation key="widthClass=compact" fixedFrame="YES">
@@ -113,8 +113,8 @@
                             <include reference="Zar-Ox-xog"/>
                             <include reference="cVG-qn-LLg"/>
                             <include reference="EBA-DR-1fl"/>
-                            <include reference="2YH-V7-p4I"/>
                             <include reference="kdZ-cK-23t"/>
+                            <include reference="2YH-V7-p4I"/>
                         </mask>
                     </variation>
                 </view>

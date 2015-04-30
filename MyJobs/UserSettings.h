@@ -19,5 +19,6 @@
 - (instancetype) initWithDefault;
 - (void) setUserCity: (NSString *) city;
 - (int) findScoreMax;
+-(void) addSkill: (NSString *) skill;
 
 @end

@@ -11,4 +11,6 @@
 
 @interface SettingsViewController : UIViewController
 
+-(void) updateUserSettings;
+
 @end
