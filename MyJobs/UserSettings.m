@@ -15,11 +15,11 @@
     if( (self = [super init]) == nil )
         return nil;
     
-    self.searchRadius = 30;
+    self.searchRadius = 40;
     self.listingsMax = 50;
     
     self.preferredCity = @"";
-    self.userSkills = [[NSMutableArray alloc] initWithObjects:@"ios", @"objective-c", @"mobile", nil];
+    self.userSkills = [[NSMutableArray alloc] init];
     
     self.skillCount = (int)[self.userSkills count];
     
@@ -47,5 +47,15 @@
     
     return maxScore;
 }
+
+-(void) addSkill: (NSString *) skill {
+    [self.userSkills addObject:skill];
+    self.skillCount++;
+}
+
+-(void) clearSkills {
+    [self.userSkills removeAllObjects];
+}
+
 
 @end

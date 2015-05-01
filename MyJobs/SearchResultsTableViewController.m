@@ -149,15 +149,15 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 - (UIColor *) findCellColor:(int) score{
     //NSLog(@"Returning color for score: %d", score);
-    if (score > 9)
+    if (score > (int)([self.us findScoreMax] * 0.80))
         return self.cellColorVeryHighScore;
-    if (score > 7)
+    if (score > (int)([self.us findScoreMax] * 0.60))
         return self.cellColorHighScore;
-    if (score > 4)
+    if (score > (int)([self.us findScoreMax] * 0.45))
         return self.cellColorMediumScore;
-    if (score > 2)
+    if (score > (int)([self.us findScoreMax] * 0.30))
         return self.cellColorLowScore;
-    if (score <= 2)
+    if (score <= (int)([self.us findScoreMax] * 0.30))
         return self.cellColorVeryLowScore;
     return [UIColor whiteColor];
 }
@@ -168,10 +168,10 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     Job *job;
     job = self.jobsArray[[indexPath row]];
     NSLog(@"the index number: %d", (int)[indexPath row]);
-    //ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
-    ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:job];
+    ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
+    //ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:job];
     
-    [self.navigationController pushViewController: urlvController animated:YES];
+    [self.navigationController pushViewController: rvController animated:YES];
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

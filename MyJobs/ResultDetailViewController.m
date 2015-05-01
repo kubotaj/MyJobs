@@ -7,11 +7,17 @@
 //
 
 #import "ResultDetailViewController.h"
+#import "ResultURLViewController.h"
 
 @interface ResultDetailViewController ()
 
 @property (nonatomic) NSURL *url;
+@property (nonatomic) Job *job;
 @property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *companyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *snippetLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *favoritedSwitch;
 
 
 @end
@@ -19,10 +25,9 @@
 @implementation ResultDetailViewController
 
 - (id) initWithJob: (Job *) job {
+    self.job = job;
     NSLog(@"url: %@", job.url);
     self.url = [NSURL URLWithString: job.url];
-    
-    [self.jobTitleLabel setText:job.jobtitle];
     
     return self;
 }
@@ -31,6 +36,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.jobTitleLabel setText:self.job.jobtitle];
+    [self.companyLabel setText:self.job.company];
+    
+    NSString * temp = self.job.city;
+    temp = [temp stringByAppendingString:@", "];
+    temp = [temp stringByAppendingString:self.job.state];
+    [self.locationLabel setText:temp];
+    
+    if (self.job.sourceType == 3 || self.job.sourceType == 1)
+        [self.snippetLabel setText:self.job.snippet];
+    
+}
+
+- (IBAction)didTapURLButton:(id)sender {
+    ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:self.job];
+    
+    [self.navigationController pushViewController: urlvController animated:YES];
+}
+
+- (IBAction)didTapFavoriteSwitch:(id)sender {
+    if (!self.favoritedSwitch.on)
+        [self.favoritedSwitch setOn:true animated:true];
+    else
+        [self.favoritedSwitch setOn:false animated:true];
 }
 
 - (void)didReceiveMemoryWarning {
