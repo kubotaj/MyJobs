@@ -99,7 +99,29 @@
 }
 
 - (IBAction)didTapUpdate:(id)sender {
-    
+    [self.currUserSettings clearSkills];
+    PFQuery *query = [PFQuery queryWithClassName:@"UserSettings"];
+    [query whereKey:@"userId" equalTo:self.currUser.objectId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            PFObject *obj = [objects objectAtIndex:0];
+            NSNumber *num = [[NSNumber alloc] initWithInt:[self.searchRadius.text integerValue]];
+            int inte = [self.searchRadius.text integerValue];
+            obj[@"Radius"] = num;
+            obj[@"Skill1"] = self.skill1.text;
+            obj[@"Skill2"] = self.skill2.text;
+            obj[@"Skill3"] = self.skill3.text;
+            [obj saveInBackground];
+            
+            self.currUserSettings.searchRadius = [self.searchRadius.text integerValue];
+            [self.currUserSettings addSkill:self.skill1.text];
+            [self.currUserSettings addSkill:self.skill2.text];
+            [self.currUserSettings addSkill:self.skill3.text];
+            
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 /*
