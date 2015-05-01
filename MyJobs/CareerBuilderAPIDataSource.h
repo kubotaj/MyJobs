@@ -18,4 +18,6 @@
 - (Job *) jobAtIndex: (NSInteger *) idx;
 - (void) filterJobs: (UserSettings *) userSettings;
 
++ (int) roundRadiusforCB: (int) rIn;
+
 @end

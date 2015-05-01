@@ -209,4 +209,26 @@
     return [self.jobs objectAtIndex: (int)idx];
 }
 
++ (int) roundRadiusforCB: (int) rIn{
+    NSLog(@"rIn: %d", rIn);
+    int rOut;
+    //5, 10, 20, 30, 50, 100, or 150
+    if (rIn < 6)
+        rOut = 5;
+    else if (rIn > 5 && rIn < 16)
+        rOut = 10;
+    else if (rIn > 15 && rIn < 26)
+        rOut = 20;
+    else if (rIn > 25 && rIn < 41)
+        rOut = 30;
+    else if (rIn > 40 && rIn < 76)
+        rOut = 50;
+    else if (rIn > 75 && rIn < 126)
+        rOut = 100;
+    else
+        rOut = 150;
+    NSLog(@"rOut: %d", rOut);
+    return rOut;
+}
+
 @end
