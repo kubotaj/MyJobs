@@ -36,7 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     NSLog(@"viewDidLoad called");
-    [self updateUserSettings];
+    //[self updateUserSettings];
 //    self.currUser = [PFUser currentUser];
 //    self.currUserSettings = [[UserSettings alloc] initWithDefault];
 //    PFQuery *query = [PFQuery queryWithClassName:@"UserSettings"];
@@ -82,11 +82,15 @@
         if (!error) {
             PFObject *obj = [objects objectAtIndex:0];
             self.currUserSettings.searchRadius = [[obj objectForKey:@"Radius"] intValue];
-            [self.currUserSettings addSkill:[obj objectForKey:@"Skill1"]];
-            [self.currUserSettings addSkill:[obj objectForKey:@"Skill2"]];
-            [self.currUserSettings addSkill:[obj objectForKey:@"Skill3"]];
+            if (![[obj objectForKey:@"Skill1"] isEqual:@""])
+                [self.currUserSettings addSkill:[obj objectForKey:@"Skill1"]];
+            if (![[obj objectForKey:@"Skill2"] isEqual:@""])
+                [self.currUserSettings addSkill:[obj objectForKey:@"Skill2"]];
+            if (![[obj objectForKey:@"Skill3"] isEqual:@""])
+                [self.currUserSettings addSkill:[obj objectForKey:@"Skill3"]];
             
             self.searchRadius.text = [NSString stringWithFormat:@"%li", (long)self.currUserSettings.searchRadius];
+            
             self.skill1.text = [self.currUserSettings.userSkills objectAtIndex:0];
             self.skill2.text = [self.currUserSettings.userSkills objectAtIndex:1];
             self.skill3.text = [self.currUserSettings.userSkills objectAtIndex:2];

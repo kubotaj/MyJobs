@@ -32,6 +32,7 @@
 }
 
 - (int) findScoreMax{
+    NSLog(@"skillCount: %i", self.skillCount);
     int maxScore = 0;
     
     //for recent listing
