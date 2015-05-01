@@ -59,6 +59,7 @@
         self.iJob = [[Job alloc] init];
         self.iJob.sourceType = 3;
         self.iJob.score = 1;
+        self.iJob.isFav = false;
     }
 }
 

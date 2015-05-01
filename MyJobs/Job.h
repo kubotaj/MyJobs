@@ -23,6 +23,7 @@
 
 @property (nonatomic) NSDate *datePosted;
 
+@property (nonatomic) bool isFav;
 @property (nonatomic) int score;
 @property (nonatomic) NSMutableArray *skillsList; // Only used by CareerBuilder jobs
 

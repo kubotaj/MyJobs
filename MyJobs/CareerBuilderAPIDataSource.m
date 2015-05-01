@@ -61,6 +61,7 @@
         self.cbJob.skillsList = [[NSMutableArray alloc] init];
         self.cbJob.sourceType = 2;
         self.cbJob.score = 1;
+        self.cbJob.isFav = false;
     }
 }
 
