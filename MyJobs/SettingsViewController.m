@@ -7,7 +7,6 @@
 //
 
 #import "SettingsViewController.h"
-#import "UserSettings.h"
 
 @interface SettingsViewController ()
 
@@ -23,6 +22,15 @@
 @end
 
 @implementation SettingsViewController
+
+-(instancetype) initWithSettings: (UserSettings *) settings {
+    if( (self = [super init]) == nil )
+        return nil;
+
+    self.currUserSettings = settings;
+
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,7 +63,8 @@
 
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.updateUserSettings;
+    [self updateUserSettings];
+    NSLog(@"viewDidAppear");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,8 +73,9 @@
 }
 
 -(void) updateUserSettings { //fills in text fields from the current user's settings.
+    [self.currUserSettings clearSkills];
     self.currUser = [PFUser currentUser];
-    self.currUserSettings = [[UserSettings alloc] initWithDefault];
+    //self.currUserSettings = [[UserSettings alloc] initWithDefault];
     PFQuery *query = [PFQuery queryWithClassName:@"UserSettings"];
     [query whereKey:@"userId" equalTo:self.currUser.objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

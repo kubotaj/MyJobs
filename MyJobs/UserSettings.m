@@ -53,5 +53,9 @@
     self.skillCount++;
 }
 
+-(void) clearSkills {
+    [self.userSkills removeAllObjects];
+}
+
 
 @end

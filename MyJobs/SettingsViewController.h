@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "UserSettings.h"
 
 @interface SettingsViewController : UIViewController
 
+
+
+- (instancetype) initWithSettings: (UserSettings *) us;
 -(void) updateUserSettings;
 
 @end
