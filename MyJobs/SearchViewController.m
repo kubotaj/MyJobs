@@ -45,6 +45,7 @@
     return self;
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
@@ -144,7 +145,6 @@
     [self viewDidAppear:YES];
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -169,7 +169,25 @@
             }
         }];
     }
+    
+    /* Register observers for the keyboard notification. */
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 
+}
+
+- (void)viewDidUnload {
+    /* Unload the keyboard observers. */
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.theScrollView = nil;
+    [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -206,7 +224,7 @@
     }
     
     /* CAREERBUILDER */
-    NSString *urlStringCareerBuilder = [NSString stringWithFormat: @"http://api.careerbuilder.com/v2/jobsearch?DeveloperKey=WD907SX6B03NBR730Q7H&Keywords=%@&Location=%@, %@&Radius=%d&PerPage=%d", self.jobTitle.text, self.jobCity.text, self.jobState.text, (int)self.us.searchRadius, (int)self.us.listingsMax];
+    NSString *urlStringCareerBuilder = [NSString stringWithFormat: @"http://api.careerbuilder.com/v2/jobsearch?DeveloperKey=WD907SX6B03NBR730Q7H&Keywords=%@&Location=%@, %@&Radius=%d&PerPage=%d", self.jobTitle.text, self.jobCity.text, self.jobState.text, [CareerBuilderAPIDataSource roundRadiusforCB:((int)self.us.searchRadius)], (int)self.us.listingsMax];
     urlStringCareerBuilder = [urlStringCareerBuilder stringByReplacingOccurrencesOfString: @" " withString: @"%20"];
     NSLog(@"cb url: %@", urlStringCareerBuilder);
     CareerBuilderAPIDataSource *dataSourceCareerBuilder = [[CareerBuilderAPIDataSource alloc] initWithURLString: urlStringCareerBuilder];
@@ -288,15 +306,57 @@
     NSLog(@"%@", error);
 }
 
-// Make the keyboard go away when "return" is pressed.
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
+- (void)keyboardWasShown:(NSNotification *)notification
+{
+    
+    // Step 1: Get the size of the keyboard.
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    
+    // Step 2: Adjust the bottom content inset of your scroll view by the keyboard height.
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
+    self.theScrollView.contentInset = contentInsets;
+    self.theScrollView.scrollIndicatorInsets = contentInsets;
+    
+    
+    // Step 3: Scroll the target text field into view.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= keyboardSize.height;
+    if (!CGRectContainsPoint(aRect, self.activeTextField.frame.origin) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, self.activeTextField.frame.origin.y - (keyboardSize.height-15));
+        [self.theScrollView setContentOffset:scrollPoint animated:YES];
+    }
 }
 
-// Make the keyboard go away when anywhere besides the text box is tapped.
-- (IBAction) clickedBackground {
+- (void) keyboardWillHide:(NSNotification *)notification {
     
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.theScrollView.contentInset = contentInsets;
+    self.theScrollView.scrollIndicatorInsets = contentInsets;
+}
+
+// Set activeTextField to the current active textfield
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activeTextField = textField;
+}
+
+// Set activeTextField to nil
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.activeTextField = nil;
+}
+
+
+// Dismiss the keyboard
+- (IBAction)dismissKeyboard:(id)sender {
+    [self.activeTextField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 

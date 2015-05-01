@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultDetailViewController">
             <connections>
                 <outlet property="companyLabel" destination="iW0-bE-Yxb" id="nR0-T9-Rq0"/>
+                <outlet property="favoritedSwitch" destination="MzJ-fB-qdg" id="Ml5-ND-MNw"/>
                 <outlet property="jobTitleLabel" destination="V3O-yG-U2R" id="3EW-hs-S3A"/>
                 <outlet property="locationLabel" destination="Dhj-2N-BsG" id="Qq7-UI-rCQ"/>
                 <outlet property="snippetLabel" destination="XXW-kd-Ey1" id="RXS-M3-h7s"/>
@@ -27,13 +28,13 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iW0-bE-Yxb">
                     <rect key="frame" x="37" y="118" width="330" height="40"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dhj-2N-BsG">
                     <rect key="frame" x="37" y="166" width="330" height="40"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -43,10 +44,23 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MzJ-fB-qdg">
+                    <rect key="frame" x="247" y="481" width="51" height="31"/>
+                    <connections>
+                        <action selector="didTapFavoriteSwitch:" destination="-1" eventType="touchUpInside" id="7j9-Hc-7HI"/>
+                    </connections>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add to Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xie-J1-JQd">
+                    <rect key="frame" x="65" y="476" width="174" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHh-ZK-GoM">
-                    <rect key="frame" x="120" y="373" width="135" height="45"/>
+                    <rect key="frame" x="85" y="386" width="211" height="45"/>
                     <color key="backgroundColor" red="1" green="0.68477726682486384" blue="0.02555999951100163" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Go to posting">
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="See Job Posting">
                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                     </state>
                     <connections>
