@@ -20,5 +20,6 @@
 - (void) setUserCity: (NSString *) city;
 - (int) findScoreMax;
 -(void) addSkill: (NSString *) skill;
+-(void) clearSkills;
 
 @end

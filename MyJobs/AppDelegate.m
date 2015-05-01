@@ -39,7 +39,7 @@
     /* Create instances of the view controllers */
     SearchViewController *searchView = [[SearchViewController alloc] initWithSettings:us];
     FavoritesTableViewController *favoritesView = [[FavoritesTableViewController alloc] init];
-    SettingsViewController *settingsView = [[SettingsViewController alloc] init];
+    SettingsViewController *settingsView = [[SettingsViewController alloc] initWithSettings:us];
 
     /* Set the nav controllers */
     UINavigationController *searchNav = [[UINavigationController alloc] initWithRootViewController: searchView];
