@@ -105,8 +105,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             PFObject *obj = [objects objectAtIndex:0];
-            NSNumber *num = [[NSNumber alloc] initWithInt:[self.searchRadius.text integerValue]];
-            int inte = [self.searchRadius.text integerValue];
+            NSNumber *num = [[NSNumber alloc] initWithLong:[self.searchRadius.text integerValue]];
             obj[@"Radius"] = num;
             obj[@"Skill1"] = self.skill1.text;
             obj[@"Skill2"] = self.skill2.text;
@@ -114,9 +113,12 @@
             [obj saveInBackground];
             
             self.currUserSettings.searchRadius = [self.searchRadius.text integerValue];
-            [self.currUserSettings addSkill:self.skill1.text];
-            [self.currUserSettings addSkill:self.skill2.text];
-            [self.currUserSettings addSkill:self.skill3.text];
+            if (![self.skill1.text  isEqual: @""])
+                [self.currUserSettings addSkill:self.skill1.text];
+            if (![self.skill2.text  isEqual: @""])
+                [self.currUserSettings addSkill:self.skill2.text];
+            if (![self.skill3.text  isEqual: @""])
+                [self.currUserSettings addSkill:self.skill3.text];
             
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
