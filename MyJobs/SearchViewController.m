@@ -325,12 +325,18 @@
     if (!CGRectContainsPoint(aRect, self.activeTextField.frame.origin) ) {
         CGPoint scrollPoint = CGPointMake(0.0, self.activeTextField.frame.origin.y - (keyboardSize.height-15));
         [self.theScrollView setContentOffset:scrollPoint animated:YES];
+
     }
 }
 
 - (void) keyboardWillHide:(NSNotification *)notification {
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    NSLog(@"KeyboardWillHide");
+//
+//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+//    self.theScrollView.contentInset = contentInsets;
+//    çscrollIndicatorInsets = contentInsets;
+
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height + 20.0f, 0.0, 0.0, 0.0);
     self.theScrollView.contentInset = contentInsets;
     self.theScrollView.scrollIndicatorInsets = contentInsets;
 }
