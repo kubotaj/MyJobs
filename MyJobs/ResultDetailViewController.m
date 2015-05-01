@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *companyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *snippetLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *favoritedSwitch;
 
 
 @end
@@ -52,6 +53,13 @@
     ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:self.job];
     
     [self.navigationController pushViewController: urlvController animated:YES];
+}
+
+- (IBAction)didTapFavoriteSwitch:(id)sender {
+    if (!self.favoritedSwitch.on)
+        [self.favoritedSwitch setOn:true animated:true];
+    else
+        [self.favoritedSwitch setOn:false animated:true];
 }
 
 - (void)didReceiveMemoryWarning {
