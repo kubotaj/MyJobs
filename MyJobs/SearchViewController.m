@@ -329,7 +329,6 @@
 }
 
 - (void) keyboardWillHide:(NSNotification *)notification {
-    
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.theScrollView.contentInset = contentInsets;
     self.theScrollView.scrollIndicatorInsets = contentInsets;
