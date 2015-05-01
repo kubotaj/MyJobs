@@ -47,7 +47,7 @@
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MzJ-fB-qdg">
                     <rect key="frame" x="247" y="481" width="51" height="31"/>
                     <connections>
-                        <action selector="didTapFavoriteSwitch:" destination="-1" eventType="touchUpInside" id="7j9-Hc-7HI"/>
+                        <action selector="didChangeFavoriteSwitch:" destination="-1" eventType="valueChanged" id="3UM-if-3cg"/>
                     </connections>
                 </switch>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add to Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xie-J1-JQd">

@@ -325,6 +325,7 @@
     if (!CGRectContainsPoint(aRect, self.activeTextField.frame.origin) ) {
         CGPoint scrollPoint = CGPointMake(0.0, self.activeTextField.frame.origin.y - (keyboardSize.height-15));
         [self.theScrollView setContentOffset:scrollPoint animated:YES];
+
     }
 }
 

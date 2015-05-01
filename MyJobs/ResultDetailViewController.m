@@ -39,13 +39,24 @@
     [self.jobTitleLabel setText:self.job.jobtitle];
     [self.companyLabel setText:self.job.company];
     
-    NSString * temp = self.job.city;
-    temp = [temp stringByAppendingString:@", "];
-    temp = [temp stringByAppendingString:self.job.state];
-    [self.locationLabel setText:temp];
+    NSString * locationText = self.job.city;
+    locationText = [locationText stringByAppendingString:@", "];
+    locationText = [locationText stringByAppendingString:self.job.state];
+    [self.locationLabel setText:locationText];
     
     if (self.job.sourceType == 3 || self.job.sourceType == 1)
         [self.snippetLabel setText:self.job.snippet];
+    
+    if (self.job.sourceType == 2){
+        NSString * skillsTextList = @"Skills: ";
+        skillsTextList = [skillsTextList stringByAppendingString:[self.job.skillsList componentsJoinedByString: @", "]];
+        [self.snippetLabel setText:skillsTextList];
+    }
+    
+    if (self.job.isFav)
+        [self.favoritedSwitch setOn:true];
+    else
+        [self.favoritedSwitch setOn:false];
     
 }
 
@@ -55,11 +66,17 @@
     [self.navigationController pushViewController: urlvController animated:YES];
 }
 
-- (IBAction)didTapFavoriteSwitch:(id)sender {
-    if (!self.favoritedSwitch.on)
+- (IBAction)didChangeFavoriteSwitch:(id)sender {
+    if (!self.favoritedSwitch.on){
         [self.favoritedSwitch setOn:true animated:true];
-    else
+        self.job.isFav = true;
+    }
+    else{
         [self.favoritedSwitch setOn:false animated:true];
+        self.job.isFav = false;
+    }
+    NSLog(@"switch setting: %d", self.favoritedSwitch.on);
+    NSLog(@"job's setting:  %d", self.job.isFav);
 }
 
 - (void)didReceiveMemoryWarning {
