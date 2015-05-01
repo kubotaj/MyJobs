@@ -15,10 +15,14 @@
 
 @interface SearchViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIScrollView *theScrollView;
+@property (nonatomic, assign) UITextField *activeTextField;
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField;
-- (IBAction) clickedBackground;
 - (instancetype) initWithSettings: (UserSettings *) us;
+- (IBAction)dismissKeyboard:(id)sender;
+
+
+
 
 @end
 
