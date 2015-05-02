@@ -130,7 +130,7 @@
     [self.tabBarController setSelectedIndex:2];
 }
 
-/* Delegate method when user cancles the signed up */
+/* Delegate method when user cancels the signed up */
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -196,6 +196,20 @@
 }
 
 - (IBAction)searchButtonTapped:(UIButton *)sender {
+    
+    /* Delete previous search history from the database */
+    PFQuery *query = [PFQuery queryWithClassName:@"PrevSearch"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser].username];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects)
+                [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded)
+                        NSLog(@"deleted prev search");
+                }];
+        } else
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+    }];
 
     /* Add the search history to the database */
     self.prevSearch = [PFObject objectWithClassName:@"PrevSearch"];

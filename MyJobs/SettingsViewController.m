@@ -7,9 +7,11 @@
 //
 
 #import "SettingsViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SettingsViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *updateButton;
 @property (weak, nonatomic) IBOutlet UITextField *searchRadius;
 @property (weak, nonatomic) IBOutlet UITextField *skill1;
 @property (weak, nonatomic) IBOutlet UITextField *skill2;
@@ -35,7 +37,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSLog(@"viewDidLoad called");
+    self.updateButton.layer.cornerRadius = 10;
+    self.updateButton.clipsToBounds = true;
     //[self updateUserSettings];
 //    self.currUser = [PFUser currentUser];
 //    self.currUserSettings = [[UserSettings alloc] initWithDefault];
