@@ -8,6 +8,7 @@
 
 #import "ResultDetailViewController.h"
 #import "ResultURLViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ResultDetailViewController ()
 
@@ -17,7 +18,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *companyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *snippetLabel;
+@property (weak, nonatomic) IBOutlet UILabel *postingTimeLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *favoritedSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *URLButton;
 
 
 @end
@@ -52,6 +55,13 @@
         skillsTextList = [skillsTextList stringByAppendingString:[self.job.skillsList componentsJoinedByString: @", "]];
         [self.snippetLabel setText:skillsTextList];
     }
+    
+    NSString *timeText = @"Posted ";
+    timeText = [timeText stringByAppendingString:self.job.formattedRelativeTime];
+    [self.postingTimeLabel setText:timeText];
+    
+    self.URLButton.layer.cornerRadius = 10;
+    self.URLButton.clipsToBounds = true;
     
     if (self.job.isFav)
         [self.favoritedSwitch setOn:true];
