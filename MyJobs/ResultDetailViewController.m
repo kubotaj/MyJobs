@@ -64,10 +64,10 @@
     self.URLButton.clipsToBounds = true;
     
     if (self.job.isFav)
-        [self.favoritedSwitch setOn:true];
+        [self.favoritedSwitch setOn:YES];
     else
-        [self.favoritedSwitch setOn:false];
-    
+        [self.favoritedSwitch setOn:NO];
+    NSLog(@"Initial switch state %d", [self.favoritedSwitch isOn]);
 }
 
 - (IBAction)didTapURLButton:(id)sender {
@@ -77,16 +77,48 @@
 }
 
 - (IBAction)didChangeFavoriteSwitch:(id)sender {
-    if (!self.favoritedSwitch.on){
-        [self.favoritedSwitch setOn:true animated:true];
+    
+    if ([sender isOn]){
+        NSLog(@"you were turned ON");
         self.job.isFav = true;
     }
     else{
-        [self.favoritedSwitch setOn:false animated:true];
+        NSLog(@"you were turned OFF");
         self.job.isFav = false;
     }
-    NSLog(@"switch setting: %d", self.favoritedSwitch.on);
+    
+    NSLog(@"switch setting: %d", [sender isOn]);
     NSLog(@"job's setting:  %d", self.job.isFav);
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    PFObject *favJob = [PFObject objectWithClassName:@"favJobs"];
+    PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
+    
+    /* Save the job info in parse if it's a favorite */
+    if (self.job.isFav) {
+        // Make a if statemenent to avoid creating duplicates.
+        favJob[@"user"] = [PFUser currentUser].username;
+        favJob[@"jobtitle"] = self.job.jobtitle;
+        favJob[@"company"] = self.job.company;
+        favJob[@"city"] = self.job.city;
+        favJob[@"state"] = self.job.state;
+        favJob[@"snippet"] = self.job.snippet;
+        favJob[@"url"] = self.job.url;
+        favJob[@"formattedRelativeTime"] = self.job.formattedRelativeTime;
+//        favJob[@"datePosted"] = [NSString stringWithFormat:self.job.datePosted];
+        favJob[@"score"] = @(self.job.score).stringValue;
+        [favJob save];
+    }
+
+    else {
+        // Add code to delete object if it exits in the database.
+        PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
+        [query whereKey:@"user" equalTo:[PFUser currentUser].username];
+    }
+
+    
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {

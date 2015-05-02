@@ -97,7 +97,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Configure the cell...
-    /* Populate the rows with theater names */
+    /* Populate the rows with jobs */
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     //This allows for multiple lines
     cell.detailTextLabel.numberOfLines = 0;
