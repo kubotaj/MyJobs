@@ -6,10 +6,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultDetailViewController">
             <connections>
+                <outlet property="URLButton" destination="IHh-ZK-GoM" id="ifx-WJ-s1C"/>
                 <outlet property="companyLabel" destination="iW0-bE-Yxb" id="nR0-T9-Rq0"/>
                 <outlet property="favoritedSwitch" destination="MzJ-fB-qdg" id="Ml5-ND-MNw"/>
                 <outlet property="jobTitleLabel" destination="V3O-yG-U2R" id="3EW-hs-S3A"/>
                 <outlet property="locationLabel" destination="Dhj-2N-BsG" id="Qq7-UI-rCQ"/>
+                <outlet property="postingTimeLabel" destination="T06-yY-g0p" id="0lK-2y-ONT"/>
                 <outlet property="snippetLabel" destination="XXW-kd-Ey1" id="RXS-M3-h7s"/>
                 <outlet property="view" destination="iN0-l3-epB" id="8WN-B8-66N"/>
             </connections>
@@ -38,12 +40,6 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXW-kd-Ey1">
-                    <rect key="frame" x="37" y="214" width="330" height="129"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MzJ-fB-qdg">
                     <rect key="frame" x="247" y="481" width="51" height="31"/>
                     <connections>
@@ -57,16 +53,29 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHh-ZK-GoM">
-                    <rect key="frame" x="85" y="386" width="211" height="45"/>
-                    <color key="backgroundColor" red="1" green="0.68477726682486384" blue="0.02555999951100163" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <rect key="frame" x="85" y="400" width="211" height="45"/>
+                    <color key="backgroundColor" red="1" green="0.68745911036283158" blue="0.14985113116963233" alpha="1" colorSpace="calibratedRGB"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" none="YES" button="YES" staticText="YES"/>
+                    </accessibility>
                     <state key="normal" title="See Job Posting">
-                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="didTapURLButton:" destination="-1" eventType="touchUpInside" id="g3l-ra-tlm"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T06-yY-g0p">
+                    <rect key="frame" x="85" y="367" width="211" height="25"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXW-kd-Ey1">
+                    <rect key="frame" x="37" y="214" width="330" height="129"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

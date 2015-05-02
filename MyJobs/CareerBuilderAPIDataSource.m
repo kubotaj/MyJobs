@@ -180,6 +180,9 @@
             j.score += 2;
             //NSLog(@"(+ %d) Correct user city", 2);
         }
+        // Filter out CyberCoders
+        if ([j.company isEqualToString:@"CyberCoders"])
+            j.score -= 3;
         // How recent is the listing
         NSTimeInterval relativeTimeSeconds;
         relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: j.datePosted]; //seconds since job posted
