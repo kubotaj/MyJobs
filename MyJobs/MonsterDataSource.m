@@ -190,14 +190,14 @@
     NSMutableArray *userSkills = userSettings.userSkills;
     for (Job *j in self.jobs){
         // Compare skills
-        int count = (int)[userSkills count];
+        //int count = (int)[userSkills count];
         for (NSString *userSkill in userSkills){
             bool found = false;
             NSMutableArray *jobTitleWords = (NSMutableArray *)[j.jobtitle componentsSeparatedByString:@" "];
             for (NSString *word in jobTitleWords){
                 NSString *reformattedWord = [[word lowercaseString] stringByReplacingOccurrencesOfString:@"," withString:@""];
                 if ([reformattedWord isEqualToString:userSkill] && !found){
-                    j.score += count;
+                    j.score += 2;
                     found = true;
                     //NSLog(@"(+ %d) Found user skill: %@ in job skill (title): %@", count, userSkill, reformattedWord);
                 }
@@ -206,12 +206,12 @@
             for (NSString *word in jobSnippetWords){
                 NSString *reformattedWord = [[word lowercaseString] stringByReplacingOccurrencesOfString:@"," withString:@""];
                 if ([reformattedWord isEqualToString:userSkill] && !found){
-                    j.score += count;
+                    j.score += 2;
                     found = true;
                     //NSLog(@"(+ %d) Found user skill: %@ in job skill (snippet): %@", count, userSkill, reformattedWord);
                 }
             }
-            count--;
+            //count--;
         }
         // In the right city?
         //NSLog(@"Comparing user city: %@ with job city: %@", userSettings.preferredCity, [[j.city lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""]);

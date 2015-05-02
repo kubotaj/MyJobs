@@ -42,8 +42,8 @@
     maxScore += 2;
     
     //for skills
-    for (int i = self.skillCount; i > 0; i--){
-        maxScore += i;
+    for (int i = 0; i < self.skillCount; i++){
+        maxScore += 2;
     }
     
     return maxScore;
