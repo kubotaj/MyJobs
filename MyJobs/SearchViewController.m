@@ -202,10 +202,12 @@
     [query whereKey:@"user" equalTo:[PFUser currentUser].username];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            for (PFObject *object in objects)
-                [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded)
+            PFObject *object = [objects objectAtIndex:0];
+            [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded && !error) {
                         NSLog(@"deleted prev search");
+                    } else if (error)
+                        NSLog(@"Error: %@ %@", error, [error userInfo]);
                 }];
         } else
             NSLog(@"Error: %@ %@", error, [error userInfo]);
