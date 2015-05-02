@@ -259,6 +259,7 @@
     [allJobs addObjectsFromArray:cbJobs];
     [allJobs addObjectsFromArray:mJobs];
     
+    
     NSMutableArray *sortedJobs = [[NSMutableArray alloc] init];
     
     sortedJobs = (NSMutableArray *)[allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
@@ -375,6 +376,7 @@
     [self.activeTextField resignFirstResponder];
 }
 
+/* Dismiss the keyboard when return key is tapped */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     

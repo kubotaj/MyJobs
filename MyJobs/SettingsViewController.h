@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "UserSettings.h"
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController<UITextFieldDelegate>
 
 
 

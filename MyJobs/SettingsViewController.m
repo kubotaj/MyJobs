@@ -62,6 +62,8 @@
 //            NSLog(@"Error: %@ %@", error, [error userInfo]);
 //        }
 //    }];
+    
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -131,6 +133,19 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+
+/* Dismiss keyboard when return key is tapped */
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+/* Dismiss keyboard when empty space is tapped */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 
 /*
