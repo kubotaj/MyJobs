@@ -93,7 +93,7 @@
 
 - (void) viewWillDisappear:(BOOL)animated {
     PFObject *favJob = [PFObject objectWithClassName:@"favJobs"];
-//    PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
+    PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
     
     /* Save the job info in parse if it's a favorite */
     if (self.job.isFav) {
@@ -114,7 +114,7 @@
     else {
         // Add code to delete object if it exits in the database.
         PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
-        [query whereKey:@"user" equalTo:[PFUser currentUser].username];
+//        [query whereKey:@"user" equalTo:[PFUser currentUser].username];
     }
 
     
