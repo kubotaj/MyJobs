@@ -117,7 +117,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     cell.detailTextLabel.text = location;
     
     //image setup
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     switch (job.sourceType) {
         case 1:
             imgView.image = [UIImage imageNamed:@"monster.png"];

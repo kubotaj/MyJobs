@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *companyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *companyLogoImage;
 @property (weak, nonatomic) IBOutlet UILabel *snippetLabel;
 @property (weak, nonatomic) IBOutlet UILabel *postingTimeLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *favoritedSwitch;
@@ -43,9 +44,26 @@
     [self.companyLabel setText:self.job.company];
     
     NSString * locationText = self.job.city;
-    locationText = [locationText stringByAppendingString:@", "];
-    locationText = [locationText stringByAppendingString:self.job.state];
+    if (![self.job.state isEqualToString:@""]){
+        locationText = [locationText stringByAppendingString:@", "];
+        locationText = [locationText stringByAppendingString:self.job.state];
+    }
     [self.locationLabel setText:locationText];
+    
+    //image setup
+    switch (self.job.sourceType) {
+        case 1:
+            self.companyLogoImage.image = [UIImage imageNamed:@"monster.png"];
+            break;
+        case 2:
+            self.companyLogoImage.image = [UIImage imageNamed:@"careerbuilder.png"];
+            break;
+        case 3:
+            self.companyLogoImage.image = [UIImage imageNamed:@"indeed.png"];
+            break;
+        default:
+            break;
+    }
     
     if (self.job.sourceType == 3 || self.job.sourceType == 1)
         [self.snippetLabel setText:self.job.snippet];
