@@ -44,7 +44,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     /* Reuse the cells using the identifier, "Cell" */
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
     
@@ -72,13 +72,13 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     [self cycleTheGlobalMailComposer];
     self.mailvController.mailComposeDelegate = self;
     
-    //[self refreshTableView:self.refreshControl];
+    [self refreshTableView:self.refreshControl];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+//     Uncomment the following line to preserve selection between presentations.
+     self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//     Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {

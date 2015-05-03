@@ -115,6 +115,13 @@
             [formatter setTimeZone:gmt];
             [self.iJob setValue:[formatter dateFromString:allNum] forKey:@"datePosted"];
         }
+        else if ([elementName isEqualToString: @"url"]) {
+            NSScanner *aScanner = [NSScanner scannerWithString:self.currentElementValue];
+            NSString *newURL = [[NSString alloc] init];
+            [aScanner scanUpToString:@"&qd=" intoString:&newURL];
+            NSLog(@"newURL: %@", newURL);
+            [self.iJob setValue:newURL forKey:elementName];
+        }
         else
             [self.iJob setValue: self.currentElementValue forKey: elementName];
     }
