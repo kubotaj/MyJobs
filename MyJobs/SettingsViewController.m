@@ -69,7 +69,7 @@
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self updateUserSettings];
-    NSLog(@"viewDidAppear");
+    //NSLog(@"viewDidAppear");
 }
 
 - (void)didReceiveMemoryWarning {

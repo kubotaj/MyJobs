@@ -51,7 +51,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     self.testFav.isFav = YES;
     
     self.jobsArray = [[NSMutableArray alloc] init];
-    [self.jobsArray addObject:self.testFav];
+    //[self.jobsArray addObject:self.testFav];
     
     [self cycleTheGlobalMailComposer];
     self.mailvController.mailComposeDelegate = self;

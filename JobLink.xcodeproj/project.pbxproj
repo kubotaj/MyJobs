@@ -20,6 +20,9 @@
 		3F8A4A7F1AF1926800C44C53 /* loadBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A4A7B1AF1926800C44C53 /* loadBG.png */; };
 		3F8DEF701AF2B6050002A0C0 /* ResultDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8DEF6F1AF2B6050002A0C0 /* ResultDetailViewController.xib */; };
 		3F9C383D1AF6CEC600D81EFF /* slogan.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9C383C1AF6CEC600D81EFF /* slogan.png */; };
+		3F9C38411AF6D80400D81EFF /* careerbuilderFav.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9C383E1AF6D80400D81EFF /* careerbuilderFav.png */; };
+		3F9C38421AF6D80400D81EFF /* indeedFav.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9C383F1AF6D80400D81EFF /* indeedFav.png */; };
+		3F9C38431AF6D80400D81EFF /* monsterFav.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F9C38401AF6D80400D81EFF /* monsterFav.png */; };
 		3FBBC0911AE1B81D005F19FD /* MonsterDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FBBC0901AE1B81D005F19FD /* MonsterDataSource.m */; };
 		E819E76F1AED91BD007EE836 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E819E76D1AED91BD007EE836 /* LogInViewController.m */; };
 		E819E7701AED91BD007EE836 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E819E76E1AED91BD007EE836 /* LogInViewController.xib */; };
@@ -87,6 +90,9 @@
 		3F8A4A7B1AF1926800C44C53 /* loadBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loadBG.png; path = companyLogos/loadBG.png; sourceTree = "<group>"; };
 		3F8DEF6F1AF2B6050002A0C0 /* ResultDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultDetailViewController.xib; sourceTree = "<group>"; };
 		3F9C383C1AF6CEC600D81EFF /* slogan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slogan.png; path = companyLogos/slogan.png; sourceTree = "<group>"; };
+		3F9C383E1AF6D80400D81EFF /* careerbuilderFav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = careerbuilderFav.png; path = companyLogos/careerbuilderFav.png; sourceTree = "<group>"; };
+		3F9C383F1AF6D80400D81EFF /* indeedFav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = indeedFav.png; path = companyLogos/indeedFav.png; sourceTree = "<group>"; };
+		3F9C38401AF6D80400D81EFF /* monsterFav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monsterFav.png; path = companyLogos/monsterFav.png; sourceTree = "<group>"; };
 		3FBBC08F1AE1B81D005F19FD /* MonsterDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonsterDataSource.h; sourceTree = "<group>"; };
 		3FBBC0901AE1B81D005F19FD /* MonsterDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonsterDataSource.m; sourceTree = "<group>"; };
 		E819E76C1AED91BD007EE836 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
@@ -291,6 +297,9 @@
 		E8FC4C781AD07E040028ED77 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3F9C383E1AF6D80400D81EFF /* careerbuilderFav.png */,
+				3F9C383F1AF6D80400D81EFF /* indeedFav.png */,
+				3F9C38401AF6D80400D81EFF /* monsterFav.png */,
 				3F9C383C1AF6CEC600D81EFF /* slogan.png */,
 				3F8A4A781AF1926800C44C53 /* JLKey.png */,
 				3F8A4A791AF1926800C44C53 /* JLLogo.png */,
@@ -410,11 +419,14 @@
 				3F4893551AED765F00280B7C /* indeed.png in Resources */,
 				E819E77F1AEDB620007EE836 /* SignUpViewController.xib in Resources */,
 				3F4893541AED765F00280B7C /* careerbuilder.png in Resources */,
+				3F9C38411AF6D80400D81EFF /* careerbuilderFav.png in Resources */,
 				3F8A4A7D1AF1926800C44C53 /* JLLogo.png in Resources */,
+				3F9C38421AF6D80400D81EFF /* indeedFav.png in Resources */,
 				E8FC4CAC1AD084D90028ED77 /* settings@2x.png in Resources */,
 				E8FC4CAE1AD084D90028ED77 /* search@2x.png in Resources */,
 				E8FC4C871AD07E040028ED77 /* Main.storyboard in Resources */,
 				3F8DEF701AF2B6050002A0C0 /* ResultDetailViewController.xib in Resources */,
+				3F9C38431AF6D80400D81EFF /* monsterFav.png in Resources */,
 				3F40A8961AF1D3EC0086EB6A /* SettingsViewController.xib in Resources */,
 				3F4893561AED765F00280B7C /* monster.png in Resources */,
 				E8FC4CAD1AD084D90028ED77 /* favorites@2x.png in Resources */,

@@ -23,10 +23,10 @@
 @property (weak, nonatomic) IBOutlet UISwitch *favoritedSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *URLButton;
 
-
 @end
 
 @implementation ResultDetailViewController
+
 
 - (id) initWithJob: (Job *) job {
     self.job = job;
@@ -97,12 +97,11 @@
 - (IBAction)didChangeFavoriteSwitch:(id)sender {
     
     if ([sender isOn]){
-        //NSLog(@"you were turned ON");
+        NSLog(@"you were turned ON");
         self.job.isFav = true;
-        [self.job toString];
     }
     else{
-        //NSLog(@"you were turned OFF");
+        NSLog(@"you were turned OFF");
         self.job.isFav = false;
     }
     
@@ -135,8 +134,6 @@
         PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
 //        [query whereKey:@"user" equalTo:[PFUser currentUser].username];
     }
-
-    
     [super viewWillDisappear:animated];
 }
 

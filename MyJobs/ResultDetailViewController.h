@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "SearchResultsTableViewController.h"
 #import "Job.h"
 
 @interface ResultDetailViewController : UIViewController

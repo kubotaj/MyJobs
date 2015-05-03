@@ -71,6 +71,11 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self refreshTableView:self.refreshControl];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -118,20 +123,39 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     
     //image setup
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    switch (job.sourceType) {
-        case 1:
-            imgView.image = [UIImage imageNamed:@"monster.png"];
-            break;
-        case 2:
-            imgView.image = [UIImage imageNamed:@"careerbuilder.png"];
-            break;
-        case 3:
-            imgView.image = [UIImage imageNamed:@"indeed.png"];
-            break;
-        default:
-            break;
+    if (job.isFav){
+        switch (job.sourceType) {
+            case 1:
+                imgView.image = [UIImage imageNamed:@"monsterFav.png"];
+                break;
+            case 2:
+                imgView.image = [UIImage imageNamed:@"careerbuilderFav.png"];
+                break;
+            case 3:
+                imgView.image = [UIImage imageNamed:@"indeedFav.png"];
+                break;
+            default:
+                break;
+        }
+    }
+    else {
+        switch (job.sourceType) {
+            case 1:
+                imgView.image = [UIImage imageNamed:@"monster.png"];
+                break;
+            case 2:
+                imgView.image = [UIImage imageNamed:@"careerbuilder.png"];
+                break;
+            case 3:
+                imgView.image = [UIImage imageNamed:@"indeed.png"];
+                break;
+            default:
+                break;
+        }
+        
     }
     cell.imageView.image = imgView.image;
+    
     cell.backgroundColor = [self findCellColor:job.score];
     
     return cell;
