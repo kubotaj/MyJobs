@@ -36,6 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"ViewDidLoad called");
     // Do any additional setup after loading the view from its nib.
     self.updateButton.layer.cornerRadius = 10;
     self.updateButton.clipsToBounds = true;
@@ -62,14 +63,15 @@
 //            NSLog(@"Error: %@ %@", error, [error userInfo]);
 //        }
 //    }];
-    
+
     
 }
 
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self updateUserSettings];
     NSLog(@"viewDidAppear");
+    [self updateUserSettings];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,62 +80,88 @@
 }
 
 -(void) updateUserSettings { //fills in text fields from the current user's settings.
-    [self.currUserSettings clearSkills];
-    self.currUser = [PFUser currentUser];
-    //self.currUserSettings = [[UserSettings alloc] initWithDefault];
-    PFQuery *query = [PFQuery queryWithClassName:@"UserSettings"];
-    if (self.currUser.objectId != nil)
-        [query whereKey:@"userId" equalTo:self.currUser.objectId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            PFObject *obj = [objects objectAtIndex:0];
-            self.currUserSettings.searchRadius = [[obj objectForKey:@"Radius"] intValue];
-            if (![[obj objectForKey:@"Skill1"] isEqual:@""])
-                [self.currUserSettings addSkill:[obj objectForKey:@"Skill1"]];
-            if (![[obj objectForKey:@"Skill2"] isEqual:@""])
-                [self.currUserSettings addSkill:[obj objectForKey:@"Skill2"]];
-            if (![[obj objectForKey:@"Skill3"] isEqual:@""])
-                [self.currUserSettings addSkill:[obj objectForKey:@"Skill3"]];
-            
-            self.searchRadius.text = [NSString stringWithFormat:@"%li", (long)self.currUserSettings.searchRadius];
-            
+//    [self.currUserSettings clearSkills];
+//    self.currUser = [PFUser currentUser];
+//    //self.currUserSettings = [[UserSettings alloc] initWithDefault];
+//    PFQuery *query = [PFQuery queryWithClassName:@"UserSettings"];
+////    if (self.currUser.objectId != nil) {
+//        [query whereKey:@"userId" equalTo:self.currUser.objectId];
+//        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            if (!error) {
+//                PFObject *obj = [objects objectAtIndex:0];
+//                self.currUserSettings.searchRadius = [[obj objectForKey:@"Radius"] intValue];
+//                if (![[obj objectForKey:@"Skill1"] isEqual:@""])
+//                    [self.currUserSettings addSkill:[obj objectForKey:@"Skill1"]];
+//                if (![[obj objectForKey:@"Skill2"] isEqual:@""])
+//                    [self.currUserSettings addSkill:[obj objectForKey:@"Skill2"]];
+//                if (![[obj objectForKey:@"Skill3"] isEqual:@""])
+//                    [self.currUserSettings addSkill:[obj objectForKey:@"Skill3"]];
+//            
+//                self.searchRadius.text = [NSString stringWithFormat:@"%li", (long)self.currUserSettings.searchRadius];
+//            
+//                self.skill1.text = [self.currUserSettings.userSkills objectAtIndex:0];
+//                self.skill2.text = [self.currUserSettings.userSkills objectAtIndex:1];
+//                self.skill3.text = [self.currUserSettings.userSkills objectAtIndex:2];
+//            
+//            } else {
+//                // Log details of the failure
+//                NSLog(@"Error: %@ %@", error, [error userInfo]);
+//            }
+//        }];
+////    }
+    
+    [self.currUserSettings updateUserSettings];
+    self.searchRadius.text = [NSString stringWithFormat:@"%li", (long)self.currUserSettings.searchRadius];
+    self.skill1.text = nil;
+    self.skill2.text = nil;
+    self.skill3.text = nil;
+    if (self.currUserSettings.skillCount > 0) {
+        if ([self.currUserSettings.userSkills objectAtIndex:0] != nil)
             self.skill1.text = [self.currUserSettings.userSkills objectAtIndex:0];
+        
+        if (self.currUserSettings.skillCount > 1 && [self.currUserSettings.userSkills objectAtIndex:1] != nil)
             self.skill2.text = [self.currUserSettings.userSkills objectAtIndex:1];
+        
+        if (self.currUserSettings.skillCount > 2 && [self.currUserSettings.userSkills objectAtIndex:2] != nil)
             self.skill3.text = [self.currUserSettings.userSkills objectAtIndex:2];
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+    }
 }
 
 - (IBAction)didTapUpdate:(id)sender {
-    [self.currUserSettings clearSkills];
+    //[self.currUserSettings clearSkills];
     PFQuery *query = [PFQuery queryWithClassName:@"UserSettings"];
-    [query whereKey:@"userId" equalTo:self.currUser.objectId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            PFObject *obj = [objects objectAtIndex:0];
-            NSNumber *num = [[NSNumber alloc] initWithLong:[self.searchRadius.text integerValue]];
-            obj[@"Radius"] = num;
-            obj[@"Skill1"] = self.skill1.text;
-            obj[@"Skill2"] = self.skill2.text;
-            obj[@"Skill3"] = self.skill3.text;
-            [obj saveInBackground];
-            
-            self.currUserSettings.searchRadius = [self.searchRadius.text integerValue];
-            if (![self.skill1.text  isEqual: @""])
-                [self.currUserSettings addSkill:self.skill1.text];
-            if (![self.skill2.text  isEqual: @""])
-                [self.currUserSettings addSkill:self.skill2.text];
-            if (![self.skill3.text  isEqual: @""])
-                [self.currUserSettings addSkill:self.skill3.text];
-            
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+    [query whereKey:@"userId" equalTo:[PFUser currentUser].objectId];
+    PFObject *object = [query getFirstObject];
+    object[@"Radius"] = [[NSNumber alloc] initWithLong:[self.searchRadius.text integerValue]];
+    object[@"Skill1"] = self.skill1.text;
+    object[@"Skill2"] = self.skill2.text;
+    object[@"Skill3"] = self.skill3.text;
+    [object save];
+    
+    [self.currUserSettings updateUserSettings];
+    
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            PFObject *obj = [objects objectAtIndex:0];
+//            NSNumber *num = [[NSNumber alloc] initWithLong:[self.searchRadius.text integerValue]];
+//            obj[@"Radius"] = num;
+//            obj[@"Skill1"] = self.skill1.text;
+//            obj[@"Skill2"] = self.skill2.text;
+//            obj[@"Skill3"] = self.skill3.text;
+//            [obj save];
+//            
+//            self.currUserSettings.searchRadius = [self.searchRadius.text integerValue];
+//            if (![self.skill1.text  isEqual: @""])
+//                [self.currUserSettings addSkill:self.skill1.text];
+//            if (![self.skill2.text  isEqual: @""])
+//                [self.currUserSettings addSkill:self.skill2.text];
+//            if (![self.skill3.text  isEqual: @""])
+//                [self.currUserSettings addSkill:self.skill3.text];
+//            
+//        } else {
+//            NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        }
+//    }];
 }
 
 /* Dismiss keyboard when return key is tapped */

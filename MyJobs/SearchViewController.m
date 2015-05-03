@@ -82,8 +82,13 @@
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
         
-        SettingsViewController * svc = [self.tabBarController.viewControllers objectAtIndex:2];
-        [svc updateUserSettings];
+//        if ([PFUser currentUser].objectId != nil) {
+//            SettingsViewController * svc = [self.tabBarController.viewControllers objectAtIndex:2];
+//            [svc updateUserSettings];
+//            NSLog(@"skills: %@, %@, %@", [self.us.userSkills objectAtIndex:0], [self.us.userSkills objectAtIndex:1], [self.us.userSkills objectAtIndex:2]);
+//        }
+        
+        
     }
 }
 
@@ -102,7 +107,6 @@
 //                                              otherButtonTitles:nil];
 //        [alert show];
 //    }
-    NSLog(@"Here");
 
     [self viewDidLoad]; // Refresh the view with the user info.
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -120,19 +124,21 @@
 
 /* Delegate method when user signed up successfully */
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    [self viewDidLoad]; // Refresh the view
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"current user, %@", [PFUser currentUser].objectId);
+//    [self viewDidLoad]; // Refresh the view
+//    [self dismissViewControllerAnimated:YES completion:nil];
     
     PFUser *currUser = [PFUser currentUser]; //get current user
-    NSLog(@"here");
+
     PFObject *userSettings = [PFObject objectWithClassName:@"UserSettings"];
     userSettings[@"userId"] = currUser.objectId;
     userSettings[@"Radius"] = @30;
     userSettings[@"Skill1"] = @"";
     userSettings[@"Skill2"] = @"";
     userSettings[@"Skill3"] = @"";
-    [userSettings saveInBackground];
-    NSLog(@"there");
+    [userSettings save];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self.tabBarController setSelectedIndex:2];
 }
 
@@ -161,20 +167,52 @@
         NSString *username = [PFUser currentUser].username;
         [query whereKey:@"user" equalTo:username];
         [query orderByDescending:@"createdAt"];
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *prevSearch, NSError *error) {
-            if (!prevSearch) {
-                NSLog(@"No search history found.");
-                self.jobTitle.text = @""; // Clear the text field as there is no search history.
-                [self findCurrentCity];
-            } else {
-                // The find succeeded.
-                NSLog(@"Successfully retrieved the most recent search history.");
-                self.jobTitle.text = prevSearch[@"jobTitle"];
-                self.jobCity.text = prevSearch[@"jobCity"];
-                self.jobState.text = prevSearch[@"jobState"];
-            }
-        }];
+        PFObject *prevSearch = [query getFirstObject];
+        if (!prevSearch) {
+            NSLog(@"No search history found.");
+            self.jobTitle.text = @""; // Clear the text field as there is no search history.
+            [self findCurrentCity];
+        } else {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved the most recent search history.");
+            self.jobTitle.text = prevSearch[@"jobTitle"];
+            self.jobCity.text = prevSearch[@"jobCity"];
+            self.jobState.text = prevSearch[@"jobState"];
+        }
+        
+        NSLog(@"MADE IT");
+        [self.us updateUserSettings];
+        NSLog(@"skills: %@", [self.us.userSkills objectAtIndex:0]);
+
     }
+//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *prevSearch, NSError *error) {
+//            if (!prevSearch) {
+//                NSLog(@"No search history found.");
+//                self.jobTitle.text = @""; // Clear the text field as there is no search history.
+//                [self findCurrentCity];
+//            } else {
+//                // The find succeeded.
+//                NSLog(@"Successfully retrieved the most recent search history.");
+//                self.jobTitle.text = prevSearch[@"jobTitle"];
+//                self.jobCity.text = prevSearch[@"jobCity"];
+//                self.jobState.text = prevSearch[@"jobState"];
+//            }
+//            NSLog(@"%@", [PFUser currentUser].objectId);
+//            if ([PFUser currentUser]) {
+//                NSLog(@"MADE IT");
+//                [self.us updateUserSettings];
+//                NSLog(@"skills: %@", [self.us.userSkills objectAtIndex:0]);
+//            }
+//        }];
+
+//    NSLog(@"%@", [PFUser currentUser].objectId);
+//    if ([PFUser currentUser]) {
+//        NSLog(@"MADE IT");
+//        [self.us updateUserSettings];
+//        SettingsViewController * svc = [self.tabBarController.viewControllers objectAtIndex:2];
+//        [svc updateUserSettings];
+        //NSLog(@"skills: %@", [self.us.userSkills objectAtIndex:0]);
+    //}
     
     /* Register observers for the keyboard notification. */
     [[NSNotificationCenter defaultCenter] addObserver:self
