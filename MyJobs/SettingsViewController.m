@@ -82,7 +82,8 @@
     self.currUser = [PFUser currentUser];
     //self.currUserSettings = [[UserSettings alloc] initWithDefault];
     PFQuery *query = [PFQuery queryWithClassName:@"UserSettings"];
-    [query whereKey:@"userId" equalTo:self.currUser.objectId];
+    if (self.currUser.objectId != nil)
+        [query whereKey:@"userId" equalTo:self.currUser.objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             PFObject *obj = [objects objectAtIndex:0];
