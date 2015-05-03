@@ -31,6 +31,7 @@
 		E819E77F1AEDB620007EE836 /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E819E77D1AEDB620007EE836 /* SignUpViewController.xib */; };
 		E81A72561AD08EAF00C0504F /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81A72551AD08EAF00C0504F /* SearchViewController.xib */; };
 		E81A72581AD09AA600C0504F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81A72571AD09AA600C0504F /* CoreLocation.framework */; };
+		E81B13471AF6CA7800A1C0D4 /* FavoriteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E81B13461AF6CA7800A1C0D4 /* FavoriteDataSource.m */; };
 		E8330B841AEC543900B9A0E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B821AEC543900B9A0E4 /* Bolts.framework */; };
 		E8330B851AEC543900B9A0E4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B831AEC543900B9A0E4 /* Parse.framework */; };
 		E8330B871AEC54F700B9A0E4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B861AEC54F700B9A0E4 /* AudioToolbox.framework */; };
@@ -104,6 +105,8 @@
 		E819E77D1AEDB620007EE836 /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		E81A72551AD08EAF00C0504F /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchViewController.xib; path = ../SearchViewController.xib; sourceTree = "<group>"; };
 		E81A72571AD09AA600C0504F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E81B13451AF6CA7800A1C0D4 /* FavoriteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteDataSource.h; sourceTree = "<group>"; };
+		E81B13461AF6CA7800A1C0D4 /* FavoriteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteDataSource.m; sourceTree = "<group>"; };
 		E8330B821AEC543900B9A0E4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		E8330B831AEC543900B9A0E4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		E8330B861AEC54F700B9A0E4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -268,6 +271,8 @@
 				E8FC4C821AD07E040028ED77 /* SearchViewController.h */,
 				E8FC4C831AD07E040028ED77 /* SearchViewController.m */,
 				E81A72551AD08EAF00C0504F /* SearchViewController.xib */,
+				E81B13451AF6CA7800A1C0D4 /* FavoriteDataSource.h */,
+				E81B13461AF6CA7800A1C0D4 /* FavoriteDataSource.m */,
 				E8FC4CA11AD080D20028ED77 /* FavoritesTableViewController.h */,
 				E8FC4CA21AD080D20028ED77 /* FavoritesTableViewController.m */,
 				E8FC4CA41AD081240028ED77 /* SettingsViewController.h */,
@@ -457,6 +462,7 @@
 				E848CEB21ADEF02D007B4272 /* Job.m in Sources */,
 				3F6CF32C1AE1C5D200406C9C /* CareerBuilderAPIDataSource.m in Sources */,
 				E8FC4C811AD07E040028ED77 /* MyJobs.xcdatamodeld in Sources */,
+				E81B13471AF6CA7800A1C0D4 /* FavoriteDataSource.m in Sources */,
 				E8FC4C7E1AD07E040028ED77 /* AppDelegate.m in Sources */,
 				3F448EF61AF1BAC2007F3670 /* ResultURLViewController.m in Sources */,
 				E8FC4C841AD07E040028ED77 /* SearchViewController.m in Sources */,

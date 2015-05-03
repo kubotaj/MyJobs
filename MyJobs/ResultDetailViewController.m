@@ -110,29 +110,66 @@
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
-    PFObject *favJob = [PFObject objectWithClassName:@"favJobs"];
-    PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
+    PFObject *favJob = [PFObject objectWithClassName:@"FavJobs"];
+    PFQuery *query = [PFQuery queryWithClassName:@"FavJobs"];
+    NSString *username = [PFUser currentUser].username;
+    NSString *jobtitle = self.job.jobtitle;
+    NSString *company = self.job.company;
+    NSString *city = self.job.city;
+    [query whereKey:@"user" equalTo:username];
+    [query whereKey:@"jobtitle" equalTo:jobtitle];
+    [query whereKey:@"company" equalTo:company];
+    [query whereKey:@"city" equalTo:city];
+    [query orderByDescending:@"createdAt"];
     
     /* Save the job info in parse if it's a favorite */
     if (self.job.isFav) {
         // Make a if statemenent to avoid creating duplicates.
-        favJob[@"user"] = [PFUser currentUser].username;
-        favJob[@"jobtitle"] = self.job.jobtitle;
-        favJob[@"company"] = self.job.company;
-        favJob[@"city"] = self.job.city;
-        favJob[@"state"] = self.job.state;
-        favJob[@"snippet"] = self.job.snippet;
-        favJob[@"url"] = self.job.url;
-        favJob[@"formattedRelativeTime"] = self.job.formattedRelativeTime;
-//        favJob[@"datePosted"] = [NSString stringWithFormat:self.job.datePosted];
-        favJob[@"score"] = @(self.job.score).stringValue;
-        [favJob save];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if (object) {
+                NSLog(@"Job in Favorite");
+            }
+            else {
+                NSLog(@"Job not in Favorite yet");
+                favJob[@"user"] = [PFUser currentUser].username;
+                favJob[@"jobtitle"] = self.job.jobtitle;
+                favJob[@"company"] = self.job.company;
+                favJob[@"city"] = self.job.city;
+                favJob[@"state"] = self.job.state;
+                favJob[@"snippet"] = self.job.snippet;
+                favJob[@"url"] = self.job.url;
+                favJob[@"formattedRelativeTime"] = self.job.formattedRelativeTime;
+                favJob[@"datePosted"] = self.job.datePosted;
+                favJob[@"isFav"] = @(self.job.isFav).stringValue;
+                favJob[@"score"] = @(self.job.score).stringValue;
+                favJob[@"skillsList"] = self.job.skillsList;
+                
+                [favJob save];
+
+            }
+        }];
+
     }
 
     else {
         // Add code to delete object if it exits in the database.
-        PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
-//        [query whereKey:@"user" equalTo:[PFUser currentUser].username];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if (object) {
+                NSLog(@"Job in Favorite");
+                [object deleteInBackgroundWithBlock:^(BOOL success, NSError *error) {
+                    if (!error) {
+                        NSLog(@"Deleted successfully.");
+                    }
+                    else {
+                        NSLog(@"Error at Delete: %@", error);
+                    }
+                }];
+            }
+            else {
+                NSLog(@"Job not in Favorite yet");
+            }
+        }];
+
     }
     [super viewWillDisappear:animated];
 }

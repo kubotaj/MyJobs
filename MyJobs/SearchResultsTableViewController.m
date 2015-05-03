@@ -44,7 +44,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     self.cellColorVeryLowScore =    [[UIColor alloc] initWithRed:1.0 green:0.0 blue:0.0 alpha:alphaSet];
     
     NSLog(@"User scoreMax: %d", us.findScoreMax);
-    
+    NSLog(@"Number of User Skills: %d", us.skillCount);
     return self;
     
 }

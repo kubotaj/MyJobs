@@ -21,5 +21,6 @@
 - (int) findScoreMax;
 -(void) addSkill: (NSString *) skill;
 -(void) clearSkills;
+-(void) updateUserSettings;
 
 @end
