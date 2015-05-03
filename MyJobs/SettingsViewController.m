@@ -104,8 +104,9 @@
         
         if (self.currUserSettings.skillCount > 2 && [self.currUserSettings.userSkills objectAtIndex:2] != nil)
             self.skill3.text = [self.currUserSettings.userSkills objectAtIndex:2];
+        }
     }
-}
+     ];}
 
 - (IBAction)didTapUpdate:(id)sender {
     //[self.currUserSettings clearSkills];

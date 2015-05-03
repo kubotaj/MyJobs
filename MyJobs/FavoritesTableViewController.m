@@ -22,6 +22,8 @@
 @property(nonatomic) UIColor *cellColorMediumScore;
 @property(nonatomic) UIColor *cellColorLowScore;
 @property(nonatomic) UIColor *cellColorVeryLowScore;
+@property(nonatomic) Job *testFav;
+@property(nonatomic) MFMailComposeViewController *mailvController;
 
 @end
 
@@ -141,47 +143,6 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     cell.imageView.image = imgView.image;
     cell.backgroundColor = [self findCellColor:job.score];
     
-    
-    // Configure the cell...
-    /* Populate the rows with jobs */
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    //This allows for multiple lines
-    cell.detailTextLabel.numberOfLines = 0;
-    Job *job;
-    job = self.jobsArray[[indexPath row]];
-    
-    cell.textLabel.text = [job jobtitle];
-    NSString *location;
-    location = [NSString stringWithFormat: @"%@\n", [job company]];
-    if (![[job city] isEqualToString:@""]){
-        location = [location stringByAppendingString: [job city]];
-        if (![[job state] isEqualToString:@""]){
-            location = [location stringByAppendingString: @", "];
-            location = [location stringByAppendingString: [job state]];
-        }
-        location = [location stringByAppendingString: @", "];
-    }
-    location = [location stringByAppendingString: [job formattedRelativeTime]];
-    
-    cell.detailTextLabel.text = location;
-    
-    //image setup
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    switch (job.sourceType) {
-        case 1:
-            imgView.image = [UIImage imageNamed:@"monster.png"];
-            break;
-        case 2:
-            imgView.image = [UIImage imageNamed:@"careerbuilder.png"];
-            break;
-        case 3:
-            imgView.image = [UIImage imageNamed:@"indeed.png"];
-            break;
-        default:
-            break;
-    }
-    cell.imageView.image = imgView.image;
-    
     return cell;
 }
 
@@ -211,11 +172,20 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 {   /* Respond to the touch at the row. Create and move to the detail view. */
     Job *job;
     job = self.jobsArray[[indexPath row]];
-    NSLog(@"the index number: %d", (int)[indexPath row]);
-    ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
-    //ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:job];
     
-    [self.navigationController pushViewController: rvController animated:YES];
+    //ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
+    //[self.navigationController pushViewController: rvController animated:YES];
+    
+    // Mail feature does not work on iPhone simulator
+    
+    //    if([MFMailComposeViewController canSendMail]) {
+    //        [self.mailvController setSubject:@"Doesn't work on simulator!"];
+    //        [self presentViewController:self.mailvController animated:YES completion:nil];
+    //    }
+    //    else
+    //    {
+    //        NSLog(@"Unable to mail. No email on this device?");
+    //    }
 }
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -223,7 +193,19 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     return 70;
 }
 
+// Then implement the delegate method
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+        [controller dismissViewControllerAnimated:YES completion:^
+        { [self cycleTheGlobalMailComposer]; }
+        ];
+}
 
+-(void)cycleTheGlobalMailComposer
+{
+        // we are cycling the damned GlobalMailComposer... due to horrible iOS issue
+        self.mailvController = nil;
+        self.mailvController = [[MFMailComposeViewController alloc] init];
+}
 
 /*
 // Override to support conditional editing of the table view.
