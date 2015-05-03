@@ -93,7 +93,7 @@
 
 - (void) viewWillDisappear:(BOOL)animated {
     PFObject *favJob = [PFObject objectWithClassName:@"favJobs"];
-    PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
+//    PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
     
     /* Save the job info in parse if it's a favorite */
     if (self.job.isFav) {
