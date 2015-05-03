@@ -12,6 +12,7 @@
 #import "CareerBuilderAPIDataSource.h"
 #import "MonsterDataSource.h"
 #import "UserSettings.h"
+#import "SettingsViewController.h"
 #import "LogInViewController.h"
 #import "SignUpViewController.h"
 
@@ -80,6 +81,9 @@
         
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
+        
+        SettingsViewController * svc = [self.tabBarController.viewControllers objectAtIndex:2];
+        [svc updateUserSettings];
     }
 }
 
@@ -98,6 +102,8 @@
 //                                              otherButtonTitles:nil];
 //        [alert show];
 //    }
+    NSLog(@"Here");
+
     [self viewDidLoad]; // Refresh the view with the user info.
     [self dismissViewControllerAnimated:YES completion:nil];
 }
