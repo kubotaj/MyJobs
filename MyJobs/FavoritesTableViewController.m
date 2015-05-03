@@ -7,15 +7,53 @@
 //
 
 #import "FavoritesTableViewController.h"
+#import "FavoriteDataSource.h"
+#import "UserSettings.h"
+#import "ResultDetailViewController.h"
+#import "ResultURLViewController.h"
 
 @interface FavoritesTableViewController ()
 
+@property(nonatomic) NSMutableArray *jobsArray;
+@property(nonatomic) UIActivityIndicatorView *activityIndicator;
+@property(nonatomic) UserSettings* us;
+@property(nonatomic) UIColor *cellColorVeryHighScore;
+@property(nonatomic) UIColor *cellColorHighScore;
+@property(nonatomic) UIColor *cellColorMediumScore;
+@property(nonatomic) UIColor *cellColorLowScore;
+@property(nonatomic) UIColor *cellColorVeryLowScore;
+
 @end
+
+static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 @implementation FavoritesTableViewController
 
+- (instancetype) init {
+    if ((self = [super init]) == nil) {
+        return nil;
+    }
+    
+    FavoriteDataSource *fDataSource = [[FavoriteDataSource alloc] init];
+    self.jobsArray = [fDataSource getAllJobs];
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    /* Reuse the cells using the identifier, "Cell" */
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    
+    /* Update the table view */
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self action:@selector(refreshTableView:) forControlEvents:UIControlEventValueChanged];
+    
+    /* Add the spinning gear to show progress */
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self.activityIndicator setCenter: self.view.center];
+    [self.view addSubview: self.activityIndicator];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -34,24 +72,103 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.jobsArray count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    /* Populate the rows with jobs */
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    //This allows for multiple lines
+    cell.detailTextLabel.numberOfLines = 0;
+    Job *job;
+    
+    job = self.jobsArray[[indexPath row]];
+    
+    cell.textLabel.text = [job jobtitle];
+    NSString *location;
+    location = [NSString stringWithFormat: @"%@\n", [job company]];
+    if (![[job city] isEqualToString:@""]){
+        location = [location stringByAppendingString: [job city]];
+        if (![[job state] isEqualToString:@""]){
+            location = [location stringByAppendingString: @", "];
+            location = [location stringByAppendingString: [job state]];
+        }
+        location = [location stringByAppendingString: @", "];
+    }
+    location = [location stringByAppendingString: [job formattedRelativeTime]];
+    
+    cell.detailTextLabel.text = location;
+    
+    //image setup
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    switch (job.sourceType) {
+        case 1:
+            imgView.image = [UIImage imageNamed:@"monster.png"];
+            break;
+        case 2:
+            imgView.image = [UIImage imageNamed:@"careerbuilder.png"];
+            break;
+        case 3:
+            imgView.image = [UIImage imageNamed:@"indeed.png"];
+            break;
+        default:
+            break;
+    }
+    cell.imageView.image = imgView.image;
+    cell.backgroundColor = [self findCellColor:job.score];
+    
     
     // Configure the cell...
     
     return cell;
 }
-*/
+
+-(void) refreshTableView: (UIRefreshControl *) sender
+{   /* Refresh the table view */
+    [self.tableView reloadData];
+    [sender endRefreshing];
+}
+
+- (UIColor *) findCellColor:(int) score{
+    //NSLog(@"Returning color for score: %d", score);
+    if (score > (int)([self.us findScoreMax] * 0.80))
+        return self.cellColorVeryHighScore;
+    if (score > (int)([self.us findScoreMax] * 0.60))
+        return self.cellColorHighScore;
+    if (score > (int)([self.us findScoreMax] * 0.45))
+        return self.cellColorMediumScore;
+    if (score > (int)([self.us findScoreMax] * 0.30))
+        return self.cellColorLowScore;
+    if (score <= (int)([self.us findScoreMax] * 0.30))
+        return self.cellColorVeryLowScore;
+    return [UIColor whiteColor];
+}
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{   /* Respond to the touch at the row. Create and move to the detail view. */
+    Job *job;
+    job = self.jobsArray[[indexPath row]];
+    NSLog(@"the index number: %d", (int)[indexPath row]);
+    ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
+    //ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:job];
+    
+    [self.navigationController pushViewController: rvController animated:YES];
+}
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{   /* Return the height of the row */
+    return 70;
+}
+
+
 
 /*
 // Override to support conditional editing of the table view.
