@@ -126,6 +126,44 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     
     
     // Configure the cell...
+    /* Populate the rows with jobs */
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    //This allows for multiple lines
+    cell.detailTextLabel.numberOfLines = 0;
+    Job *job;
+    job = self.jobsArray[[indexPath row]];
+    
+    cell.textLabel.text = [job jobtitle];
+    NSString *location;
+    location = [NSString stringWithFormat: @"%@\n", [job company]];
+    if (![[job city] isEqualToString:@""]){
+        location = [location stringByAppendingString: [job city]];
+        if (![[job state] isEqualToString:@""]){
+            location = [location stringByAppendingString: @", "];
+            location = [location stringByAppendingString: [job state]];
+        }
+        location = [location stringByAppendingString: @", "];
+    }
+    location = [location stringByAppendingString: [job formattedRelativeTime]];
+    
+    cell.detailTextLabel.text = location;
+    
+    //image setup
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    switch (job.sourceType) {
+        case 1:
+            imgView.image = [UIImage imageNamed:@"monster.png"];
+            break;
+        case 2:
+            imgView.image = [UIImage imageNamed:@"careerbuilder.png"];
+            break;
+        case 3:
+            imgView.image = [UIImage imageNamed:@"indeed.png"];
+            break;
+        default:
+            break;
+    }
+    cell.imageView.image = imgView.image;
     
     return cell;
 }

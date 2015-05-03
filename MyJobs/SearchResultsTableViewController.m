@@ -7,11 +7,8 @@
 //
 
 #import "SearchResultsTableViewController.h"
-#import "IndeedAPIDataSource.h"
 #import "Job.h"
 #import "ResultDetailViewController.h"
-
-#import "ResultURLViewController.h"
 
 @interface SearchResultsTableViewController ()
 
@@ -40,7 +37,6 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     self.jobsArray = jobsArray;
     
     float alphaSet = 0.2;
-    
     self.cellColorVeryHighScore =   [[UIColor alloc] initWithRed:0.0 green:1.0 blue:0.0 alpha:alphaSet];
     self.cellColorHighScore =       [[UIColor alloc] initWithRed:0.5 green:1.0 blue:0.5 alpha:alphaSet];
     self.cellColorMediumScore =     [[UIColor alloc] initWithRed:1.0 green:1.0 blue:0.0 alpha:alphaSet];
@@ -48,7 +44,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     self.cellColorVeryLowScore =    [[UIColor alloc] initWithRed:1.0 green:0.0 blue:0.0 alpha:alphaSet];
     
     NSLog(@"User scoreMax: %d", us.findScoreMax);
-    
+    NSLog(@"Number of User Skills: %d", us.skillCount);
     return self;
     
 }
@@ -121,7 +117,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     cell.detailTextLabel.text = location;
     
     //image setup
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     switch (job.sourceType) {
         case 1:
             imgView.image = [UIImage imageNamed:@"monster.png"];
@@ -167,9 +163,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 {   /* Respond to the touch at the row. Create and move to the detail view. */
     Job *job;
     job = self.jobsArray[[indexPath row]];
-    NSLog(@"the index number: %d", (int)[indexPath row]);
     ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
-    //ResultURLViewController *urlvController = [[ResultURLViewController alloc] initWithJob:job];
     
     [self.navigationController pushViewController: rvController animated:YES];
 }

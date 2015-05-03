@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@import MessageUI;
 
-@interface FavoritesTableViewController : UITableViewController
+@interface FavoritesTableViewController : UITableViewController <MFMailComposeViewControllerDelegate>
 
 @end
