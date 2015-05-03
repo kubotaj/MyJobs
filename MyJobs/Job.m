@@ -61,4 +61,19 @@
     //NSLog(@"relativeTime: %i", relativeTime2);
 }
 
+-(void) toString {
+    NSLog(@"%d", self.sourceType);
+    NSLog(@"%@", self.company);
+    NSLog(@"%@", self.city);
+    NSLog(@"%@", self.state);
+    NSLog(@"%@", self.snippet);
+    NSLog(@"%@", self.url);
+    NSLog(@"%@", self.formattedRelativeTime);
+    NSLog(@"%@", self.datePosted);
+    NSLog(@"%d", self.isFav);
+    NSLog(@"%d", self.score);
+    if (self.sourceType == 2)
+        NSLog(@"%@", [self.skillsList componentsJoinedByString:@" "]);
+}
+
 @end

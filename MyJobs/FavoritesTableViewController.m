@@ -7,15 +7,56 @@
 //
 
 #import "FavoritesTableViewController.h"
+#import "ResultDetailViewController.h"
+#import "UserSettings.h"
+#import "Job.h"
 
 @interface FavoritesTableViewController ()
 
+@property(nonatomic) NSMutableArray *jobsArray;
+@property(nonatomic) UIActivityIndicatorView *activityIndicator;
+@property(nonatomic) UserSettings* us;
+@property(nonatomic) MFMailComposeViewController *mailvController;
+@property(nonatomic) Job* testFav;
+
 @end
+
+static MFMailComposeViewController *mailvController;
+static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 @implementation FavoritesTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    /* Reuse the cells using the identifier, "Cell" */
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    
+    /* Update the table view */
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self action:@selector(refreshTableView:) forControlEvents:UIControlEventValueChanged];
+    
+    /* Add the spinning gear to show progress */
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self.activityIndicator setCenter: self.view.center];
+    [self.view addSubview: self.activityIndicator];
+    
+    self.testFav = [[Job alloc] init];
+    self.testFav.sourceType = 3;
+    self.testFav.company = @"AppDirect";
+    self.testFav.city = @"San Francisco";
+    self.testFav.state = @"CA";
+    self.testFav.url = @"http://www.indeed.com/viewjob?jk=c1a481e61abd41ea&qd=v7mvxNvY3g5RZ4OWtehS_LyKQvjRMGh-g_l1xBxGZpi7byCvEn64jg9mJGrHhiHdx83mREWkrZoxhgQn5MzkJleC0qMfZM_XMi0Wupg6KHKkcbY9hjz-yyUKTi-hws0aONF_UajJqFsteOnGIgmm5Q&indpubnum=5703933454627100&atk=19kdjsoi0b9d285r";
+    self.testFav.formattedRelativeTime = @"8 hours ago";
+    self.testFav.isFav = YES;
+    
+    self.jobsArray = [[NSMutableArray alloc] init];
+    [self.jobsArray addObject:self.testFav];
+    
+    [self cycleTheGlobalMailComposer];
+    self.mailvController.mailComposeDelegate = self;
+    
+    //[self refreshTableView:self.refreshControl];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -34,24 +75,104 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.jobsArray count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
     // Configure the cell...
+    /* Populate the rows with jobs */
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    //This allows for multiple lines
+    cell.detailTextLabel.numberOfLines = 0;
+    Job *job;
+    job = self.jobsArray[[indexPath row]];
+    
+    cell.textLabel.text = [job jobtitle];
+    NSString *location;
+    location = [NSString stringWithFormat: @"%@\n", [job company]];
+    if (![[job city] isEqualToString:@""]){
+        location = [location stringByAppendingString: [job city]];
+        if (![[job state] isEqualToString:@""]){
+            location = [location stringByAppendingString: @", "];
+            location = [location stringByAppendingString: [job state]];
+        }
+        location = [location stringByAppendingString: @", "];
+    }
+    location = [location stringByAppendingString: [job formattedRelativeTime]];
+    
+    cell.detailTextLabel.text = location;
+    
+    //image setup
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    switch (job.sourceType) {
+        case 1:
+            imgView.image = [UIImage imageNamed:@"monster.png"];
+            break;
+        case 2:
+            imgView.image = [UIImage imageNamed:@"careerbuilder.png"];
+            break;
+        case 3:
+            imgView.image = [UIImage imageNamed:@"indeed.png"];
+            break;
+        default:
+            break;
+    }
+    cell.imageView.image = imgView.image;
     
     return cell;
 }
-*/
+
+-(void) refreshTableView: (UIRefreshControl *) sender
+{   /* Refresh the table view */
+    [self.tableView reloadData];
+    [sender endRefreshing];
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{   /* Respond to the touch at the row. Create and move to the detail view. */
+    Job *job;
+    job = self.jobsArray[[indexPath row]];
+    
+    //ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
+    //[self.navigationController pushViewController: rvController animated:YES];
+    
+    // Mail feature does not work on iPhone simulator
+
+//    if([MFMailComposeViewController canSendMail]) {
+//        [self.mailvController setSubject:@"Doesn't work on simulator!"];
+//        [self presentViewController:self.mailvController animated:YES completion:nil];
+//    }
+//    else
+//    {
+//        NSLog(@"Unable to mail. No email on this device?");
+//    }
+}
+
+// Then implement the delegate method
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    [controller dismissViewControllerAnimated:YES completion:^
+     { [self cycleTheGlobalMailComposer]; }
+     ];
+}
+
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{   /* Return the height of the row */
+    return 70;
+}
+
+-(void)cycleTheGlobalMailComposer
+{
+    // we are cycling the damned GlobalMailComposer... due to horrible iOS issue
+    self.mailvController = nil;
+    self.mailvController = [[MFMailComposeViewController alloc] init];
+}
 
 /*
 // Override to support conditional editing of the table view.

@@ -79,16 +79,17 @@
 - (IBAction)didChangeFavoriteSwitch:(id)sender {
     
     if ([sender isOn]){
-        NSLog(@"you were turned ON");
+        //NSLog(@"you were turned ON");
         self.job.isFav = true;
+        [self.job toString];
     }
     else{
-        NSLog(@"you were turned OFF");
+        //NSLog(@"you were turned OFF");
         self.job.isFav = false;
     }
     
-    NSLog(@"switch setting: %d", [sender isOn]);
-    NSLog(@"job's setting:  %d", self.job.isFav);
+    //NSLog(@"switch setting: %d", [sender isOn]);
+    //NSLog(@"job's setting:  %d", self.job.isFav);
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
