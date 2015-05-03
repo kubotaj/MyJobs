@@ -29,5 +29,6 @@
 
 + (NSString *) convertMonthtoNum: (NSString *) date;
 - (void) convertDatePostedToFormattedRelativeTime;
+- (void) toString;
 
 @end
