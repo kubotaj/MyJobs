@@ -114,7 +114,7 @@
     else {
         // Add code to delete object if it exits in the database.
         PFQuery *query = [PFQuery queryWithClassName:@"favJobs"];
-        [query whereKey:@"user" equalTo:[PFUser currentUser].username];
+//        [query whereKey:@"user" equalTo:[PFUser currentUser].username];
     }
 
     
