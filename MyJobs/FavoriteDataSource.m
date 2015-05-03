@@ -30,17 +30,19 @@
     
     /* Pull the favorites from Parse for the user */
     PFQuery *query = [PFQuery queryWithClassName:@"FavJobs"];
-    NSString *usernmae = [PFUser currentUser].username;
-    [query whereKey:@"user" equalTo:usernmae];
-    [query orderByDescending:@"createdAt"];
-     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            self.parseJobs = objects;
-        }
-        else {
-            NSLog(@"No favorites %@", error);
-        }
-     }];
+    if (!query) {
+        NSString *usernmae = [PFUser currentUser].username;
+        [query whereKey:@"user" equalTo:usernmae];
+        [query orderByDescending:@"createdAt"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (objects) {
+                self.parseJobs = objects;
+            }
+            else {
+                NSLog(@"No favorites %@", error);
+            }
+         }];
+    }
     
     /* Save back the data into Job object */
     for (PFObject *job in self.parseJobs) {

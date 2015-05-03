@@ -113,13 +113,9 @@
     PFObject *favJob = [PFObject objectWithClassName:@"FavJobs"];
     PFQuery *query = [PFQuery queryWithClassName:@"FavJobs"];
     NSString *username = [PFUser currentUser].username;
-    NSString *jobtitle = self.job.jobtitle;
-    NSString *company = self.job.company;
-    NSString *city = self.job.city;
+    NSString *url = self.job.url;
     [query whereKey:@"user" equalTo:username];
-    [query whereKey:@"jobtitle" equalTo:jobtitle];
-    [query whereKey:@"company" equalTo:company];
-    [query whereKey:@"city" equalTo:city];
+    [query whereKey:@"url" equalTo:url];
     [query orderByDescending:@"createdAt"];
     
     /* Save the job info in parse if it's a favorite */
