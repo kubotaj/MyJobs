@@ -8,9 +8,8 @@
 
 #import "FavoritesTableViewController.h"
 #import "FavoriteDataSource.h"
-#import "UserSettings.h"
+#import "Job.h"
 #import "ResultDetailViewController.h"
-#import "ResultURLViewController.h"
 
 @interface FavoritesTableViewController ()
 
@@ -35,9 +34,15 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     if ((self = [super init]) == nil) {
         return nil;
     }
+    self.title = @"Favorites";
     
     FavoriteDataSource *fDataSource = [[FavoriteDataSource alloc] init];
     self.jobsArray = [fDataSource getAllJobs];
+    
+    /* for testing */
+    for (Job *aJob in self.jobsArray) {
+        NSLog(@"Printing Jobs %@", aJob);
+    }
     
     return self;
 }
@@ -57,16 +62,16 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     [self.activityIndicator setCenter: self.view.center];
     [self.view addSubview: self.activityIndicator];
     
-    self.testFav = [[Job alloc] init];
-    self.testFav.sourceType = 3;
-    self.testFav.company = @"AppDirect";
-    self.testFav.city = @"San Francisco";
-    self.testFav.state = @"CA";
-    self.testFav.url = @"http://www.indeed.com/viewjob?jk=c1a481e61abd41ea&qd=v7mvxNvY3g5RZ4OWtehS_LyKQvjRMGh-g_l1xBxGZpi7byCvEn64jg9mJGrHhiHdx83mREWkrZoxhgQn5MzkJleC0qMfZM_XMi0Wupg6KHKkcbY9hjz-yyUKTi-hws0aONF_UajJqFsteOnGIgmm5Q&indpubnum=5703933454627100&atk=19kdjsoi0b9d285r";
-    self.testFav.formattedRelativeTime = @"8 hours ago";
-    self.testFav.isFav = YES;
-    
-    self.jobsArray = [[NSMutableArray alloc] init];
+//    self.testFav = [[Job alloc] init];
+//    self.testFav.sourceType = 3;
+//    self.testFav.company = @"AppDirect";
+//    self.testFav.city = @"San Francisco";
+//    self.testFav.state = @"CA";
+//    self.testFav.url = @"http://www.indeed.com/viewjob?jk=c1a481e61abd41ea&qd=v7mvxNvY3g5RZ4OWtehS_LyKQvjRMGh-g_l1xBxGZpi7byCvEn64jg9mJGrHhiHdx83mREWkrZoxhgQn5MzkJleC0qMfZM_XMi0Wupg6KHKkcbY9hjz-yyUKTi-hws0aONF_UajJqFsteOnGIgmm5Q&indpubnum=5703933454627100&atk=19kdjsoi0b9d285r";
+//    self.testFav.formattedRelativeTime = @"8 hours ago";
+//    self.testFav.isFav = YES;
+//    
+//    self.jobsArray = [[NSMutableArray alloc] init];
     //[self.jobsArray addObject:self.testFav];
     
     [self cycleTheGlobalMailComposer];
@@ -75,10 +80,20 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     [self refreshTableView:self.refreshControl];
     
 //     Uncomment the following line to preserve selection between presentations.
-     self.clearsSelectionOnViewWillAppear = NO;
+//     self.clearsSelectionOnViewWillAppear = NO;
     
 //     Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+//- (void) viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//    [self refreshTableView:self.refreshControl];
+//}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self refreshTableView:self.refreshControl];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,11 +121,10 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     //This allows for multiple lines
     cell.detailTextLabel.numberOfLines = 0;
-    Job *job;
     
-    job = self.jobsArray[[indexPath row]];
-    
-    cell.textLabel.text = [job jobtitle];
+    Job *job = [[Job alloc] init];
+    job = self.jobsArray[indexPath.row];
+    cell.textLabel.text = job.jobtitle;
     NSString *location;
     location = [NSString stringWithFormat: @"%@\n", [job company]];
     if (![[job city] isEqualToString:@""]){
@@ -127,18 +141,37 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     
     //image setup
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    switch (job.sourceType) {
-        case 1:
-            imgView.image = [UIImage imageNamed:@"monster.png"];
-            break;
-        case 2:
-            imgView.image = [UIImage imageNamed:@"careerbuilder.png"];
-            break;
-        case 3:
-            imgView.image = [UIImage imageNamed:@"indeed.png"];
-            break;
-        default:
-            break;
+    NSLog(@"jobSourcetype: %d", job.sourceType);
+    if (job.isFav){
+        switch (job.sourceType) {
+            case 1:
+                imgView.image = [UIImage imageNamed:@"monsterFav.png"];
+                break;
+            case 2:
+                imgView.image = [UIImage imageNamed:@"careerbuilderFav.png"];
+                break;
+            case 3:
+                imgView.image = [UIImage imageNamed:@"indeedFav.png"];
+                break;
+            default:
+                break;
+        }
+    }
+    else {
+        switch (job.sourceType) {
+            case 1:
+                imgView.image = [UIImage imageNamed:@"monster.png"];
+                break;
+            case 2:
+                imgView.image = [UIImage imageNamed:@"careerbuilder.png"];
+                break;
+            case 3:
+                imgView.image = [UIImage imageNamed:@"indeed.png"];
+                break;
+            default:
+                break;
+        }
+        
     }
     cell.imageView.image = imgView.image;
     cell.backgroundColor = [self findCellColor:job.score];
@@ -148,6 +181,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 -(void) refreshTableView: (UIRefreshControl *) sender
 {   /* Refresh the table view */
+    [self init];
     [self.tableView reloadData];
     [sender endRefreshing];
 }
@@ -172,9 +206,8 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 {   /* Respond to the touch at the row. Create and move to the detail view. */
     Job *job;
     job = self.jobsArray[[indexPath row]];
-    
-    //ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
-    //[self.navigationController pushViewController: rvController animated:YES];
+    ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
+    [self.navigationController pushViewController: rvController animated:YES];
     
     // Mail feature does not work on iPhone simulator
     

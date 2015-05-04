@@ -27,6 +27,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 @implementation SearchResultsTableViewController
 
+
 - (id) initWithJobsArray: (NSMutableArray *) jobsArray andSettings:(UserSettings *)us{
     self = [super init];
     if (self) {

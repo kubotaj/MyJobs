@@ -182,7 +182,7 @@
         
         NSLog(@"MADE IT");
         [self.us updateUserSettings];
-        NSLog(@"skills: %@", [self.us.userSkills objectAtIndex:0]);
+//        NSLog(@"skills: %@", [self.us.userSkills objectAtIndex:0]);
 
     }
 //        [query getFirstObjectInBackgroundWithBlock:^(PFObject *prevSearch, NSError *error) {

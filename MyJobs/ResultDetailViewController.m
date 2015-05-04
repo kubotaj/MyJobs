@@ -123,10 +123,10 @@
         // Make a if statemenent to avoid creating duplicates.
         [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             if (object) {
-                NSLog(@"Job in Favorite");
+                NSLog(@"isFav: Job in Favorite");
             }
             else {
-                NSLog(@"Job not in Favorite yet");
+                NSLog(@"isFav: Job not in Favorite yet");
                 favJob[@"user"] = [PFUser currentUser].username;
                 favJob[@"jobtitle"] = self.job.jobtitle;
                 favJob[@"company"] = self.job.company;
@@ -138,10 +138,10 @@
                 favJob[@"datePosted"] = self.job.datePosted;
                 favJob[@"isFav"] = @(self.job.isFav).stringValue;
                 favJob[@"score"] = @(self.job.score).stringValue;
-                favJob[@"skillsList"] = self.job.skillsList;
+                favJob[@"sourceType"] = @(self.job.sourceType).stringValue;
+//                favJob[@"skillsList"] = self.job.skillsList;
                 
                 [favJob save];
-
             }
         }];
 
@@ -151,7 +151,7 @@
         // Add code to delete object if it exits in the database.
         [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             if (object) {
-                NSLog(@"Job in Favorite");
+                NSLog(@"notFav: Job in Favorite");
                 [object deleteInBackgroundWithBlock:^(BOOL success, NSError *error) {
                     if (!error) {
                         NSLog(@"Deleted successfully.");
@@ -162,7 +162,7 @@
                 }];
             }
             else {
-                NSLog(@"Job not in Favorite yet");
+                NSLog(@"not Fav: Job not in Favorite");
             }
         }];
 
