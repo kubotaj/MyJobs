@@ -64,15 +64,16 @@
         default:
             break;
     }
+    [self.snippetLabel setText:self.job.snippet];
     
-    if (self.job.sourceType == 3 || self.job.sourceType == 1)
-        [self.snippetLabel setText:self.job.snippet];
-    
-    if (self.job.sourceType == 2){
-        NSString * skillsTextList = @"Skills: ";
-        skillsTextList = [skillsTextList stringByAppendingString:[self.job.skillsList componentsJoinedByString: @", "]];
-        [self.snippetLabel setText:skillsTextList];
-    }
+//    if (self.job.sourceType == 3 || self.job.sourceType == 1)
+//        [self.snippetLabel setText:self.job.snippet];
+//    
+//    if (self.job.sourceType == 2){
+//        NSString * skillsTextList = @"Skills: ";
+//        skillsTextList = [skillsTextList stringByAppendingString:[self.job.skillsList componentsJoinedByString: @", "]];
+//        [self.snippetLabel setText:skillsTextList];
+//    }
     
     NSString *timeText = @"Posted ";
     timeText = [timeText stringByAppendingString:self.job.formattedRelativeTime];

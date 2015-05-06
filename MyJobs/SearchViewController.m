@@ -68,7 +68,7 @@
         ) { */
     /* DO NOT DELETE THIS BLOCK */
     
-    if (![PFUser currentUser]) {
+    if (![PFUser currentUser]) { //No current user logged in
         // Create the log in view controller
         LogInViewController *logInViewController = [[LogInViewController alloc] init];
         logInViewController.delegate = self; // Set ourselves as the delegate
@@ -84,7 +84,26 @@
         
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
+    } else { //Does have current user logged in
+        PFQuery *query = [PFQuery queryWithClassName:@"PrevSearch"];
+        NSString *username = [PFUser currentUser].username;
+        [query whereKey:@"user" equalTo:username];
+        [query orderByDescending:@"createdAt"];
+        PFObject *prevSearch = [query getFirstObject];
+        if (!prevSearch) {
+            NSLog(@"No search history found.");
+            self.jobTitle.text = @""; // Clear the text field as there is no search history.
+            [self findCurrentCity];
+        } else {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved the most recent search history.");
+            self.jobTitle.text = prevSearch[@"jobTitle"];
+            self.jobCity.text = prevSearch[@"jobCity"];
+            self.jobState.text = prevSearch[@"jobState"];
+        }
+        [self.us updateUserSettings];
     }
+
 }
 
 /* Delegate method when user logged in successfully */
@@ -122,7 +141,6 @@
 
 /* Delegate method when user signed up successfully */
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    NSLog(@"current user, %@", [PFUser currentUser].objectId);
     
     /* DO NOT DELETE THIS BLOCK */
     /*[self viewDidLoad]; // Refresh the view
@@ -161,28 +179,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-
-    /* Retrieve the search history based on the user account */
-    if ([PFUser currentUser]) {
-        PFQuery *query = [PFQuery queryWithClassName:@"PrevSearch"];
-        NSString *username = [PFUser currentUser].username;
-        [query whereKey:@"user" equalTo:username];
-        [query orderByDescending:@"createdAt"];
-        PFObject *prevSearch = [query getFirstObject];
-        if (!prevSearch) {
-            NSLog(@"No search history found.");
-            self.jobTitle.text = @""; // Clear the text field as there is no search history.
-            [self findCurrentCity];
-        } else {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved the most recent search history.");
-            self.jobTitle.text = prevSearch[@"jobTitle"];
-            self.jobCity.text = prevSearch[@"jobCity"];
-            self.jobState.text = prevSearch[@"jobState"];
-        }
-        
-        [self.us updateUserSettings];
-    }
     
     /* Register observers for the keyboard notification. */
     [[NSNotificationCenter defaultCenter] addObserver:self
