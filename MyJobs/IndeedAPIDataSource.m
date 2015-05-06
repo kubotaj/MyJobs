@@ -119,7 +119,7 @@
             NSScanner *aScanner = [NSScanner scannerWithString:self.currentElementValue];
             NSString *newURL = [[NSString alloc] init];
             [aScanner scanUpToString:@"&qd=" intoString:&newURL];
-            NSLog(@"newURL: %@", newURL);
+//            NSLog(@"newURL: %@", newURL);
             [self.iJob setValue:newURL forKey:elementName];
         }
         else
@@ -132,11 +132,6 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     NSLog(@"Parsing Indeed finished");
-    /*
-    for (int i = 0; i < [self.jobs count]; i++) {
-        NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
-    }
-    */
 }
 
 - (void) filterJobs:(UserSettings *)userSettings{
@@ -152,7 +147,6 @@
                 if ([reformattedWord isEqualToString:userSkill] && !found){
                     j.score += 2;
                     found = true;
-                    //NSLog(@"(+ %d) Found user skill: %@ in job skill (title): %@", count, userSkill, reformattedWord);
                 }
             }
             NSMutableArray *jobSnippetWords = (NSMutableArray *)[j.snippet componentsSeparatedByString:@" "];
@@ -161,29 +155,22 @@
                 if ([reformattedWord isEqualToString:userSkill] && !found){
                     j.score += 2;
                     found = true;
-                    //NSLog(@"(+ %d) Found user skill: %@ in job skill (snippet): %@", count, userSkill, reformattedWord);
                 }
             }
-            //count--;
         }
         // In the right city?
-        //NSLog(@"Comparing user city: %@ with job city: %@", userSettings.preferredCity, [[j.city lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""]);
         if ([userSettings.preferredCity isEqualToString:[[j.city lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""]]){
             j.score += 2;
-            //NSLog(@"(+ %d) Correct user city", 2);
         }
         // How recent is the listing
         NSTimeInterval relativeTimeSeconds;
         relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: j.datePosted]; //seconds since job posted
         if (relativeTimeSeconds < 86400){       // Is this posting less than a day old
             j.score += 3;
-            //NSLog(@"(+ %d) Post less than day old", 3);
         }
         else if (relativeTimeSeconds < 604800){ // Is this posting less than a week old
             j.score += 1;
-            //NSLog(@"(+ %d) Post less than week old", 1);
         }
-        //if (j.score > 1) NSLog(@"Final job score = %d", j.score);
     }
 }
 

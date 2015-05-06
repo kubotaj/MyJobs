@@ -61,16 +61,19 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     // Check if user is logged in
-//    if (![[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue] ||
-//        ![PFUser currentUser]
-//        ) {
+    
+    /* DO NOT DELETE THIS BLOCK */
+    /*if (![[[PFUser currentUser] objectForKey:@"emailVerified"] boolValue] ||
+        ![PFUser currentUser]
+        ) { */
+    /* DO NOT DELETE THIS BLOCK */
+    
     if (![PFUser currentUser]) {
         // Create the log in view controller
         LogInViewController *logInViewController = [[LogInViewController alloc] init];
         logInViewController.delegate = self; // Set ourselves as the delegate
         
         // Create the sign up view controller
-        // Customize the Sign Up View Controller
         SignUpViewController *signUpViewController = [[SignUpViewController alloc] init];
         signUpViewController.delegate = self;
         signUpViewController.fields = PFSignUpFieldsDefault | PFSignUpFieldsAdditional;
@@ -81,32 +84,27 @@
         
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
-        
-//        if ([PFUser currentUser].objectId != nil) {
-//            SettingsViewController * svc = [self.tabBarController.viewControllers objectAtIndex:2];
-//            [svc updateUserSettings];
-//            NSLog(@"skills: %@, %@, %@", [self.us.userSkills objectAtIndex:0], [self.us.userSkills objectAtIndex:1], [self.us.userSkills objectAtIndex:2]);
-//        }
-        
-        
     }
 }
 
 /* Delegate method when user logged in successfully */
 - (void)logInViewController:(PFLogInViewController *)controller
                didLogInUser:(PFUser *)user {
-//    if ([[user objectForKey:@"emailVerified"] boolValue]) {
-//        [self viewDidLoad]; // Refresh the view with the user info.
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    }
-//    else {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email not verified"
-//                                                        message:@"You must verify your email address before logging in"
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"OK"
-//                                              otherButtonTitles:nil];
-//        [alert show];
-//    }
+    
+    /* DO NOT DELETE THIS BLOCK */
+    /*if ([[user objectForKey:@"emailVerified"] boolValue]) {
+        [self viewDidLoad]; // Refresh the view with the user info.
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Email not verified"
+                                                        message:@"You must verify your email address before logging in"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }*/
+    /* DO NOT DELETE THIS BLOCK */
 
     [self viewDidLoad]; // Refresh the view with the user info.
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -125,8 +123,11 @@
 /* Delegate method when user signed up successfully */
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     NSLog(@"current user, %@", [PFUser currentUser].objectId);
-//    [self viewDidLoad]; // Refresh the view
-//    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    /* DO NOT DELETE THIS BLOCK */
+    /*[self viewDidLoad]; // Refresh the view
+    [self dismissViewControllerAnimated:YES completion:nil];*/
+    /* DO NOT DELETE THIS BLOCK */
     
     PFUser *currUser = [PFUser currentUser]; //get current user
 
@@ -180,39 +181,8 @@
             self.jobState.text = prevSearch[@"jobState"];
         }
         
-        NSLog(@"MADE IT");
         [self.us updateUserSettings];
-//        NSLog(@"skills: %@", [self.us.userSkills objectAtIndex:0]);
-
     }
-//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *prevSearch, NSError *error) {
-//            if (!prevSearch) {
-//                NSLog(@"No search history found.");
-//                self.jobTitle.text = @""; // Clear the text field as there is no search history.
-//                [self findCurrentCity];
-//            } else {
-//                // The find succeeded.
-//                NSLog(@"Successfully retrieved the most recent search history.");
-//                self.jobTitle.text = prevSearch[@"jobTitle"];
-//                self.jobCity.text = prevSearch[@"jobCity"];
-//                self.jobState.text = prevSearch[@"jobState"];
-//            }
-//            NSLog(@"%@", [PFUser currentUser].objectId);
-//            if ([PFUser currentUser]) {
-//                NSLog(@"MADE IT");
-//                [self.us updateUserSettings];
-//                NSLog(@"skills: %@", [self.us.userSkills objectAtIndex:0]);
-//            }
-//        }];
-
-//    NSLog(@"%@", [PFUser currentUser].objectId);
-//    if ([PFUser currentUser]) {
-//        NSLog(@"MADE IT");
-//        [self.us updateUserSettings];
-//        SettingsViewController * svc = [self.tabBarController.viewControllers objectAtIndex:2];
-//        [svc updateUserSettings];
-        //NSLog(@"skills: %@", [self.us.userSkills objectAtIndex:0]);
-    //}
     
     /* Register observers for the keyboard notification. */
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -306,6 +276,7 @@
     
     NSMutableArray *sortedJobs = [[NSMutableArray alloc] init];
     
+    /* Sort the list by score and date */
     sortedJobs = (NSMutableArray *)[allJobs sortedArrayUsingComparator:^NSComparisonResult(Job *j1, Job *j2){
         if (j1.score < j2.score)
             return (j1.score < j2.score);
@@ -320,14 +291,14 @@
             return (j1.score < j2.score);
     }];
 
+    /* Display the combined & sorted list in the table */
     SearchResultsTableViewController *rController = [[SearchResultsTableViewController alloc] initWithJobsArray:sortedJobs andSettings:self.us];
     [self.navigationController pushViewController:rController animated:YES];
-
 }
 
 
 - (void)findCurrentCity {
-    // Configure location manager.
+    /* Configure location manager. */
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -337,16 +308,16 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
 
-    // Obtain the location values.
+    /* Obtain the location values. */
     [self.locationManager startUpdatingLocation];
 }
 
 // Tells the delegate that new location data is available.
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    // Stop Location Manager
+    /* Stop Location Manager */
     [self.locationManager stopUpdatingLocation];
 
-    // Retrieve the city info.
+    /* Retrieve the city info. */
     self.location = [locations lastObject];
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation: self.location
@@ -362,7 +333,7 @@
     }];
 }
 
-// Tells the delegate that the locaiton manager was unable to retrieve the location values.
+/* Tells the delegate that the locaiton manager was unable to retrieve the location values. */
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"%@", error);
 }
@@ -373,12 +344,10 @@
     // Step 1: Get the size of the keyboard.
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    
     // Step 2: Adjust the bottom content inset of your scroll view by the keyboard height.
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0);
     self.theScrollView.contentInset = contentInsets;
     self.theScrollView.scrollIndicatorInsets = contentInsets;
-    
     
     // Step 3: Scroll the target text field into view.
     CGRect aRect = self.view.frame;
@@ -386,16 +355,17 @@
     if (!CGRectContainsPoint(aRect, self.activeTextField.frame.origin) ) {
         CGPoint scrollPoint = CGPointMake(0.0, self.activeTextField.frame.origin.y - (keyboardSize.height-15));
         [self.theScrollView setContentOffset:scrollPoint animated:YES];
-
     }
 }
 
 - (void) keyboardWillHide:(NSNotification *)notification {
     NSLog(@"KeyboardWillHide");
-//
-//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-//    self.theScrollView.contentInset = contentInsets;
-//    çscrollIndicatorInsets = contentInsets;
+    
+    /* KEEP IT FOR NOW */
+    /*UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.theScrollView.contentInset = contentInsets;
+    çscrollIndicatorInsets = contentInsets; */
+    /* KEEP IT FOR NOW */
 
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height + 20.0f, 0.0, 0.0, 0.0);
     self.theScrollView.contentInset = contentInsets;

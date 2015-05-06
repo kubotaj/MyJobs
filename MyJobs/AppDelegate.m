@@ -26,9 +26,8 @@
     // Override point for customization after application launch.
     
     UserSettings *us = [[UserSettings alloc] initWithDefault];
+    
     /* For Parser(Database) */
-    // [Optional] Power your app with Local Datastore. For more info, go to
-    // https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
     // Initialize Parse.
     [Parse setApplicationId:@"hK5bX9NOGt0O0wwFpSTQW3Hb0IupmSj7Zf0KHFBK"
@@ -40,8 +39,7 @@
     SearchViewController *searchView = [[SearchViewController alloc] initWithSettings:us];
     FavoritesTableViewController *favoritesView = [[FavoritesTableViewController alloc] init];
     SettingsViewController *settingsView = [[SettingsViewController alloc] initWithSettings:us];
-    //[settingsView updateUserSettings];
-
+    
     /* Set the nav controllers */
     UINavigationController *searchNav = [[UINavigationController alloc] initWithRootViewController: searchView];
     UINavigationController *favoritesNav = [[UINavigationController alloc] initWithRootViewController: favoritesView];
@@ -65,10 +63,9 @@
     settingsView.tabBarItem = settingsItem;
     [tab addChildViewController: settingsNav];
     
-    
     /* Set the root view */
     [self.window setRootViewController: tab];
-  
+
     
     return YES;
 }

@@ -9,6 +9,7 @@
 #import "SearchResultsTableViewController.h"
 #import "Job.h"
 #import "ResultDetailViewController.h"
+#import "FavoriteDataSource.h"
 
 @interface SearchResultsTableViewController ()
 
@@ -46,8 +47,19 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     
     NSLog(@"User scoreMax: %d", us.findScoreMax);
     NSLog(@"Number of User Skills: %d", us.skillCount);
-    return self;
     
+    /* Check for favorite flag */
+    FavoriteDataSource *fDataSource = [[FavoriteDataSource alloc] init];
+    NSMutableArray *fJobs = [fDataSource getAllJobs];
+    for (Job *aJob in jobsArray) {
+        for (Job *fJob in fJobs) {
+            if ([aJob.url isEqualToString:fJob.url]) {
+                aJob.isFav = YES;
+            }
+        }
+    }
+    
+    return self;
 }
 
 - (void)viewDidLoad {
@@ -98,7 +110,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Configure the cell...
+
     /* Populate the rows with jobs */
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     //This allows for multiple lines

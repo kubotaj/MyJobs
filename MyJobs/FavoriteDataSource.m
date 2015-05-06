@@ -56,8 +56,6 @@
         [self.jobs addObject:aJob];
     }
     
-    NSLog(@"size of the favoriteDataSource is %d", [self.jobs count]);
-    
     return self;
 }
 

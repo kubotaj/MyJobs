@@ -34,18 +34,16 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     if ((self = [super init]) == nil) {
         return nil;
     }
+    
     self.title = @"Favorites";
     
+    /* Initialize the data source */
     FavoriteDataSource *fDataSource = [[FavoriteDataSource alloc] init];
     self.jobsArray = [fDataSource getAllJobs];
     
-    /* for testing */
-    for (Job *aJob in self.jobsArray) {
-        NSLog(@"Printing Jobs %@", aJob);
-    }
-    
     return self;
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,18 +60,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
     [self.activityIndicator setCenter: self.view.center];
     [self.view addSubview: self.activityIndicator];
     
-//    self.testFav = [[Job alloc] init];
-//    self.testFav.sourceType = 3;
-//    self.testFav.company = @"AppDirect";
-//    self.testFav.city = @"San Francisco";
-//    self.testFav.state = @"CA";
-//    self.testFav.url = @"http://www.indeed.com/viewjob?jk=c1a481e61abd41ea&qd=v7mvxNvY3g5RZ4OWtehS_LyKQvjRMGh-g_l1xBxGZpi7byCvEn64jg9mJGrHhiHdx83mREWkrZoxhgQn5MzkJleC0qMfZM_XMi0Wupg6KHKkcbY9hjz-yyUKTi-hws0aONF_UajJqFsteOnGIgmm5Q&indpubnum=5703933454627100&atk=19kdjsoi0b9d285r";
-//    self.testFav.formattedRelativeTime = @"8 hours ago";
-//    self.testFav.isFav = YES;
-//    
-//    self.jobsArray = [[NSMutableArray alloc] init];
-    //[self.jobsArray addObject:self.testFav];
-    
+    /* Email the list NOT WORKING WITH SIMULATOR */
     [self cycleTheGlobalMailComposer];
     self.mailvController.mailComposeDelegate = self;
     
@@ -86,13 +73,8 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 //     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-//- (void) viewDidAppear:(BOOL)animated{
-//    [super viewDidAppear:animated];
-//    [self refreshTableView:self.refreshControl];
-//}
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self refreshTableView:self.refreshControl];
 }
 

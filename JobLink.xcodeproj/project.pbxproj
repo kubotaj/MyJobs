@@ -32,6 +32,7 @@
 		E81A72561AD08EAF00C0504F /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81A72551AD08EAF00C0504F /* SearchViewController.xib */; };
 		E81A72581AD09AA600C0504F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E81A72571AD09AA600C0504F /* CoreLocation.framework */; };
 		E81B13471AF6CA7800A1C0D4 /* FavoriteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E81B13461AF6CA7800A1C0D4 /* FavoriteDataSource.m */; };
+		E82680B71AF9860300CC35B6 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82680B61AF9860300CC35B6 /* TabBarViewController.m */; };
 		E8330B841AEC543900B9A0E4 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B821AEC543900B9A0E4 /* Bolts.framework */; };
 		E8330B851AEC543900B9A0E4 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B831AEC543900B9A0E4 /* Parse.framework */; };
 		E8330B871AEC54F700B9A0E4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8330B861AEC54F700B9A0E4 /* AudioToolbox.framework */; };
@@ -107,6 +108,8 @@
 		E81A72571AD09AA600C0504F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E81B13451AF6CA7800A1C0D4 /* FavoriteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteDataSource.h; sourceTree = "<group>"; };
 		E81B13461AF6CA7800A1C0D4 /* FavoriteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteDataSource.m; sourceTree = "<group>"; };
+		E82680B51AF9860300CC35B6 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		E82680B61AF9860300CC35B6 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		E8330B821AEC543900B9A0E4 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		E8330B831AEC543900B9A0E4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		E8330B861AEC54F700B9A0E4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -289,6 +292,8 @@
 				3F448EF51AF1BAC2007F3670 /* ResultURLViewController.m */,
 				3F48934E1AED67C100280B7C /* UserSettings.h */,
 				3F48934F1AED67C100280B7C /* UserSettings.m */,
+				E82680B51AF9860300CC35B6 /* TabBarViewController.h */,
+				E82680B61AF9860300CC35B6 /* TabBarViewController.m */,
 				E8FC4C851AD07E040028ED77 /* Main.storyboard */,
 				E8FC4C881AD07E040028ED77 /* Images.xcassets */,
 				E8FC4C8A1AD07E040028ED77 /* LaunchScreen.xib */,
@@ -474,6 +479,7 @@
 				E819E77E1AEDB620007EE836 /* SignUpViewController.m in Sources */,
 				3FBBC0911AE1B81D005F19FD /* MonsterDataSource.m in Sources */,
 				E848CEAF1ADEE718007B4272 /* IndeedAPIDataSource.m in Sources */,
+				E82680B71AF9860300CC35B6 /* TabBarViewController.m in Sources */,
 				E8FC4C7B1AD07E040028ED77 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

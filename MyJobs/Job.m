@@ -15,7 +15,6 @@
 @implementation Job
 
 + (NSString *) convertMonthtoNum: (NSString *) date {
-    //NSLog(@"In converMonthtoNum: orig = %@", date);
     
     date = [date stringByReplacingOccurrencesOfString:@"Jan" withString:@"1"];
     date = [date stringByReplacingOccurrencesOfString:@"Feb" withString:@"2"];
@@ -58,7 +57,6 @@
             
         }
     }
-    //NSLog(@"relativeTime: %i", relativeTime2);
 }
 
 -(void) toString {

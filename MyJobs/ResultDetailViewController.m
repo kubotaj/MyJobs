@@ -30,7 +30,6 @@
 
 - (id) initWithJob: (Job *) job {
     self.job = job;
-    NSLog(@"url: %@", job.url);
     self.url = [NSURL URLWithString: job.url];
     
     return self;
@@ -40,6 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    /* Fill out the labels */
     [self.jobTitleLabel setText:self.job.jobtitle];
     [self.companyLabel setText:self.job.company];
     
@@ -104,9 +104,6 @@
         NSLog(@"you were turned OFF");
         self.job.isFav = false;
     }
-    
-    //NSLog(@"switch setting: %d", [sender isOn]);
-    //NSLog(@"job's setting:  %d", self.job.isFav);
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -121,52 +118,51 @@
     /* Save the job info in parse if it's a favorite */
     if (self.job.isFav) {
         // Make a if statemenent to avoid creating duplicates.
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            if (object) {
-                NSLog(@"isFav: Job in Favorite");
-            }
-            else {
-                NSLog(@"isFav: Job not in Favorite yet");
-                favJob[@"user"] = [PFUser currentUser].username;
-                favJob[@"jobtitle"] = self.job.jobtitle;
-                favJob[@"company"] = self.job.company;
-                favJob[@"city"] = self.job.city;
-                favJob[@"state"] = self.job.state;
-                favJob[@"snippet"] = self.job.snippet;
-                favJob[@"url"] = self.job.url;
-                favJob[@"formattedRelativeTime"] = self.job.formattedRelativeTime;
-                favJob[@"datePosted"] = self.job.datePosted;
-                favJob[@"isFav"] = @(self.job.isFav).stringValue;
-                favJob[@"score"] = @(self.job.score).stringValue;
-                favJob[@"sourceType"] = @(self.job.sourceType).stringValue;
-//                favJob[@"skillsList"] = self.job.skillsList;
-                
-                [favJob save];
-            }
-        }];
+        PFObject *object = [query getFirstObject];
+        if (object) {
+            NSLog(@"isFav: Job in Favorite");
+        }
+        else {
+            NSLog(@"isFav: Job not in Favorite yet");
+            favJob[@"user"] = [PFUser currentUser].username;
+            favJob[@"jobtitle"] = self.job.jobtitle;
+            favJob[@"company"] = self.job.company;
+            favJob[@"city"] = self.job.city;
+            favJob[@"state"] = self.job.state;
+            favJob[@"snippet"] = self.job.snippet;
+            favJob[@"url"] = self.job.url;
+            favJob[@"formattedRelativeTime"] = self.job.formattedRelativeTime;
+            favJob[@"datePosted"] = self.job.datePosted;
+            favJob[@"isFav"] = @(self.job.isFav).stringValue;
+            favJob[@"score"] = @(self.job.score).stringValue;
+            favJob[@"sourceType"] = @(self.job.sourceType).stringValue;
+            //                favJob[@"skillsList"] = self.job.skillsList;
+            
+            [favJob save];
+        }
 
+        
     }
-
+    
     else {
         // Add code to delete object if it exits in the database.
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            if (object) {
-                NSLog(@"notFav: Job in Favorite");
-                [object deleteInBackgroundWithBlock:^(BOOL success, NSError *error) {
-                    if (!error) {
-                        NSLog(@"Deleted successfully.");
-                    }
-                    else {
-                        NSLog(@"Error at Delete: %@", error);
-                    }
-                }];
-            }
-            else {
-                NSLog(@"not Fav: Job not in Favorite");
-            }
-        }];
-
+        PFObject *object = [query getFirstObject];
+        if (object) {
+            NSLog(@"notFav: Job in Favorite");
+            [object deleteInBackgroundWithBlock:^(BOOL success, NSError *error) {
+                if (!error) {
+                    NSLog(@"Deleted successfully.");
+                }
+                else {
+                    NSLog(@"Error at Delete: %@", error);
+                }
+            }];
+        }
+        else {
+            NSLog(@"not Fav: Job not in Favorite");
+        }
     }
+    
     [super viewWillDisappear:animated];
 }
 

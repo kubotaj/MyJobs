@@ -61,7 +61,7 @@
 }
 
 -(void) updateUserSettings {
-    NSLog(@"MADE IT2: %@", [PFUser currentUser].objectId);
+
     [self clearSkills];
     
     NSString *currUserId = [PFUser currentUser].objectId;
@@ -75,25 +75,6 @@
         [self addSkill:[object objectForKey:@"Skill2"]];
     if (! [[object objectForKey:@"Skill3"] isEqual:@""])
         [self addSkill:[object objectForKey:@"Skill3"]];
-    
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        NSLog(@"len: %lu", (unsigned long)[objects count]);
-//        if (!error) {
-//            NSLog(@"MADE IT3: %lu", (unsigned long)[objects count]);
-//            PFObject *object = [objects objectAtIndex:0];
-//            self.searchRadius = [[object objectForKey:@"Radius"] integerValue];
-//            if (! [[object objectForKey:@"Skill1"] isEqual:@""])
-//                [self addSkill:[object objectForKey:@"Skill1"]];
-//            if (! [[object objectForKey:@"Skill2"] isEqual:@""])
-//                [self addSkill:[object objectForKey:@"Skill2"]];
-//            if (! [[object objectForKey:@"Skill3"] isEqual:@""])
-//                [self addSkill:[object objectForKey:@"Skill3"]];
-//        } else {
-//            NSLog(@"Error1: %@ %@", error, [error userInfo]);
-//        }
-//        NSLog(@"END");
-//    }];
-    NSLog(@"EXIT");
 }
 
 

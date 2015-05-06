@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import <Parse/Parse.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

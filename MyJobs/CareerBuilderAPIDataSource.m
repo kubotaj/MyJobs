@@ -127,14 +127,12 @@
         if ([elementName isEqualToString: @"JobDetailsURL"])
             [self.cbJob setValue: self.currentElementValue forKey: @"url"];
         if ([elementName isEqualToString: @"PostedTime"]){
-            //[self.cbJob setValue: self.currentElementValue forKey: @"formattedRelativeTime"];
             //create NSDate from ex. "3/27/2015 8:55:29 AM"
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"MM/dd/yyyy hh:mm:ss a"];
             NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
             [formatter setTimeZone:gmt];
             [self.cbJob setValue:[formatter dateFromString:self.currentElementValue] forKey:@"datePosted"];
-            //NSLog(@"%@", self.cbJob.datePosted);
             [self.cbJob convertDatePostedToFormattedRelativeTime];
         }
         if ([elementName isEqualToString: @"Skill"])
@@ -147,19 +145,13 @@
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     NSLog(@"Parsing CB finished");
-    
-    /*
-    for (int i = 0; i < [self.jobs count]; i++) {
-        NSLog(@"Job %i job title is %@", i, [self.jobs[i] valueForKey: @"jobtitle"]);
-    }
-     */
+
 }
 
 - (void) filterJobs:(UserSettings *)userSettings{
     NSMutableArray *userSkills = userSettings.userSkills;
     for (Job *j in self.jobs){
         // Compare skills
-        //int count = (int)[userSkills count];
         for (NSString *userSkill in userSkills){
             bool found = false;
             NSMutableArray *jobTitleWords = (NSMutableArray *)[j.jobtitle componentsSeparatedByString:@" "];
@@ -168,7 +160,6 @@
                 if ([reformattedWord isEqualToString:userSkill] && !found){
                     j.score += 2;
                     found = true;
-                    //NSLog(@"(+ %d) Found user skill: %@ in job skill (title): %@", count, userSkill, reformattedWord);
                 }
             }
             for (NSString *jobSkill in j.skillsList){
@@ -177,17 +168,13 @@
                     if ([word isEqualToString:userSkill] && !found){
                         j.score += 2;
                         found = true;
-                        //NSLog(@"(+ %d) Found user skill: %@ in job skill: %@", count, userSkill, jobSkill);
                     }
                 }
             }
-            //count--;
         }
         // In the right city?
-        //NSLog(@"Comparing user city: %@ with job city: %@", userSettings.preferredCity, [[j.city lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""]);
         if ([userSettings.preferredCity isEqualToString:[[j.city lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""]]){
             j.score += 2;
-            //NSLog(@"(+ %d) Correct user city", 2);
         }
         // Filter out CyberCoders
         if ([j.company isEqualToString:@"CyberCoders"])
@@ -197,11 +184,9 @@
         relativeTimeSeconds = [[NSDate date]timeIntervalSinceDate: j.datePosted]; //seconds since job posted
         if (relativeTimeSeconds < 86400){       // Is this posting less than a day old
             j.score += 3;
-            //NSLog(@"(+ %d) Post less than day old", 3);
         }
         else if (relativeTimeSeconds < 604800){ // Is this posting less than a week old
             j.score += 1;
-            //NSLog(@"(+ %d) Post less than week old", 1);
         }
         //if (j.score > 1) NSLog(@"Final job score = %d", j.score);
     }
