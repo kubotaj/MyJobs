@@ -44,7 +44,7 @@
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {
-    NSLog(@"Start Indeed parsing");
+    //NSLog(@"Start Indeed parsing");
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
@@ -131,7 +131,7 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    NSLog(@"Parsing Indeed finished");
+    //NSLog(@"Parsing Indeed finished");
 }
 
 - (void) filterJobs:(UserSettings *)userSettings{

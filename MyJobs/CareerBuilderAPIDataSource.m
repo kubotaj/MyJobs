@@ -45,7 +45,7 @@
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {
-    NSLog(@"Start CB parsing");
+    //NSLog(@"Start CB parsing");
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
@@ -144,7 +144,7 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    NSLog(@"Parsing CB finished");
+    //NSLog(@"Parsing CB finished");
 
 }
 
@@ -208,7 +208,6 @@
 }
 
 + (int) roundRadiusforCB: (int) rIn{
-    NSLog(@"rIn: %d", rIn);
     int rOut;
     //5, 10, 20, 30, 50, 100, or 150
     if (rIn < 6)
@@ -225,7 +224,6 @@
         rOut = 100;
     else
         rOut = 150;
-    NSLog(@"rOut: %d", rOut);
     return rOut;
 }
 

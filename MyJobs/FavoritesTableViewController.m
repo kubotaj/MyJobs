@@ -186,7 +186,7 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {   /* Respond to the touch at the row. Create and move to the detail view. */
-    Job *job;
+    Job *job = [[Job alloc] init];
     job = self.jobsArray[[indexPath row]];
     ResultDetailViewController *rvController = [[ResultDetailViewController alloc] initWithJob: job];
     [self.navigationController pushViewController: rvController animated:YES];

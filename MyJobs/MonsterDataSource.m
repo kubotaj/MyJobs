@@ -47,7 +47,7 @@
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {
-    NSLog(@"Start monster parsing");
+    //NSLog(@"Start monster parsing");
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
@@ -174,7 +174,7 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    NSLog(@"Parsing monster finished");
+    //NSLog(@"Parsing monster finished");
 
 }
 
