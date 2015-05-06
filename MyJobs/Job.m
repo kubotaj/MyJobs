@@ -41,7 +41,7 @@
     relativeTimeHours = relativeTimeSeconds / 3600; //convert to hours
     relativeTimeHours = floor(relativeTimeHours);
     NSInteger relativeTime = relativeTimeHours / 24; //cast to int
-    //relativeTime = relativeTime / 24;
+
     if ( relativeTime < 1 ) {
         NSString *formattedRelativeTimeHours = [NSString stringWithFormat:@"%.0f hours ago", relativeTimeHours];
         self.formattedRelativeTime = formattedRelativeTimeHours;
