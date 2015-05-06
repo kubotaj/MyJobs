@@ -51,7 +51,7 @@
         aJob.datePosted = job[@"datePosted"];
         aJob.isFav = job[@"isFav"];
         aJob.score = [job[@"score"] intValue];
-//        self.aJob.skillsList = job[@"skillsList"];
+        aJob.skillsList = job[@"skillsList"];
         aJob.sourceType = [job[@"sourceType"] intValue];
         [self.jobs addObject:aJob];
     }

@@ -64,16 +64,17 @@
         default:
             break;
     }
-    [self.snippetLabel setText:self.job.snippet];
     
-//    if (self.job.sourceType == 3 || self.job.sourceType == 1)
-//        [self.snippetLabel setText:self.job.snippet];
-//    
-//    if (self.job.sourceType == 2){
-//        NSString * skillsTextList = @"Skills: ";
-//        skillsTextList = [skillsTextList stringByAppendingString:[self.job.skillsList componentsJoinedByString: @", "]];
-//        [self.snippetLabel setText:skillsTextList];
-//    }
+    /* For Monster and Indeed */
+    if (self.job.sourceType == 3 || self.job.sourceType == 1)
+        [self.snippetLabel setText:self.job.snippet];
+    
+    /* For Career Bilder who has skills list */
+    if (self.job.sourceType == 2){
+        NSString * skillsTextList = @"Skills: ";
+        skillsTextList = [skillsTextList stringByAppendingString:[self.job.skillsList componentsJoinedByString: @", "]];
+        [self.snippetLabel setText:skillsTextList];
+    }
     
     NSString *timeText = @"Posted ";
     timeText = [timeText stringByAppendingString:self.job.formattedRelativeTime];
@@ -137,7 +138,9 @@
             favJob[@"isFav"] = @(self.job.isFav).stringValue;
             favJob[@"score"] = @(self.job.score).stringValue;
             favJob[@"sourceType"] = @(self.job.sourceType).stringValue;
-            //                favJob[@"skillsList"] = self.job.skillsList;
+            if (self.job.skillsList) { // Only career builder has skills list.
+                favJob[@"skillsList"] = self.job.skillsList;
+            }
             
             [favJob save];
         }
