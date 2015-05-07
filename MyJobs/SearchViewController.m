@@ -2,7 +2,7 @@
 //  SearchViewController.m
 //  MyJobs
 //
-//  Created by Joji Kubota on 4/4/15.
+//  Created by Joji Kubota, Kenji Johnson & Jeff Teller on 4/4/15.
 //  Copyright (c) 2015 Joji Kubota. All rights reserved.
 //
 
@@ -211,18 +211,14 @@
     /* Delete previous search history from the database */
     PFQuery *query = [PFQuery queryWithClassName:@"PrevSearch"];
     [query whereKey:@"user" equalTo:[PFUser currentUser].username];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!error) {
-            PFObject *object = [objects objectAtIndex:0];
-            [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded && !error) {
-                        NSLog(@"deleted prev search");
-                    } else if (error)
-                        NSLog(@"Error: %@ %@", error, [error userInfo]);
-                }];
+            //PFObject *object = [objects objectAtIndex:0];
+            [object delete];
         } else
             NSLog(@"Error: %@ %@", error, [error userInfo]);
     }];
+
 
     /* Add the search history to the database */
     self.prevSearch = [PFObject objectWithClassName:@"PrevSearch"];

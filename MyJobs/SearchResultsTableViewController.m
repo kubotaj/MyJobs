@@ -2,7 +2,7 @@
 //  SearchResultsTableViewController.m
 //  MyJobs
 //
-//  Created by Joji Kubota on 4/12/15.
+//  Created by Joji Kubota, Kenji Johnson & Jeff Teller on 4/12/15.
 //  Copyright (c) 2015 Joji Kubota. All rights reserved.
 //
 
@@ -180,16 +180,16 @@ static NSString *CellIdentifier = @"Cell"; // Pool of cells.
 
 - (UIColor *) findCellColor:(int) score{
     //NSLog(@"Returning color for score: %d", score);
-    if (score > (int)([self.us findScoreMax] * 0.80))
-        return self.cellColorVeryHighScore;
-    if (score > (int)([self.us findScoreMax] * 0.60))
-        return self.cellColorHighScore;
-    if (score > (int)([self.us findScoreMax] * 0.45))
-        return self.cellColorMediumScore;
-    if (score > (int)([self.us findScoreMax] * 0.30))
-        return self.cellColorLowScore;
-    if (score <= (int)([self.us findScoreMax] * 0.30))
-        return self.cellColorVeryLowScore;
+//    if (score > (int)([self.us findScoreMax] * 0.80))
+//        return self.cellColorVeryHighScore;
+//    if (score > (int)([self.us findScoreMax] * 0.60))
+//        return self.cellColorHighScore;
+//    if (score > (int)([self.us findScoreMax] * 0.45))
+//        return self.cellColorMediumScore;
+//    if (score > (int)([self.us findScoreMax] * 0.30))
+//        return self.cellColorLowScore;
+//    if (score <= (int)([self.us findScoreMax] * 0.30))
+//        return self.cellColorVeryLowScore;
     return [UIColor whiteColor];
 }
 
